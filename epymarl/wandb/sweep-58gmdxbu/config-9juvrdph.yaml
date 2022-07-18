@@ -1,6 +1,0 @@
-wandb_version: 1
-
-epsilon_finish:
-  value: 0.0922029266506648
-lr:
-  value: 0.00013196883383513955
