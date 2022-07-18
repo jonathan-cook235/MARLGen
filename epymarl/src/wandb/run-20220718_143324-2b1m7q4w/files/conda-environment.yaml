@@ -1,5 +1,0 @@
-name: MARLGen
-channels:
-  - defaults
-  - conda-forge
-prefix: /Users/jonnycook/miniforge3/envs/MARLGen
