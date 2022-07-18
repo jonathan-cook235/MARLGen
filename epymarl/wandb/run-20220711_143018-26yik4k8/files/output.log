@@ -1,0 +1,89 @@
+src/main.py:73: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3,and in 3.9 it will stop working
+  if isinstance(v, collections.Mapping):
+[INFO 14:30:21] root Saving to FileStorageObserver in results/sacred.
+[DEBUG 14:30:21] pymarl Using capture mode "fd"
+[INFO 14:30:21] pymarl Running command 'my_main'
+[INFO 14:30:21] pymarl Started run with ID "7"
+[DEBUG 14:30:21] pymarl Starting Heartbeat
+[DEBUG 14:30:21] my_main Started
+[WARNING 14:30:21] my_main CUDA flag use_cuda was switched OFF automatically because no CUDA devices are available!
+[INFO 14:30:21] my_main Experiment Parameters:
+[INFO 14:30:21] my_main
+{   'action_selector': 'soft_policies',
+    'add_value_last_step': True,
+    'agent': 'rnn',
+    'agent_output_type': 'pi_logits',
+    'batch_size': 10,
+    'batch_size_run': 10,
+    'buffer_cpu_only': True,
+    'buffer_size': 10,
+    'checkpoint_path': '',
+    'critic_type': 'ac_critic',
+    'entropy_coef': 0.01,
+    'env': 'griddlygen',
+    'env_args': {   },
+    'epochs': 4,
+    'eps_clip': 0.2,
+    'epsilon_anneal_time': 5000,
+    'epsilon_finish': 0.05,
+    'epsilon_start': 1.0,
+    'evaluate': False,
+    'evaluation_epsilon': 0.0,
+    'gamma': 0.99,
+    'grad_norm_clip': 10,
+    'hidden_dim': 64,
+    'hypergroup': None,
+    'hypernet_embed': 64,
+    'hypernet_layers': 2,
+    'label': 'default_label',
+    'learner': 'actor_critic_learner',
+    'learner_log_interval': 10000,
+    'load_step': 0,
+    'local_results_path': 'results',
+    'log_interval': 50000,
+    'lr': 0.0005,
+    'mac': 'basic_mac',
+    'mask_before_softmax': True,
+    'max_before_softmax': True,
+    'mixing_embed_dim': 32,
+    'name': 'ia2c',
+    'obs_agent_id': True,
+    'obs_individual_obs': False,
+    'obs_last_action': False,
+    'optim_alpha': 0.99,
+    'optim_eps': 1e-05,
+    'q_nstep': 5,
+    'repeat_id': 1,
+    'runner': 'parallel',
+    'runner_log_interval': 10000,
+    'save_model': False,
+    'save_model_interval': 50000,
+    'save_replay': False,
+    'seed': 717628456,
+    'standardise_returns': False,
+    'standardise_rewards': True,
+    't_max': 20050000,
+    'target_update_interval_or_tau': 0.01,
+    'test_greedy': True,
+    'test_interval': 50000,
+    'test_nepisode': 100,
+    'use_cuda': False,
+    'use_rnn': True,
+    'use_tensorboard': False}
+[DEBUG 14:30:21] pymarl Stopping Heartbeat
+[ERROR 14:30:21] pymarl Failed after 0:00:00!
+Traceback (most recent calls WITHOUT Sacred internals):
+  File "src/main.py", line 51, in my_main
+    run(_run, config, _log)
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/run.py", line 56, in run
+    run_sequential(args=args, logger=logger)
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/run.py", line 88, in run_sequential
+    env_info = runner.get_env_info()
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/runners/episode_runner.py", line 37, in get_env_info
+    return self.env.get_env_info()
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/envs/game_2.py", line 277, in get_env_info
+    "state_shape": self.get_state_size(),
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/envs/game_2.py", line 203, in get_state_size
+    state_size = len(self.get_state().flatten())
+AttributeError: 'NoneType' object has no attribute 'flatten'
+[2022-07-11 14:30:21.109] [[32minfo[39m] No level specified, will use the first level described in the GDY.

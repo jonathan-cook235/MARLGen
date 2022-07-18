@@ -1,0 +1,82 @@
+{
+  "artifacts": [],
+  "command": "my_main",
+  "experiment": {
+    "base_dir": "/Users/jonnycook/Desktop/MARLGen/epymarl/src",
+    "dependencies": [
+      "munch==2.5.0",
+      "numpy==1.21.5",
+      "PyYAML==6.0",
+      "sacred==0.8.2",
+      "torch==1.10.2",
+      "wandb==0.12.21"
+    ],
+    "mainfile": "main.py",
+    "name": "pymarl",
+    "repositories": [],
+    "sources": [
+      [
+        "main.py",
+        "_sources/main_a37e54b46281888a5ec1016e34586399.py"
+      ],
+      [
+        "run.py",
+        "_sources/run_e078105be0d1299d38b285d2ee862aa9.py"
+      ],
+      [
+        "utils/logging.py",
+        "_sources/logging_8309e899ab76a4e610428ba7ee8d8acb.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/sacred/run.py\", line 333, in _emit_started\n    _id=self._id,\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/sacred/observers/file_storage.py\", line 156, in started_event\n    self._make_run_dir(_id)\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/sacred/observers/file_storage.py\", line 117, in _make_run_dir\n    os.mkdir(self.dir)\n",
+    "FileExistsError: [Errno 17] File exists: '/Users/jonnycook/Desktop/MARLGen/epymarl/results/sacred/qmix/Griddly/109'\n"
+  ],
+  "heartbeat": null,
+  "host": {
+    "ENV": {},
+    "cpu": "Apple M1",
+    "hostname": "Jonnys-MBP",
+    "os": [
+      "Darwin",
+      "Darwin-20.5.0-x86_64-i386-64bit"
+    ],
+    "python_version": "3.7.11"
+  },
+  "meta": {
+    "command": "my_main",
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [],
+      "help": false,
+      "with": false
+    }
+  },
+  "resources": [],
+  "start_time": "2022-07-15T15:35:04.102756",
+  "status": "FAILED",
+  "stop_time": "2022-07-15T15:35:04.108399"
+}

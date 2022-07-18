@@ -1,0 +1,10 @@
+
+Seed: 3090
+/Users/jonnycook/Desktop/MARLGen/epymarl/src/main.py:87: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3,and in 3.9 it will stop working
+  if isinstance(v, collections.Mapping):
+[INFO 14:07:27] root Saving to FileStorageObserver in results/sacred.
+[DEBUG 14:07:27] pymarl Using capture mode "fd"
+[INFO 14:07:27] pymarl Running command 'my_main'
+[INFO 14:07:27] pymarl Started run with ID "127"
+[DEBUG 14:07:27] pymarl Starting Heartbeat
+[DEBUG 14:07:27] my_main Started

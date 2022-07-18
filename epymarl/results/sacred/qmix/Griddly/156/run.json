@@ -1,0 +1,83 @@
+{
+  "artifacts": [],
+  "command": "my_main",
+  "experiment": {
+    "base_dir": "/Users/jonnycook/Desktop/MARLGen/epymarl/src",
+    "dependencies": [
+      "munch==2.5.0",
+      "numpy==1.21.5",
+      "PyYAML==6.0",
+      "sacred==0.8.2",
+      "torch==1.10.2"
+    ],
+    "mainfile": "main.py",
+    "name": "pymarl",
+    "repositories": [],
+    "sources": [
+      [
+        "main.py",
+        "_sources/main_ea272770fdc19c3b7f01a0d28a66512f.py"
+      ],
+      [
+        "run.py",
+        "_sources/run_bc9846987a2ba535ce33e92df21c981e.py"
+      ],
+      [
+        "utils/logging.py",
+        "_sources/logging_8309e899ab76a4e610428ba7ee8d8acb.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/main.py\", line 65, in my_main\n    run(_run, config, _log)\n",
+    "  File \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/run.py\", line 56, in run\n    run_sequential(args=args, logger=logger)\n",
+    "  File \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/run.py\", line 89, in run_sequential\n    args.n_agents = env_info[\"n_agents\"]\n",
+    "KeyError: 'n_agents'\n"
+  ],
+  "heartbeat": "2022-07-18T12:56:20.514181",
+  "host": {
+    "ENV": {},
+    "cpu": "Apple M1",
+    "hostname": "Jonnys-MacBook-Pro.local",
+    "os": [
+      "Darwin",
+      "Darwin-20.5.0-x86_64-i386-64bit"
+    ],
+    "python_version": "3.7.11"
+  },
+  "meta": {
+    "command": "my_main",
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [],
+      "help": false,
+      "with": false
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2022-07-18T12:56:18.448688",
+  "status": "FAILED",
+  "stop_time": "2022-07-18T12:56:20.518768"
+}

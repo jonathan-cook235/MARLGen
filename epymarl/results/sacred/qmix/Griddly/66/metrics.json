@@ -1,0 +1,35 @@
+{
+  "epsilon": {
+    "steps": [
+      1
+    ],
+    "timestamps": [
+      "2022-07-09T07:12:07.384478"
+    ],
+    "values": [
+      1.0
+    ]
+  },
+  "return_mean": {
+    "steps": [
+      1
+    ],
+    "timestamps": [
+      "2022-07-09T07:12:07.383680"
+    ],
+    "values": [
+      0.0
+    ]
+  },
+  "return_std": {
+    "steps": [
+      1
+    ],
+    "timestamps": [
+      "2022-07-09T07:12:07.384464"
+    ],
+    "values": [
+      0.0
+    ]
+  }
+}

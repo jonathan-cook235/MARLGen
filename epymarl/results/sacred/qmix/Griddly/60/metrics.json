@@ -1,0 +1,57 @@
+{
+  "epsilon": {
+    "steps": [
+      1
+    ],
+    "timestamps": [
+      "2022-07-08T19:48:01.927503"
+    ],
+    "values": [
+      1.0
+    ]
+  },
+  "return_mean": {
+    "steps": [
+      1
+    ],
+    "timestamps": [
+      "2022-07-08T19:48:01.927401"
+    ],
+    "values": [
+      0.0
+    ]
+  },
+  "return_std": {
+    "steps": [
+      1
+    ],
+    "timestamps": [
+      "2022-07-08T19:48:01.927493"
+    ],
+    "values": [
+      0.0
+    ]
+  },
+  "test_return_mean": {
+    "steps": [
+      1
+    ],
+    "timestamps": [
+      "2022-07-08T19:48:05.219380"
+    ],
+    "values": [
+      0.0
+    ]
+  },
+  "test_return_std": {
+    "steps": [
+      1
+    ],
+    "timestamps": [
+      "2022-07-08T19:48:05.219454"
+    ],
+    "values": [
+      0.0
+    ]
+  }
+}

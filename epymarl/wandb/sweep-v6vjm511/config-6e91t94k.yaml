@@ -1,0 +1,12 @@
+wandb_version: 1
+
+epsilon_finish:
+  value: 0.04284625294373463
+hypernet_embed:
+  value: 33
+hypernet_layers:
+  value: 2
+lr:
+  value: 0.0002958845844301301
+mixing_embed_dim:
+  value: 36

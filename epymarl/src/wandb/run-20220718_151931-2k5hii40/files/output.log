@@ -1,0 +1,349 @@
+/Users/jonnycook/Desktop/MARLGen/epymarl/src/main.py:87: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3,and in 3.9 it will stop working
+  if isinstance(v, collections.Mapping):
+[INFO 15:19:35] root Saving to FileStorageObserver in results/sacred.
+[DEBUG 15:19:35] pymarl Using capture mode "fd"
+[INFO 15:19:35] pymarl Running command 'my_main'
+[INFO 15:19:35] pymarl Started run with ID "190"
+[DEBUG 15:19:35] pymarl Starting Heartbeat
+[DEBUG 15:19:35] my_main Started
+[WARNING 15:19:35] my_main CUDA flag use_cuda was switched OFF automatically because no CUDA devices are available!
+[INFO 15:19:35] my_main Experiment Parameters:
+[INFO 15:19:35] my_main
+{   'action_selector': 'epsilon_greedy',
+    'add_value_last_step': True,
+    'agent': 'rnn',
+    'agent_output_type': 'q',
+    'batch_size': 10,
+    'batch_size_run': 3,
+    'buffer_cpu_only': True,
+    'buffer_size': 5000,
+    'checkpoint_path': '',
+    'critic_type': 'ac_critic',
+    'double_q': True,
+    'entropy_coef': 0.01,
+    'env': 'griddlygen',
+    'env_args': {   'level_seeds': array([4418, 7739, 9617, ..., 9087, 7119, 5858]),
+                    'seed': 5413},
+    'epochs': 4,
+    'eps_clip': 0.2,
+    'epsilon_anneal_time': 5000,
+    'epsilon_finish': 0.05,
+    'epsilon_start': 1.0,
+    'evaluate': False,
+    'evaluation_epsilon': 0.0,
+    'gamma': 0.99,
+    'grad_norm_clip': 10,
+    'hidden_dim': 64,
+    'hypergroup': None,
+    'hypernet_embed': 64,
+    'hypernet_layers': 2,
+    'label': 'default_label',
+    'learner': 'q_learner',
+    'learner_log_interval': 10000,
+    'load_step': 0,
+    'local_results_path': 'results',
+    'log_interval': 10000,
+    'lr': 0.0005,
+    'mac': 'basic_mac',
+    'mask_before_softmax': True,
+    'max_before_softmax': True,
+    'mixer': 'qmix',
+    'mixing_embed_dim': 32,
+    'name': 'qmix',
+    'obs_agent_id': True,
+    'obs_individual_obs': False,
+    'obs_last_action': False,
+    'optim_alpha': 0.99,
+    'optim_eps': 1e-05,
+    'q_nstep': 5,
+    'repeat_id': 1,
+    'runner': 'parallel',
+    'runner_log_interval': 1000,
+    'save_model': False,
+    'save_model_interval': 50000,
+    'save_replay': False,
+    'seed': 5413,
+    'standardise_returns': False,
+    'standardise_rewards': True,
+    't_max': 20050000,
+    'target_update_interval_or_tau': 200,
+    'test_greedy': True,
+    'test_interval': 50000,
+    'test_nepisode': 99,
+    'use_cuda': False,
+    'use_rnn': False,
+    'use_tensorboard': False}
+[INFO 15:19:35] my_main Beginning training for 20000 episodes
+/Users/jonnycook/Desktop/MARLGen/epymarl/src/components/episode_buffer.py:108: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at  ../torch/csrc/utils/tensor_new.cpp:201.)
+  v = th.tensor(v, dtype=dtype, device=self.device)
+/Users/jonnycook/Desktop/MARLGen/epymarl/src/components/episode_buffer.py:108: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  v = th.tensor(v, dtype=dtype, device=self.device)
+/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/sacred/stdout_capturing.py:184: UserWarning: tee_stdout.wait timeout. Forcibly terminating.
+  warnings.warn("tee_stdout.wait timeout. Forcibly terminating.")
+Seed: 5413
+about to run
+KWARGS
+{'seed': 5413, 'level_seeds': array([4418, 7739, 9617, ..., 9087, 7119, 5858])}
+KWARGS
+{'seed': 5414, 'level_seeds': array([4418, 7739, 9617, ..., 9087, 7119, 5858])}
+KWARGS
+{'seed': 5415, 'level_seeds': array([4418, 7739, 9617, ..., 9087, 7119, 5858])}
+[2022-07-18 15:19:35.461] [info] No level specified, will use the first level described in the GDY.
+[2022-07-18 15:19:35.461] [info] No level specified, will use the first level described in the GDY.
+in env worker
+[2022-07-18 15:19:35.476] [info] No level specified, will use the first level described in the GDY.
+v before summing
+tensor([[[ 0.,  0.]],
+        [[ 0.,  0.]],
+        [[ 0., -1.]]])
+v reward
+tensor([[ 0.],
+        [ 0.],
+        [-1.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[ 0.,  0.]],
+        [[ 0., -1.]],
+        [[ 0.,  0.]]])
+v reward
+tensor([[ 0.],
+        [-1.],
+        [ 0.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[0., 0.]],
+        [[0., 0.]],
+        [[0., 0.]]])
+v reward
+tensor([[0.],
+        [0.],
+        [0.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[0., 0.]],
+        [[0., 0.]],
+        [[0., 0.]]])
+v reward
+tensor([[0.],
+        [0.],
+        [0.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[0., 0.]],
+        [[0., 0.]],
+        [[0., 0.]]])
+v reward
+tensor([[0.],
+        [0.],
+        [0.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[0., 0.]],
+        [[0., 0.]],
+        [[0., 0.]]])
+v reward
+tensor([[0.],
+        [0.],
+        [0.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[0., 0.]],
+        [[0., 0.]],
+        [[0., 0.]]])
+v reward
+tensor([[0.],
+        [0.],
+        [0.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[0., 0.]],
+        [[0., 0.]],
+        [[0., 0.]]])
+v reward
+tensor([[0.],
+        [0.],
+        [0.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[0., 0.]],
+        [[0., 0.]],
+        [[1., 0.]]])
+v reward
+tensor([[0.],
+        [0.],
+        [1.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[0., 0.]],
+        [[0., 0.]],
+        [[0., 0.]]])
+v reward
+tensor([[0.],
+        [0.],
+        [0.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[0., 0.]],
+        [[0., 0.]],
+        [[0., 0.]]])
+v reward
+tensor([[0.],
+        [0.],
+        [0.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[0., 0.]],
+        [[0., 0.]],
+        [[0., 0.]]])
+v reward
+tensor([[0.],
+        [0.],
+        [0.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[0., 0.]],
+        [[0., 0.]],
+        [[0., 0.]]])
+v reward
+tensor([[0.],
+        [0.],
+        [0.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[0., 0.]],
+        [[0., 0.]],
+        [[0., 0.]]])
+v reward
+tensor([[0.],
+        [0.],
+        [0.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[0., 0.]],
+        [[0., 0.]],
+        [[0., 0.]]])
+v reward
+tensor([[0.],
+        [0.],
+        [0.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[0., 0.]],
+        [[0., 0.]],
+        [[0., 0.]]])
+v reward
+tensor([[0.],
+        [0.],
+        [0.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[-1.,  0.]],
+        [[ 1.,  0.]],
+        [[ 0.,  0.]]])
+v reward
+tensor([[-1.],
+        [ 1.],
+        [ 0.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[0., 0.]],
+        [[0., 0.]],
+        [[0., 0.]]])
+v reward
+tensor([[0.],
+        [0.],
+        [0.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[0., 0.]],
+        [[0., 0.]],
+        [[0., 0.]]])
+v reward
+tensor([[0.],
+        [0.],
+        [0.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[0., 0.]],
+        [[0., 0.]],
+        [[0., 0.]]])
+v reward
+tensor([[0.],
+        [0.],
+        [0.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[ 0.,  0.]],
+        [[-1.,  0.]],
+        [[ 0.,  0.]]])
+v reward
+tensor([[ 0.],
+        [-1.],
+        [ 0.]])
+tensor([[[0.]],
+        [[0.]],
+        [[0.]]])
+v before summing
+tensor([[[0., 0.]],
+        [[0., 0.]]])
+v reward
+tensor([[0.],
+        [0.]])
+tensor([[[0.]],
+        [[0.]]])
+/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/sacred/stdout_capturing.py:190: UserWarning: tee_stderr.wait timeout. Forcibly terminating.
+  warnings.warn("tee_stderr.wait timeout. Forcibly terminating.")
+[DEBUG 15:19:38] pymarl Stopping Heartbeat
+[ERROR 15:19:38] pymarl Failed after 0:00:03!
+Traceback (most recent calls WITHOUT Sacred internals):
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/main.py", line 65, in my_main
+    run(_run, config, _log)
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/run.py", line 56, in run
+    run_sequential(args=args, logger=logger)
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/run.py", line 185, in run_sequential
+    episode_batch = runner.run(test_mode=False)
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/runners/parallel_runner.py", line 169, in run
+    self.batch.update(post_transition_data, bs=envs_not_terminated, ts=self.t, mark_filled=False)
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/components/episode_buffer.py", line 137, in update
+    v = th.reshape(v, (3, target[k][_slices].shape[-2], 1))
+RuntimeError: shape '[3, 1, 1]' is invalid for input of size 2

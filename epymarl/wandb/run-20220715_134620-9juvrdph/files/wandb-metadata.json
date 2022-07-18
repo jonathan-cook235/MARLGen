@@ -1,0 +1,19 @@
+{
+    "os": "Darwin-20.5.0-x86_64-i386-64bit",
+    "python": "3.7.11",
+    "heartbeatAt": "2022-07-15T12:46:21.042570",
+    "startedAt": "2022-07-15T12:46:20.130175",
+    "docker": null,
+    "cpu_count": 8,
+    "cuda": null,
+    "args": [
+        "--epsilon_finish=0.0922029266506648",
+        "--lr=0.00013196883383513955"
+    ],
+    "state": "running",
+    "program": "src/main.py",
+    "codePath": "src/main.py",
+    "host": "Jonnys-MBP",
+    "username": "jonnycook",
+    "executable": "/Users/jonnycook/opt/anaconda3/envs/MARLGen/bin/python"
+}

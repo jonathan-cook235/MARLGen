@@ -1,0 +1,87 @@
+{
+  "artifacts": [],
+  "command": "my_main",
+  "experiment": {
+    "base_dir": "/Users/jonnycook/Desktop/MARLGen/epymarl/src",
+    "dependencies": [
+      "munch==2.5.0",
+      "numpy==1.21.5",
+      "PyYAML==6.0",
+      "sacred==0.8.2",
+      "torch==1.10.2"
+    ],
+    "mainfile": "main.py",
+    "name": "pymarl",
+    "repositories": [],
+    "sources": [
+      [
+        "main.py",
+        "_sources/main_6f0d470295c80382a193688017432b5b.py"
+      ],
+      [
+        "run.py",
+        "_sources/run_ca1982628fbd6f56dea25d3d2b533d62.py"
+      ],
+      [
+        "utils/logging.py",
+        "_sources/logging_8309e899ab76a4e610428ba7ee8d8acb.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"src/main.py\", line 50, in my_main\n    run(_run, config, _log)\n",
+    "  File \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/run.py\", line 56, in run\n    run_sequential(args=args, logger=logger)\n",
+    "  File \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/run.py\", line 86, in run_sequential\n    runner = r_REGISTRY[args.runner](args=args, logger=logger)\n",
+    "  File \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/runners/episode_runner.py\", line 17, in __init__\n    self.env = env_REGISTRY[self.args.env](**self.args.env_args)\n",
+    "  File \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/envs/__init__.py\", line 19, in env_fn\n    return env(**kwargs)\n",
+    "  File \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/envs/game_2.py\", line 80, in __init__\n    super().__init__(*args, **kwargs)\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/griddly/GymWrapper.py\", line 60, in __init__\n    self.game.load_level(level)\n",
+    "TypeError: load_level(): incompatible function arguments. The following argument types are supported:\n    1. (self: python_griddly.GameProcess, arg0: int) -> None\n\nInvoked with: <python_griddly.GameProcess object at 0x7f7fb383fb30>, 'W   W   W   W   W   W   W   W   W   W   \\nW   .   p   .   .   .   .   .   .   W   \\nW   .   .   .   .   .   .   .   o   W   \\nW   .   .   .   .   .   .   .   .   W   \\nW   .   .   .   .   .   .   p   .   W   \\nW   f   .   .   .   .   p   .   .   W   \\nW   o   .   .   .   .   .   f   .   W   \\nW   .   .   .   o   .   .   .   .   W   \\nW   .   .   .   .   o   .   .   .   W   \\nW   W   W   W   W   W   W   W   W   W   \\n'\n"
+  ],
+  "heartbeat": "2022-07-08T08:45:21.131661",
+  "host": {
+    "ENV": {},
+    "cpu": "Apple M1",
+    "hostname": "Jonnys-MacBook-Pro.local",
+    "os": [
+      "Darwin",
+      "Darwin-20.5.0-x86_64-i386-64bit"
+    ],
+    "python_version": "3.7.11"
+  },
+  "meta": {
+    "command": "my_main",
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [],
+      "help": false,
+      "with": false
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2022-07-08T08:45:21.092370",
+  "status": "FAILED",
+  "stop_time": "2022-07-08T08:45:21.132783"
+}

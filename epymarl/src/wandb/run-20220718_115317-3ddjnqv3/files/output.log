@@ -1,0 +1,112 @@
+Seed: 3252
+about to run
+KWARGS
+{'seed': 3252, 'level_seeds': array([6157, 4270, 3329, ..., 7145, 8524, 4294])}
+[2022-07-18 11:53:20.291] [info] No level specified, will use the first level described in the GDY.
+/Users/jonnycook/Desktop/MARLGen/epymarl/src/main.py:87: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3,and in 3.9 it will stop working
+  if isinstance(v, collections.Mapping):
+[INFO 11:53:20] root Saving to FileStorageObserver in results/sacred.
+[DEBUG 11:53:20] pymarl Using capture mode "fd"
+[INFO 11:53:20] pymarl Running command 'my_main'
+[INFO 11:53:20] pymarl Started run with ID "148"
+[DEBUG 11:53:20] pymarl Starting Heartbeat
+[DEBUG 11:53:20] my_main Started
+[WARNING 11:53:20] my_main CUDA flag use_cuda was switched OFF automatically because no CUDA devices are available!
+[INFO 11:53:20] my_main Experiment Parameters:
+[INFO 11:53:20] my_main
+{   'action_selector': 'epsilon_greedy',
+    'add_value_last_step': True,
+    'agent': 'rnn',
+    'agent_output_type': 'q',
+    'batch_size': 10,
+    'batch_size_run': 1,
+    'buffer_cpu_only': True,
+    'buffer_size': 5000,
+    'checkpoint_path': '',
+    'critic_type': 'ac_critic',
+    'double_q': True,
+    'entropy_coef': 0.01,
+    'env': 'griddlygen',
+    'env_args': {   'level_seeds': array([6157, 4270, 3329, ..., 7145, 8524, 4294]),
+                    'seed': 3252},
+    'epochs': 4,
+    'eps_clip': 0.2,
+    'epsilon_anneal_time': 5000,
+    'epsilon_finish': 0.05,
+    'epsilon_start': 1.0,
+    'evaluate': False,
+    'evaluation_epsilon': 0.0,
+    'gamma': 0.99,
+    'grad_norm_clip': 10,
+    'hidden_dim': 64,
+    'hypergroup': None,
+    'hypernet_embed': 64,
+    'hypernet_layers': 2,
+    'label': 'default_label',
+    'learner': 'q_learner',
+    'learner_log_interval': 10000,
+    'load_step': 0,
+    'local_results_path': 'results',
+    'log_interval': 10000,
+    'lr': 0.0005,
+    'mac': 'basic_mac',
+    'mask_before_softmax': True,
+    'max_before_softmax': True,
+    'mixer': 'qmix',
+    'mixing_embed_dim': 32,
+    'name': 'qmix',
+    'obs_agent_id': True,
+    'obs_individual_obs': False,
+    'obs_last_action': False,
+    'optim_alpha': 0.99,
+    'optim_eps': 1e-05,
+    'q_nstep': 5,
+    'repeat_id': 1,
+    'runner': 'episode',
+    'runner_log_interval': 1000,
+    'save_model': False,
+    'save_model_interval': 50000,
+    'save_replay': False,
+    'seed': 3252,
+    'standardise_returns': False,
+    'standardise_rewards': True,
+    't_max': 20050000,
+    'target_update_interval_or_tau': 200,
+    'test_greedy': True,
+    'test_interval': 50000,
+    'test_nepisode': 100,
+    'use_cuda': False,
+    'use_rnn': False,
+    'use_tensorboard': False}
+[INFO 11:53:20] my_main Beginning training for 20000 episodes
+/Users/jonnycook/Desktop/MARLGen/epymarl/src/components/episode_buffer.py:108: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at  ../torch/csrc/utils/tensor_new.cpp:201.)
+  v = th.tensor(v, dtype=dtype, device=self.device)
+/Users/jonnycook/Desktop/MARLGen/epymarl/src/components/episode_buffer.py:108: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  v = th.tensor(v, dtype=dtype, device=self.device)
+[INFO 11:53:20] my_main t_env: 50 / 20050000
+[INFO 11:53:20] my_main Estimated time left: 55 seconds. Time passed: 0 seconds
+[DEBUG 11:53:36] pymarl Stopping Heartbeat
+[WARNING 11:53:36] pymarl Aborted after 0:00:16!
+Traceback (most recent call last):
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/main.py", line 147, in <module>
+    ex.run_commandline(params)
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/sacred/experiment.py", line 318, in run_commandline
+    options=args,
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/sacred/experiment.py", line 276, in run
+    run()
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/sacred/run.py", line 238, in __call__
+    self.result = self.main_function(*args)
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/sacred/config/captured_function.py", line 42, in captured_function
+    result = wrapped(*args, **kwargs)
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/main.py", line 65, in my_main
+    run(_run, config, _log)
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/run.py", line 56, in run
+    run_sequential(args=args, logger=logger)
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/run.py", line 184, in run_sequential
+    episode_batch = runner.run(test_mode=False)
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/runners/episode_runner.py", line 76, in run
+    actions = self.mac.select_actions(self.batch, t_ep=self.t, t_env=self.t_env, test_mode=test_mode)
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/controllers/basic_controller.py", line 26, in select_actions
+    chosen_actions = self.action_selector.select_action(agent_outputs[bs], avail_actions[bs], t_env, test_mode=test_mode)
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/components/action_selectors.py", line 68, in select_action
+    picked_actions = pick_random * random_actions + (1 - pick_random) * masked_q_values.max(dim=2)[1]

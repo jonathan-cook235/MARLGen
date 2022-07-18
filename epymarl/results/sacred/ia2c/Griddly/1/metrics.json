@@ -1,0 +1,46 @@
+{
+  "return_mean": {
+    "steps": [
+      50
+    ],
+    "timestamps": [
+      "2022-07-11T08:50:50.091466"
+    ],
+    "values": [
+      0.0
+    ]
+  },
+  "return_std": {
+    "steps": [
+      50
+    ],
+    "timestamps": [
+      "2022-07-11T08:50:50.091749"
+    ],
+    "values": [
+      0.0
+    ]
+  },
+  "test_return_mean": {
+    "steps": [
+      50
+    ],
+    "timestamps": [
+      "2022-07-11T08:50:54.585818"
+    ],
+    "values": [
+      -0.24
+    ]
+  },
+  "test_return_std": {
+    "steps": [
+      50
+    ],
+    "timestamps": [
+      "2022-07-11T08:50:54.585884"
+    ],
+    "values": [
+      0.8957678270623478
+    ]
+  }
+}

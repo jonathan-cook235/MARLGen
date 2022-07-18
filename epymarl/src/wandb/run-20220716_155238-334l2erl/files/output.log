@@ -1,0 +1,201 @@
+about to run
+setting up runner
+namespace(action_selector='epsilon_greedy', add_value_last_step=True, agent='rnn', agent_output_type='q', batch_size=10, batch_size_run=1, buffer_cpu_only=True, buffer_size=5000, checkpoint_path='', critic_type='ac_critic', device='cpu', double_q=True, entropy_coef=0.01, env='griddlygen', env_args={'seed': 1385, 'level_seeds': array([2237, 2241, 5171, ..., 9329, 8307, 6078])}, epochs=4, eps_clip=0.2, epsilon_anneal_time=5000, epsilon_finish=0.05, epsilon_start=1.0, evaluate=False, evaluation_epsilon=0.0, gamma=0.99, grad_norm_clip=10, hidden_dim=64, hypergroup=None, hypernet_embed=64, hypernet_layers=2, label='default_label', learner='q_learner', learner_log_interval=10000, load_step=0, local_results_path='results', log_interval=10000, lr=0.0005, mac='basic_mac', mask_before_softmax=True, max_before_softmax=True, mixer='qmix', mixing_embed_dim=32, name='qmix', obs_agent_id=True, obs_individual_obs=False, obs_last_action=False, optim_alpha=0.99, optim_eps=1e-05, q_nstep=5, repeat_id=1, runner='episode', runner_log_interval=1000, save_model=False, save_model_interval=50000, save_replay=False, seed=1385, standardise_returns=False, standardise_rewards=True, t_max=20050000, target_update_interval_or_tau=200, test_greedy=True, test_interval=50000, test_nepisode=100, unique_token='qmix_seed1385_Griddly_2022-07-16 15:52:45.890641', use_cuda=False, use_rnn=False, use_tensorboard=False)
+KWARGS
+{'seed': 1385, 'level_seeds': array([2237, 2241, 5171, ..., 9329, 8307, 6078])}
+[2022-07-16 15:52:45.919] [info] No level specified, will use the first level described in the GDY.
+got runner
+0
+[WARNING 15:52:45] my_main CUDA flag use_cuda was switched OFF automatically because no CUDA devices are available!
+[INFO 15:52:45] my_main Experiment Parameters:
+[INFO 15:52:45] my_main
+{   'action_selector': 'epsilon_greedy',
+    'add_value_last_step': True,
+    'agent': 'rnn',
+    'agent_output_type': 'q',
+    'batch_size': 10,
+    'batch_size_run': 1,
+    'buffer_cpu_only': True,
+    'buffer_size': 5000,
+    'checkpoint_path': '',
+    'critic_type': 'ac_critic',
+    'double_q': True,
+    'entropy_coef': 0.01,
+    'env': 'griddlygen',
+    'env_args': {   'level_seeds': array([2237, 2241, 5171, ..., 9329, 8307, 6078]),
+                    'seed': 1385},
+    'epochs': 4,
+    'eps_clip': 0.2,
+    'epsilon_anneal_time': 5000,
+    'epsilon_finish': 0.05,
+    'epsilon_start': 1.0,
+    'evaluate': False,
+    'evaluation_epsilon': 0.0,
+    'gamma': 0.99,
+    'grad_norm_clip': 10,
+    'hidden_dim': 64,
+    'hypergroup': None,
+    'hypernet_embed': 64,
+    'hypernet_layers': 2,
+    'label': 'default_label',
+    'learner': 'q_learner',
+    'learner_log_interval': 10000,
+    'load_step': 0,
+    'local_results_path': 'results',
+    'log_interval': 10000,
+    'lr': 0.0005,
+    'mac': 'basic_mac',
+    'mask_before_softmax': True,
+    'max_before_softmax': True,
+    'mixer': 'qmix',
+    'mixing_embed_dim': 32,
+    'name': 'qmix',
+    'obs_agent_id': True,
+    'obs_individual_obs': False,
+    'obs_last_action': False,
+    'optim_alpha': 0.99,
+    'optim_eps': 1e-05,
+    'q_nstep': 5,
+    'repeat_id': 1,
+    'runner': 'episode',
+    'runner_log_interval': 1000,
+    'save_model': False,
+    'save_model_interval': 50000,
+    'save_replay': False,
+    'seed': 1385,
+    'standardise_returns': False,
+    'standardise_rewards': True,
+    't_max': 20050000,
+    'target_update_interval_or_tau': 200,
+    'test_greedy': True,
+    'test_interval': 50000,
+    'test_nepisode': 100,
+    'use_cuda': False,
+    'use_rnn': False,
+    'use_tensorboard': False}
+[INFO 15:52:46] my_main Beginning training for 40000 episodes
+/Users/jonnycook/Desktop/MARLGen/epymarl/src/components/episode_buffer.py:108: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at  ../torch/csrc/utils/tensor_new.cpp:201.)
+  v = th.tensor(v, dtype=dtype, device=self.device)
+/Users/jonnycook/Desktop/MARLGen/epymarl/src/components/episode_buffer.py:108: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  v = th.tensor(v, dtype=dtype, device=self.device)
+[INFO 15:52:46] my_main t_env: 50 / 20050000
+[INFO 15:52:46] my_main Estimated time left: 1 minutes, 8 seconds. Time passed: 0 seconds
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119

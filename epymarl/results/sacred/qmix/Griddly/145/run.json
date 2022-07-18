@@ -1,0 +1,86 @@
+{
+  "artifacts": [],
+  "command": "my_main",
+  "experiment": {
+    "base_dir": "/Users/jonnycook/Desktop/MARLGen/epymarl/src",
+    "dependencies": [
+      "munch==2.5.0",
+      "numpy==1.21.5",
+      "PyYAML==6.0",
+      "sacred==0.8.2",
+      "torch==1.10.2"
+    ],
+    "mainfile": "main.py",
+    "name": "pymarl",
+    "repositories": [],
+    "sources": [
+      [
+        "main.py",
+        "_sources/main_7d5f7536924cd5a002c692d16e9b57a0.py"
+      ],
+      [
+        "run.py",
+        "_sources/run_3ae6da9e8ffa2de78a44f9f60705fb65.py"
+      ],
+      [
+        "utils/logging.py",
+        "_sources/logging_8309e899ab76a4e610428ba7ee8d8acb.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/main.py\", line 65, in my_main\n    run(_run, config, _log)\n",
+    "  File \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/run.py\", line 56, in run\n    run_sequential(args=args, logger=logger)\n",
+    "  File \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/run.py\", line 88, in run_sequential\n    env_info = runner.get_env_info()\n",
+    "  File \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/runners/episode_runner.py\", line 38, in get_env_info\n    return self.env.get_env_info()\n",
+    "  File \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/envs/game_2.py\", line 284, in get_env_info\n    \"state_shape\": self.get_state_size(),\n",
+    "  File \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/envs/game_2.py\", line 208, in get_state_size\n    state_size = len(self.get_state().flatten())\n",
+    "AttributeError: 'dict' object has no attribute 'flatten'\n"
+  ],
+  "heartbeat": "2022-07-18T10:45:55.213872",
+  "host": {
+    "ENV": {},
+    "cpu": "Apple M1",
+    "hostname": "Jonnys-MacBook-Pro.local",
+    "os": [
+      "Darwin",
+      "Darwin-20.5.0-x86_64-i386-64bit"
+    ],
+    "python_version": "3.7.11"
+  },
+  "meta": {
+    "command": "my_main",
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [],
+      "help": false,
+      "with": false
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2022-07-18T10:45:55.119675",
+  "status": "FAILED",
+  "stop_time": "2022-07-18T10:45:55.214651"
+}

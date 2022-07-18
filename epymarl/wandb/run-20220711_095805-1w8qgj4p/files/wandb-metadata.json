@@ -1,0 +1,19 @@
+{
+    "os": "Darwin-20.5.0-x86_64-i386-64bit",
+    "python": "3.7.11",
+    "heartbeatAt": "2022-07-11T08:58:06.698091",
+    "startedAt": "2022-07-11T08:58:05.685065",
+    "docker": null,
+    "cpu_count": 8,
+    "cuda": null,
+    "args": [
+        "--config=ia2c",
+        "--env-config=griddlygen"
+    ],
+    "state": "running",
+    "program": "src/main.py",
+    "codePath": "src/main.py",
+    "host": "Jonnys-MBP",
+    "username": "jonnycook",
+    "executable": "/Users/jonnycook/opt/anaconda3/envs/MARLGen/bin/python3"
+}

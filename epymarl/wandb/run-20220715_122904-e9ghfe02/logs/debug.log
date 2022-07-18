@@ -1,0 +1,60 @@
+2022-07-15 12:29:04,334 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Loading settings from /Users/jonnycook/.config/wandb/settings
+2022-07-15 12:29:04,334 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Loading settings from wandb/settings
+2022-07-15 12:29:04,334 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'entity': 'ucl_nlp', 'project': 'uncategorized', 'sweep_id': '81nu6w2m', 'root_dir': '/Users/jonnycook/Desktop/MARLGen/epymarl', 'run_id': 'e9ghfe02', 'sweep_param_path': '/Users/jonnycook/Desktop/MARLGen/epymarl/wandb/sweep-81nu6w2m/config-e9ghfe02.yaml'}
+2022-07-15 12:29:04,334 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'src/main.py', 'program': 'src/main.py'}
+2022-07-15 12:29:04,334 INFO    MainThread:60577 [wandb_init.py:_log_setup():428] Logging user logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_122904-e9ghfe02/logs/debug.log
+2022-07-15 12:29:04,334 INFO    MainThread:60577 [wandb_init.py:_log_setup():429] Logging internal logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_122904-e9ghfe02/logs/debug-internal.log
+2022-07-15 12:29:04,334 INFO    MainThread:60577 [wandb_init.py:init():462] calling init triggers
+2022-07-15 12:29:04,334 INFO    MainThread:60577 [wandb_init.py:init():466] wandb.init called with sweep_config: {'epsilon_finish': 0.06434237164289419, 'hypernet_embed': 62, 'hypernet_layers': 1, 'lr': 0.000532270231300211, 'mixing_embed_dim': 43}
+config: {'lr': 0.0005}
+2022-07-15 12:29:04,334 INFO    MainThread:60577 [wandb_init.py:init():510] wandb.init() called when a run is still active
+2022-07-15 12:29:04,376 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Loading settings from /Users/jonnycook/.config/wandb/settings
+2022-07-15 12:29:04,376 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Loading settings from /Users/jonnycook/.config/wandb/settings
+2022-07-15 12:29:04,376 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Loading settings from wandb/settings
+2022-07-15 12:29:04,376 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Loading settings from wandb/settings
+2022-07-15 12:29:04,376 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'entity': 'ucl_nlp', 'project': 'uncategorized', 'sweep_id': '81nu6w2m', 'root_dir': '/Users/jonnycook/Desktop/MARLGen/epymarl', 'run_id': 'e9ghfe02', 'sweep_param_path': '/Users/jonnycook/Desktop/MARLGen/epymarl/wandb/sweep-81nu6w2m/config-e9ghfe02.yaml'}
+2022-07-15 12:29:04,376 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'entity': 'ucl_nlp', 'project': 'uncategorized', 'sweep_id': '81nu6w2m', 'root_dir': '/Users/jonnycook/Desktop/MARLGen/epymarl', 'run_id': 'e9ghfe02', 'sweep_param_path': '/Users/jonnycook/Desktop/MARLGen/epymarl/wandb/sweep-81nu6w2m/config-e9ghfe02.yaml'}
+2022-07-15 12:29:04,376 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'src/main.py', 'program': 'src/main.py'}
+2022-07-15 12:29:04,376 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'src/main.py', 'program': 'src/main.py'}
+2022-07-15 12:29:04,376 INFO    MainThread:60577 [wandb_init.py:_log_setup():428] Logging user logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_122904-e9ghfe02/logs/debug.log
+2022-07-15 12:29:04,376 INFO    MainThread:60577 [wandb_init.py:_log_setup():428] Logging user logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_122904-e9ghfe02/logs/debug.log
+2022-07-15 12:29:04,376 INFO    MainThread:60577 [wandb_init.py:_log_setup():429] Logging internal logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_122904-e9ghfe02/logs/debug-internal.log
+2022-07-15 12:29:04,376 INFO    MainThread:60577 [wandb_init.py:_log_setup():429] Logging internal logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_122904-e9ghfe02/logs/debug-internal.log
+2022-07-15 12:29:04,377 INFO    MainThread:60577 [wandb_init.py:init():462] calling init triggers
+2022-07-15 12:29:04,377 INFO    MainThread:60577 [wandb_init.py:init():462] calling init triggers
+2022-07-15 12:29:04,377 INFO    MainThread:60577 [wandb_init.py:init():466] wandb.init called with sweep_config: {'epsilon_finish': 0.06434237164289419, 'hypernet_embed': 62, 'hypernet_layers': 1, 'lr': 0.000532270231300211, 'mixing_embed_dim': 43}
+config: {'epsilon_finish': 0.05}
+2022-07-15 12:29:04,377 INFO    MainThread:60577 [wandb_init.py:init():466] wandb.init called with sweep_config: {'epsilon_finish': 0.06434237164289419, 'hypernet_embed': 62, 'hypernet_layers': 1, 'lr': 0.000532270231300211, 'mixing_embed_dim': 43}
+config: {'epsilon_finish': 0.05}
+2022-07-15 12:29:04,377 INFO    MainThread:60577 [wandb_init.py:init():510] wandb.init() called when a run is still active
+2022-07-15 12:29:04,377 INFO    MainThread:60577 [wandb_init.py:init():510] wandb.init() called when a run is still active
+2022-07-15 12:29:04,382 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Loading settings from /Users/jonnycook/.config/wandb/settings
+2022-07-15 12:29:04,382 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Loading settings from /Users/jonnycook/.config/wandb/settings
+2022-07-15 12:29:04,382 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Loading settings from /Users/jonnycook/.config/wandb/settings
+2022-07-15 12:29:04,382 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Loading settings from wandb/settings
+2022-07-15 12:29:04,382 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Loading settings from wandb/settings
+2022-07-15 12:29:04,382 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Loading settings from wandb/settings
+2022-07-15 12:29:04,382 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'entity': 'ucl_nlp', 'project': 'uncategorized', 'sweep_id': '81nu6w2m', 'root_dir': '/Users/jonnycook/Desktop/MARLGen/epymarl', 'run_id': 'e9ghfe02', 'sweep_param_path': '/Users/jonnycook/Desktop/MARLGen/epymarl/wandb/sweep-81nu6w2m/config-e9ghfe02.yaml'}
+2022-07-15 12:29:04,382 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'entity': 'ucl_nlp', 'project': 'uncategorized', 'sweep_id': '81nu6w2m', 'root_dir': '/Users/jonnycook/Desktop/MARLGen/epymarl', 'run_id': 'e9ghfe02', 'sweep_param_path': '/Users/jonnycook/Desktop/MARLGen/epymarl/wandb/sweep-81nu6w2m/config-e9ghfe02.yaml'}
+2022-07-15 12:29:04,382 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'entity': 'ucl_nlp', 'project': 'uncategorized', 'sweep_id': '81nu6w2m', 'root_dir': '/Users/jonnycook/Desktop/MARLGen/epymarl', 'run_id': 'e9ghfe02', 'sweep_param_path': '/Users/jonnycook/Desktop/MARLGen/epymarl/wandb/sweep-81nu6w2m/config-e9ghfe02.yaml'}
+2022-07-15 12:29:04,382 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'src/main.py', 'program': 'src/main.py'}
+2022-07-15 12:29:04,382 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'src/main.py', 'program': 'src/main.py'}
+2022-07-15 12:29:04,382 INFO    MainThread:60577 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'src/main.py', 'program': 'src/main.py'}
+2022-07-15 12:29:04,382 INFO    MainThread:60577 [wandb_init.py:_log_setup():428] Logging user logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_122904-e9ghfe02/logs/debug.log
+2022-07-15 12:29:04,382 INFO    MainThread:60577 [wandb_init.py:_log_setup():428] Logging user logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_122904-e9ghfe02/logs/debug.log
+2022-07-15 12:29:04,382 INFO    MainThread:60577 [wandb_init.py:_log_setup():428] Logging user logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_122904-e9ghfe02/logs/debug.log
+2022-07-15 12:29:04,382 INFO    MainThread:60577 [wandb_init.py:_log_setup():429] Logging internal logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_122904-e9ghfe02/logs/debug-internal.log
+2022-07-15 12:29:04,382 INFO    MainThread:60577 [wandb_init.py:_log_setup():429] Logging internal logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_122904-e9ghfe02/logs/debug-internal.log
+2022-07-15 12:29:04,382 INFO    MainThread:60577 [wandb_init.py:_log_setup():429] Logging internal logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_122904-e9ghfe02/logs/debug-internal.log
+2022-07-15 12:29:04,383 INFO    MainThread:60577 [wandb_init.py:init():462] calling init triggers
+2022-07-15 12:29:04,383 INFO    MainThread:60577 [wandb_init.py:init():462] calling init triggers
+2022-07-15 12:29:04,383 INFO    MainThread:60577 [wandb_init.py:init():462] calling init triggers
+2022-07-15 12:29:04,383 INFO    MainThread:60577 [wandb_init.py:init():466] wandb.init called with sweep_config: {'epsilon_finish': 0.06434237164289419, 'hypernet_embed': 62, 'hypernet_layers': 1, 'lr': 0.000532270231300211, 'mixing_embed_dim': 43}
+config: {'lr': 0.0003, 'entropy_coef': 0.01, 'eps_clip': 0.2}
+2022-07-15 12:29:04,383 INFO    MainThread:60577 [wandb_init.py:init():466] wandb.init called with sweep_config: {'epsilon_finish': 0.06434237164289419, 'hypernet_embed': 62, 'hypernet_layers': 1, 'lr': 0.000532270231300211, 'mixing_embed_dim': 43}
+config: {'lr': 0.0003, 'entropy_coef': 0.01, 'eps_clip': 0.2}
+2022-07-15 12:29:04,383 INFO    MainThread:60577 [wandb_init.py:init():466] wandb.init called with sweep_config: {'epsilon_finish': 0.06434237164289419, 'hypernet_embed': 62, 'hypernet_layers': 1, 'lr': 0.000532270231300211, 'mixing_embed_dim': 43}
+config: {'lr': 0.0003, 'entropy_coef': 0.01, 'eps_clip': 0.2}
+2022-07-15 12:29:04,383 INFO    MainThread:60577 [wandb_init.py:init():510] wandb.init() called when a run is still active
+2022-07-15 12:29:04,383 INFO    MainThread:60577 [wandb_init.py:init():510] wandb.init() called when a run is still active
+2022-07-15 12:29:04,383 INFO    MainThread:60577 [wandb_init.py:init():510] wandb.init() called when a run is still active

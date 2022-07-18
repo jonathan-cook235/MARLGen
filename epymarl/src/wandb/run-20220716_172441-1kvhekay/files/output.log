@@ -1,0 +1,75 @@
+/Users/jonnycook/Desktop/MARLGen/epymarl/src/main.py:87: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3,and in 3.9 it will stop working
+  if isinstance(v, collections.Mapping):
+[INFO 17:24:44] root Saving to FileStorageObserver in results/sacred.
+[DEBUG 17:24:44] pymarl Using capture mode "fd"
+[INFO 17:24:44] pymarl Running command 'my_main'
+[INFO 17:24:44] pymarl Started run with ID "141"
+[DEBUG 17:24:44] pymarl Starting Heartbeat
+[DEBUG 17:24:44] my_main Started
+[DEBUG 17:24:44] pymarl Stopping Heartbeat
+[ERROR 17:24:44] pymarl Failed after 0:00:00!
+Traceback (most recent calls WITHOUT Sacred internals):
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/sdk/wandb_run.py", line 1871, in _atexit_cleanup
+    self._on_finish()
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/sdk/wandb_run.py", line 1972, in _on_finish
+    self._console_stop()  # TODO: there's a race here with jupyter console logging
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/sdk/wandb_run.py", line 1911, in _console_stop
+    self._restore()
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/sdk/wandb_run.py", line 1838, in _restore
+    self._out_redir.uninstall()
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/sdk/lib/redirect.py", line 726, in uninstall
+    time.sleep(1)
+KeyboardInterrupt
+During handling of the above exception, another exception occurred:
+Traceback (most recent calls WITHOUT Sacred internals):
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/sdk/wandb_init.py", line 1043, in init
+    run = wi.init()
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/sdk/wandb_init.py", line 527, in init
+    self._wl._global_run_stack[-1].finish()
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/sdk/wandb_run.py", line 256, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/sdk/wandb_run.py", line 222, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/sdk/wandb_run.py", line 1673, in finish
+    return self._finish(exit_code, quiet)
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/sdk/wandb_run.py", line 1686, in _finish
+    self._atexit_cleanup(exit_code=exit_code)
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/sdk/wandb_run.py", line 1875, in _atexit_cleanup
+    wandb.termerror("Control-C detected -- Run data was not synced")
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/errors/term.py", line 67, in termerror
+    **kwargs,
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/errors/term.py", line 96, in _log
+    click.echo(line, file=sys.stderr, nl=newline)
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/click/utils.py", line 298, in echo
+    file.write(out)  # type: ignore
+BrokenPipeError: [Errno 32] Broken pipe
+During handling of the above exception, another exception occurred:
+Traceback (most recent calls WITHOUT Sacred internals):
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/sdk/wandb_init.py", line 1051, in init
+    getcaller()
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/sdk/wandb_init.py", line 740, in getcaller
+    print("Problem at:", src, line, func)
+BrokenPipeError: [Errno 32] Broken pipe
+During handling of the above exception, another exception occurred:
+Traceback (most recent calls WITHOUT Sacred internals):
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/sdk/wandb_init.py", line 1068, in init
+    traceback.print_exc()
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/traceback.py", line 163, in print_exc
+    print_exception(*sys.exc_info(), limit=limit, file=file, chain=chain)
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/traceback.py", line 105, in print_exception
+    print(line, file=file, end="")
+BrokenPipeError: [Errno 32] Broken pipe
+During handling of the above exception, another exception occurred:
+Traceback (most recent calls WITHOUT Sacred internals):
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/main.py", line 35, in my_main
+    wandb.init(project='marlgen', entity='jonnycook', name=logging_name, reinit=True)
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/sdk/wandb_init.py", line 1078, in init
+    wandb.termerror("Abnormal program exit")
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/errors/term.py", line 67, in termerror
+    **kwargs,
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/wandb/errors/term.py", line 96, in _log
+    click.echo(line, file=sys.stderr, nl=newline)
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/click/utils.py", line 298, in echo
+    file.write(out)  # type: ignore
+BrokenPipeError: [Errno 32] Broken pipe
+[DEBUG 17:24:44] urllib3.connectionpool https://o151352.ingest.sentry.io:443 "POST /api/5288891/store/ HTTP/1.1" 200 41

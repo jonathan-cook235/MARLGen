@@ -1,0 +1,163 @@
+Version: "0.1"
+Environment:
+  Name: Simple Foraging Game
+  Description: Two players have to gather two potions.
+  Observers:
+    Sprite2D:
+      TileSize: 24
+      BackgroundTile: gvgai/oryx/grass_15.png
+    Block2D:
+      TileSize: 24
+    Vector:
+      IncludePlayerID: false
+      IncludeRotation: false
+      IncludeVariables: false
+  Player:
+    Count: 2
+    AvatarObject: forager
+    Observer:
+      RotateWithAvatar: true
+      TrackAvatar: true
+      Height: 5
+      Width: 5
+      OffsetX: 0
+      OffsetY: 2
+  Variables:
+    - Name: potion_count
+      InitialValue: 2
+  Termination:
+    End:
+      - eq: [potion_count, 0]
+
+  Levels:
+    - |
+      W   W   W   W   W   W   W   W   W
+      W   f1  .   .   .   .   .   f2  W
+      W   .   .   .   .   .   .   .   W
+      W   .   .   .   .   .   .   .   W
+      W   .   .   .   .   .   .   .   W
+      W   .   .   .   .   .   .   .   W
+      W   .   p1  .   .   .   p2  .   W
+      W   .   .   .   .   .   .   .   W
+      W   .   .   .   .   .   .   .   W
+      W   W   W   W   W   W   W   W   W
+
+#Actions:
+#  - Name: gather
+#    Behaviours:
+#      - Src:
+#          Object: forager
+#          Commands:
+#            - reward: 1
+#        Dst:
+#          Object: potion
+#          Commands:
+#            - decr: potions
+#            - remove: true
+#
+#  - Name: move
+#    Behaviours:
+#      - Src:
+#          Object: forager
+#          Commands:
+#            - mov: _dest
+#            - incr: steps
+#        Dst:
+#          Object: _empty
+Actions:
+  - Name: stumble
+    InputMapping:
+      Inputs:
+        1:
+          Description: Move in empty space
+          OrientationVector: [-1, 0]
+        2:
+          Description: Move forwards
+          OrientationVector: [0, -1]
+          VectorToDest: [0, -1]
+        3:
+          Description: Rotate right
+          OrientationVector: [1, 0]
+      Relative: true
+    Behaviours:
+      # Tell the agent to rotate if the agent performs an action on itself
+      - Src:
+          Object: forager
+          Commands:
+            - rot: _dir
+        Dst:
+          Object: forager
+
+      # The agent can move around freely in empty and always rotates the direction it is travelling
+      - Src:
+          Object: forager
+          Commands:
+            - mov: _dest
+        Dst:
+          Object: _empty
+
+  - Name: gather
+    InputMapping:
+      Inputs:
+        1:  # Only gather in the direction the agent is facing
+          Description: Gather potion
+          OrientationVector: [ 0, -1 ]
+          VectorToDest: [ 0, -1 ]
+      Relative: true
+    Behaviours:
+      - Src:
+          Object: forager
+          Commands:
+            - reward: 1
+        Dst:
+          Object: potion
+          Commands:
+            - remove: true
+            - decr: potion_count
+
+Objects:
+  - Name: forager
+    MapCharacter: f
+    Observers:
+      Sprite2D:
+        - Image: oryx/oryx_fantasy/avatars/man1.png
+      Block2D:
+        - Shape: triangle
+          Color: [ 0.2, 0.2, 0.9 ]
+          Scale: 1.0
+
+  - Name: potion
+    MapCharacter: p
+    Observers:
+      Sprite2D:
+        - Image: oryx/oryx_fantasy/potion-0.png
+          Scale: 0.5
+      Block2D:
+        - Color: [ 0.0, 0.0, 0.8 ]
+          Shape: square
+
+  - Name: fixed_wall
+    MapCharacter: W
+    Observers:
+      Sprite2D:
+        - TilingMode: WALL_16
+          Image:
+            - oryx/oryx_fantasy/wall9-0.png
+            - oryx/oryx_fantasy/wall9-1.png
+            - oryx/oryx_fantasy/wall9-2.png
+            - oryx/oryx_fantasy/wall9-3.png
+            - oryx/oryx_fantasy/wall9-4.png
+            - oryx/oryx_fantasy/wall9-5.png
+            - oryx/oryx_fantasy/wall9-6.png
+            - oryx/oryx_fantasy/wall9-7.png
+            - oryx/oryx_fantasy/wall9-8.png
+            - oryx/oryx_fantasy/wall9-9.png
+            - oryx/oryx_fantasy/wall9-10.png
+            - oryx/oryx_fantasy/wall9-11.png
+            - oryx/oryx_fantasy/wall9-12.png
+            - oryx/oryx_fantasy/wall9-13.png
+            - oryx/oryx_fantasy/wall9-14.png
+            - oryx/oryx_fantasy/wall9-15.png
+      Block2D:
+        - Color: [ 0.5, 0.5, 0.5 ]
+          Shape: square

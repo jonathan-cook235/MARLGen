@@ -1,0 +1,135 @@
+
+[2022-07-15 16:46:42.944] [info] No level specified, will use the first level described in the GDY.
+[WARNING 16:46:42] my_main CUDA flag use_cuda was switched OFF automatically because no CUDA devices are available!
+[INFO 16:46:42] my_main Experiment Parameters:
+[INFO 16:46:42] my_main
+{   'action_selector': 'epsilon_greedy',
+    'add_value_last_step': True,
+    'agent': 'rnn',
+    'agent_output_type': 'q',
+    'batch_size': 10,
+    'batch_size_run': 1,
+    'buffer_cpu_only': True,
+    'buffer_size': 5000,
+    'checkpoint_path': '',
+    'critic_type': 'ac_critic',
+    'double_q': True,
+    'entropy_coef': 0.01,
+    'env': 'griddlygen',
+    'env_args': {   'seed': 2377},
+    'epochs': 4,
+    'eps_clip': 0.2,
+    'epsilon_anneal_time': 5000,
+    'epsilon_finish': 0.05,
+    'epsilon_start': 1.0,
+    'evaluate': False,
+    'evaluation_epsilon': 0.0,
+    'gamma': 0.99,
+    'grad_norm_clip': 10,
+    'hidden_dim': 64,
+    'hypergroup': None,
+    'hypernet_embed': 64,
+    'hypernet_layers': 2,
+    'label': 'default_label',
+    'learner': 'q_learner',
+    'learner_log_interval': 10000,
+    'load_step': 0,
+    'local_results_path': 'results',
+    'log_interval': 10000,
+    'lr': 0.0005,
+    'mac': 'basic_mac',
+    'mask_before_softmax': True,
+    'max_before_softmax': True,
+    'mixer': 'qmix',
+    'mixing_embed_dim': 32,
+    'name': 'qmix',
+    'obs_agent_id': True,
+    'obs_individual_obs': False,
+    'obs_last_action': False,
+    'optim_alpha': 0.99,
+    'optim_eps': 1e-05,
+    'q_nstep': 5,
+    'repeat_id': 1,
+    'runner': 'episode',
+    'runner_log_interval': 1000,
+    'save_model': False,
+    'save_model_interval': 50000,
+    'save_replay': False,
+    'seed': 2377,
+    'standardise_returns': False,
+    'standardise_rewards': True,
+    't_max': 20050000,
+    'target_update_interval_or_tau': 200,
+    'test_greedy': True,
+    'test_interval': 50000,
+    'test_nepisode': 100,
+    'use_cuda': False,
+    'use_rnn': False,
+    'use_tensorboard': False}
+[INFO 16:46:43] my_main Beginning training for 1000 episodes
+[INFO 16:46:43] my_main t_env: 50 / 20050000
+[INFO 16:46:43] my_main Estimated time left: 20 seconds. Time passed: 0 seconds
+Episode: 100
+Episode: 200
+[INFO 16:47:02] my_main Recent Stats | t_env:      10043 | Episode:      201
+epsilon:                   0.0500	grad_norm:                 0.6435	loss:                      0.9995	q_taken_mean:              0.0422
+return_mean:               0.6000	return_std:                0.3839	target_mean:               0.0495	td_error_abs:              0.8707
+test_return_mean:          0.0000	test_return_std:           0.0000	
+Episode: 300
+Episode: 400
+[INFO 16:47:17] my_main Recent Stats | t_env:      20043 | Episode:      401
+epsilon:                   0.0500	grad_norm:                 2.7159	loss:                      0.9836	q_taken_mean:             -0.0050
+return_mean:               1.1200	return_std:                0.2988	target_mean:              -0.0173	td_error_abs:              0.8544
+test_return_mean:          0.0000	test_return_std:           0.0000	
+Episode: 500
+Episode: 600
+[INFO 16:47:32] my_main Recent Stats | t_env:      30043 | Episode:      601
+epsilon:                   0.0500	grad_norm:                 8.7603	loss:                      0.8632	q_taken_mean:              0.1990
+return_mean:               1.8500	return_std:                0.3059	target_mean:               0.2855	td_error_abs:              0.8134
+test_return_mean:          0.0000	test_return_std:           0.0000	
+Episode: 700
+Episode: 800
+[INFO 16:47:46] my_main Recent Stats | t_env:      40043 | Episode:      801
+epsilon:                   0.0500	grad_norm:                15.5209	loss:                      1.1404	q_taken_mean:              0.3085
+return_mean:               1.9600	return_std:                0.1472	target_mean:               0.4504	td_error_abs:              0.9075
+test_return_mean:          0.0000	test_return_std:           0.0000	
+Episode: 900
+Episode: 1000
+Exiting Main
+Stopping all threads
+Thread Thread-11 is alive! Is daemon: False
+[INFO 16:48:01] my_main Recent Stats | t_env:      50043 | Episode:     1001
+epsilon:                   0.0500	grad_norm:                22.9093	loss:                      1.2579	q_taken_mean:              0.5215
+return_mean:               1.9200	return_std:                0.1390	target_mean:               0.7349	td_error_abs:              0.9570
+test_return_mean:          0.0000	test_return_std:           0.0000	
+[INFO 16:48:01] my_main Finished Training
+Exception ignored in: <function VideoRecorder.__del__ at 0x7fd1dad3d0e0>
+Traceback (most recent call last):
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/griddly/RenderTools.py", line 99, in __del__
+    self.close()
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/griddly/RenderTools.py", line 95, in close
+    self._image_encoder.close()
+AttributeError: 'VideoRecorder' object has no attribute '_image_encoder'
+Thread joined
+Thread MsgRouterThr is alive! Is daemon: True
+Thread joined
+Thread QueueFeederThread is alive! Is daemon: True
+Thread joined
+Thread ChkStopThr is alive! Is daemon: True
+Thread joined
+Thread NetStatThr is alive! Is daemon: True
+Thread joined
+Thread Thread-50 is alive! Is daemon: True
+Thread joined
+Thread Thread-51 is alive! Is daemon: True
+Thread joined
+Thread Thread-52 is alive! Is daemon: True
+Thread joined
+Thread Thread-53 is alive! Is daemon: True
+Thread joined
+Thread Thread-54 is alive! Is daemon: True
+Thread joined
+Thread Thread-55 is alive! Is daemon: True
+Thread joined
+Exiting script
+Seed: 2453

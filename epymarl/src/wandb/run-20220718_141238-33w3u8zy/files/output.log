@@ -1,0 +1,98 @@
+/Users/jonnycook/Desktop/MARLGen/epymarl/src/main.py:87: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3,and in 3.9 it will stop working
+  if isinstance(v, collections.Mapping):
+[INFO 14:12:41] root Saving to FileStorageObserver in results/sacred.
+[DEBUG 14:12:41] pymarl Using capture mode "fd"
+[INFO 14:12:41] pymarl Running command 'my_main'
+[INFO 14:12:41] pymarl Started run with ID "162"
+[DEBUG 14:12:41] pymarl Starting Heartbeat
+[DEBUG 14:12:41] my_main Started
+[WARNING 14:12:41] my_main CUDA flag use_cuda was switched OFF automatically because no CUDA devices are available!
+[INFO 14:12:41] my_main Experiment Parameters:
+[INFO 14:12:41] my_main
+{   'action_selector': 'epsilon_greedy',
+    'add_value_last_step': True,
+    'agent': 'rnn',
+    'agent_output_type': 'q',
+    'batch_size': 10,
+    'batch_size_run': 2,
+    'buffer_cpu_only': True,
+    'buffer_size': 5000,
+    'checkpoint_path': '',
+    'critic_type': 'ac_critic',
+    'double_q': True,
+    'entropy_coef': 0.01,
+    'env': 'griddlygen',
+    'env_args': {   'level_seeds': array([5955, 6654, 5515, ..., 1912, 3995, 9130]),
+                    'seed': 8679},
+    'epochs': 4,
+    'eps_clip': 0.2,
+    'epsilon_anneal_time': 5000,
+    'epsilon_finish': 0.05,
+    'epsilon_start': 1.0,
+    'evaluate': False,
+    'evaluation_epsilon': 0.0,
+    'gamma': 0.99,
+    'grad_norm_clip': 10,
+    'hidden_dim': 64,
+    'hypergroup': None,
+    'hypernet_embed': 64,
+    'hypernet_layers': 2,
+    'label': 'default_label',
+    'learner': 'q_learner',
+    'learner_log_interval': 10000,
+    'load_step': 0,
+    'local_results_path': 'results',
+    'log_interval': 10000,
+    'lr': 0.0005,
+    'mac': 'basic_mac',
+    'mask_before_softmax': True,
+    'max_before_softmax': True,
+    'mixer': 'qmix',
+    'mixing_embed_dim': 32,
+    'name': 'qmix',
+    'obs_agent_id': True,
+    'obs_individual_obs': False,
+    'obs_last_action': False,
+    'optim_alpha': 0.99,
+    'optim_eps': 1e-05,
+    'q_nstep': 5,
+    'repeat_id': 1,
+    'runner': 'parallel',
+    'runner_log_interval': 1000,
+    'save_model': False,
+    'save_model_interval': 50000,
+    'save_replay': False,
+    'seed': 8679,
+    'standardise_returns': False,
+    'standardise_rewards': True,
+    't_max': 20050000,
+    'target_update_interval_or_tau': 200,
+    'test_greedy': True,
+    'test_interval': 50000,
+    'test_nepisode': 100,
+    'use_cuda': False,
+    'use_rnn': False,
+    'use_tensorboard': False}
+Seed: 8679
+about to run
+KWARGS
+/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/sacred/stdout_capturing.py:184: UserWarning: tee_stdout.wait timeout. Forcibly terminating.
+  warnings.warn("tee_stdout.wait timeout. Forcibly terminating.")
+{'seed': 8679, 'level_seeds': array([5955, 6654, 5515, ..., 1912, 3995, 9130])}
+KWARGS
+{'seed': 8680, 'level_seeds': array([5955, 6654, 5515, ..., 1912, 3995, 9130])}
+[2022-07-18 14:12:41.368] [info] No level specified, will use the first level described in the GDY.
+{'state_shape': 400, 'obs_shape': 200, 'n_actions': 5, 'n_agents': 2, 'episode_limit': 50}
+[2022-07-18 14:12:41.385] [info] No level specified, will use the first level described in the GDY.
+/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/sacred/stdout_capturing.py:190: UserWarning: tee_stderr.wait timeout. Forcibly terminating.
+  warnings.warn("tee_stderr.wait timeout. Forcibly terminating.")
+[DEBUG 14:12:43] pymarl Stopping Heartbeat
+[ERROR 14:12:43] pymarl Failed after 0:00:02!
+Traceback (most recent calls WITHOUT Sacred internals):
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/main.py", line 65, in my_main
+    run(_run, config, _log)
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/run.py", line 56, in run
+    run_sequential(args=args, logger=logger)
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/run.py", line 89, in run_sequential
+    args.n_agents = env_info["n_agents"]
+KeyError: 'n_agents'

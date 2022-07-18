@@ -1,0 +1,112 @@
+{
+  "epsilon": {
+    "steps": [
+      1
+    ],
+    "timestamps": [
+      "2022-07-08T19:29:57.146479"
+    ],
+    "values": [
+      1.0
+    ]
+  },
+  "grad_norm": {
+    "steps": [
+      10
+    ],
+    "timestamps": [
+      "2022-07-08T19:30:02.433789"
+    ],
+    "values": [
+      46518951936.0
+    ]
+  },
+  "loss": {
+    "steps": [
+      10
+    ],
+    "timestamps": [
+      "2022-07-08T19:30:02.433659"
+    ],
+    "values": [
+      89100168.0
+    ]
+  },
+  "q_taken_mean": {
+    "steps": [
+      10
+    ],
+    "timestamps": [
+      "2022-07-08T19:30:02.434165"
+    ],
+    "values": [
+      4695.980859375
+    ]
+  },
+  "return_mean": {
+    "steps": [
+      1
+    ],
+    "timestamps": [
+      "2022-07-08T19:29:57.146100"
+    ],
+    "values": [
+      0.0
+    ]
+  },
+  "return_std": {
+    "steps": [
+      1
+    ],
+    "timestamps": [
+      "2022-07-08T19:29:57.146464"
+    ],
+    "values": [
+      0.0
+    ]
+  },
+  "target_mean": {
+    "steps": [
+      10
+    ],
+    "timestamps": [
+      "2022-07-08T19:30:02.434186"
+    ],
+    "values": [
+      0.0
+    ]
+  },
+  "td_error_abs": {
+    "steps": [
+      10
+    ],
+    "timestamps": [
+      "2022-07-08T19:30:02.434082"
+    ],
+    "values": [
+      9391.96171875
+    ]
+  },
+  "test_return_mean": {
+    "steps": [
+      1
+    ],
+    "timestamps": [
+      "2022-07-08T19:30:00.796629"
+    ],
+    "values": [
+      0.0
+    ]
+  },
+  "test_return_std": {
+    "steps": [
+      1
+    ],
+    "timestamps": [
+      "2022-07-08T19:30:00.796963"
+    ],
+    "values": [
+      0.0
+    ]
+  }
+}

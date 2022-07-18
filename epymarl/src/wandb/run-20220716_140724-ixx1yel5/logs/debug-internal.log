@@ -1,0 +1,151 @@
+2022-07-16 14:07:24,972 INFO    MainThread:85699 [internal.py:wandb_internal():93] W&B internal server running at pid: 85699, started at: 2022-07-16 14:07:24.972736
+2022-07-16 14:07:24,974 INFO    WriterThread:85699 [datastore.py:open_for_write():75] open: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/run-ixx1yel5.wandb
+2022-07-16 14:07:24,975 DEBUG   SenderThread:85699 [sender.py:send():236] send: header
+2022-07-16 14:07:24,975 DEBUG   SenderThread:85699 [sender.py:send():236] send: run
+2022-07-16 14:07:25,307 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: check_version
+2022-07-16 14:07:25,309 INFO    SenderThread:85699 [dir_watcher.py:__init__():216] watching files in: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files
+2022-07-16 14:07:25,309 INFO    SenderThread:85699 [sender.py:_start_run_threads():818] run started: ixx1yel5 with start time 1657976844
+2022-07-16 14:07:25,309 DEBUG   SenderThread:85699 [sender.py:send():236] send: summary
+2022-07-16 14:07:25,310 INFO    SenderThread:85699 [sender.py:_save_file():952] saving file wandb-summary.json with policy end
+2022-07-16 14:07:25,310 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: check_version
+2022-07-16 14:07:25,516 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: run_start
+2022-07-16 14:07:25,520 DEBUG   HandlerThread:85699 [meta.py:__init__():35] meta init
+2022-07-16 14:07:25,521 DEBUG   HandlerThread:85699 [meta.py:__init__():49] meta init done
+2022-07-16 14:07:25,521 DEBUG   HandlerThread:85699 [meta.py:probe():209] probe
+2022-07-16 14:07:25,522 DEBUG   HandlerThread:85699 [git.py:repo():29] git repository is invalid
+2022-07-16 14:07:25,522 DEBUG   HandlerThread:85699 [meta.py:_save_pip():53] save pip
+2022-07-16 14:07:25,523 DEBUG   HandlerThread:85699 [meta.py:_save_pip():67] save pip done
+2022-07-16 14:07:25,523 DEBUG   HandlerThread:85699 [meta.py:_save_conda():74] save conda
+2022-07-16 14:07:26,204 DEBUG   HandlerThread:85699 [meta.py:_save_conda():84] save conda done
+2022-07-16 14:07:26,204 DEBUG   HandlerThread:85699 [meta.py:probe():247] probe done
+2022-07-16 14:07:26,207 DEBUG   SenderThread:85699 [sender.py:send():236] send: files
+2022-07-16 14:07:26,207 INFO    SenderThread:85699 [sender.py:_save_file():952] saving file wandb-metadata.json with policy now
+2022-07-16 14:07:26,210 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: stop_status
+2022-07-16 14:07:26,211 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: stop_status
+2022-07-16 14:07:26,315 INFO    Thread-7  :85699 [dir_watcher.py:_on_file_created():269] file/dir created: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/requirements.txt
+2022-07-16 14:07:26,315 INFO    Thread-7  :85699 [dir_watcher.py:_on_file_created():269] file/dir created: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/wandb-metadata.json
+2022-07-16 14:07:26,315 INFO    Thread-7  :85699 [dir_watcher.py:_on_file_created():269] file/dir created: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/conda-environment.yaml
+2022-07-16 14:07:26,315 INFO    Thread-7  :85699 [dir_watcher.py:_on_file_created():269] file/dir created: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/output.log
+2022-07-16 14:07:26,316 INFO    Thread-7  :85699 [dir_watcher.py:_on_file_created():269] file/dir created: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/wandb-summary.json
+2022-07-16 14:07:26,399 DEBUG   SenderThread:85699 [sender.py:send():236] send: telemetry
+2022-07-16 14:07:26,912 INFO    Thread-11 :85699 [upload_job.py:push():138] Uploaded file /var/folders/n5/9j0y5y0j6cb51120cl7tgbnm0000gn/T/tmprhpe238_wandb/6l9s0vyi-wandb-metadata.json
+2022-07-16 14:07:27,859 DEBUG   SenderThread:85699 [sender.py:send():236] send: telemetry
+2022-07-16 14:07:27,862 DEBUG   SenderThread:85699 [sender.py:send():236] send: telemetry
+2022-07-16 14:07:27,863 DEBUG   SenderThread:85699 [sender.py:send():236] send: telemetry
+2022-07-16 14:07:29,330 INFO    Thread-7  :85699 [dir_watcher.py:_on_file_modified():286] file/dir modified: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/output.log
+2022-07-16 14:07:30,336 INFO    Thread-7  :85699 [dir_watcher.py:_on_file_modified():286] file/dir modified: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/output.log
+2022-07-16 14:07:30,766 DEBUG   SenderThread:85699 [sender.py:send():236] send: exit
+2022-07-16 14:07:30,767 INFO    SenderThread:85699 [sender.py:send_exit():372] handling exit code: 0
+2022-07-16 14:07:30,767 INFO    SenderThread:85699 [sender.py:send_exit():374] handling runtime: 5
+2022-07-16 14:07:30,768 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: poll_exit
+2022-07-16 14:07:30,768 INFO    SenderThread:85699 [sender.py:_save_file():952] saving file wandb-summary.json with policy end
+2022-07-16 14:07:30,769 INFO    SenderThread:85699 [sender.py:send_exit():380] send defer
+2022-07-16 14:07:30,769 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: poll_exit
+2022-07-16 14:07:30,769 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: defer
+2022-07-16 14:07:30,770 INFO    HandlerThread:85699 [handler.py:handle_request_defer():163] handle defer: 0
+2022-07-16 14:07:30,770 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: defer
+2022-07-16 14:07:30,770 INFO    SenderThread:85699 [sender.py:send_request_defer():389] handle sender defer: 0
+2022-07-16 14:07:30,770 INFO    SenderThread:85699 [sender.py:transition_state():393] send defer: 1
+2022-07-16 14:07:30,771 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: defer
+2022-07-16 14:07:30,771 INFO    HandlerThread:85699 [handler.py:handle_request_defer():163] handle defer: 1
+2022-07-16 14:07:30,825 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: defer
+2022-07-16 14:07:30,825 INFO    SenderThread:85699 [sender.py:send_request_defer():389] handle sender defer: 1
+2022-07-16 14:07:30,825 INFO    SenderThread:85699 [sender.py:transition_state():393] send defer: 2
+2022-07-16 14:07:30,826 DEBUG   SenderThread:85699 [sender.py:send():236] send: stats
+2022-07-16 14:07:30,827 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: defer
+2022-07-16 14:07:30,827 INFO    HandlerThread:85699 [handler.py:handle_request_defer():163] handle defer: 2
+2022-07-16 14:07:30,827 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: defer
+2022-07-16 14:07:30,827 INFO    SenderThread:85699 [sender.py:send_request_defer():389] handle sender defer: 2
+2022-07-16 14:07:30,827 INFO    SenderThread:85699 [sender.py:transition_state():393] send defer: 3
+2022-07-16 14:07:30,828 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: defer
+2022-07-16 14:07:30,828 INFO    HandlerThread:85699 [handler.py:handle_request_defer():163] handle defer: 3
+2022-07-16 14:07:30,828 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: defer
+2022-07-16 14:07:30,829 INFO    SenderThread:85699 [sender.py:send_request_defer():389] handle sender defer: 3
+2022-07-16 14:07:30,829 INFO    SenderThread:85699 [sender.py:transition_state():393] send defer: 4
+2022-07-16 14:07:30,829 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: defer
+2022-07-16 14:07:30,829 INFO    HandlerThread:85699 [handler.py:handle_request_defer():163] handle defer: 4
+2022-07-16 14:07:30,829 DEBUG   SenderThread:85699 [sender.py:send():236] send: summary
+2022-07-16 14:07:30,830 INFO    SenderThread:85699 [sender.py:_save_file():952] saving file wandb-summary.json with policy end
+2022-07-16 14:07:30,830 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: defer
+2022-07-16 14:07:30,830 INFO    SenderThread:85699 [sender.py:send_request_defer():389] handle sender defer: 4
+2022-07-16 14:07:30,831 INFO    SenderThread:85699 [sender.py:transition_state():393] send defer: 5
+2022-07-16 14:07:30,831 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: defer
+2022-07-16 14:07:30,831 INFO    HandlerThread:85699 [handler.py:handle_request_defer():163] handle defer: 5
+2022-07-16 14:07:30,831 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: defer
+2022-07-16 14:07:30,831 INFO    SenderThread:85699 [sender.py:send_request_defer():389] handle sender defer: 5
+2022-07-16 14:07:30,879 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: poll_exit
+2022-07-16 14:07:31,087 INFO    SenderThread:85699 [sender.py:transition_state():393] send defer: 6
+2022-07-16 14:07:31,088 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: poll_exit
+2022-07-16 14:07:31,088 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: defer
+2022-07-16 14:07:31,088 INFO    HandlerThread:85699 [handler.py:handle_request_defer():163] handle defer: 6
+2022-07-16 14:07:31,089 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: defer
+2022-07-16 14:07:31,089 INFO    SenderThread:85699 [sender.py:send_request_defer():389] handle sender defer: 6
+2022-07-16 14:07:31,089 INFO    SenderThread:85699 [dir_watcher.py:finish():353] shutting down directory watcher
+2022-07-16 14:07:31,195 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: poll_exit
+2022-07-16 14:07:31,342 INFO    SenderThread:85699 [dir_watcher.py:_on_file_modified():286] file/dir modified: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/config.yaml
+2022-07-16 14:07:31,343 INFO    SenderThread:85699 [dir_watcher.py:_on_file_modified():286] file/dir modified: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/wandb-summary.json
+2022-07-16 14:07:31,344 INFO    SenderThread:85699 [dir_watcher.py:_on_file_modified():286] file/dir modified: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/output.log
+2022-07-16 14:07:31,345 INFO    SenderThread:85699 [dir_watcher.py:finish():383] scan: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files
+2022-07-16 14:07:31,345 INFO    SenderThread:85699 [dir_watcher.py:finish():397] scan save: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/requirements.txt requirements.txt
+2022-07-16 14:07:31,346 INFO    SenderThread:85699 [dir_watcher.py:finish():397] scan save: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/output.log output.log
+2022-07-16 14:07:31,346 INFO    SenderThread:85699 [dir_watcher.py:finish():397] scan save: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/config.yaml config.yaml
+2022-07-16 14:07:31,356 INFO    SenderThread:85699 [dir_watcher.py:finish():397] scan save: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/wandb-summary.json wandb-summary.json
+2022-07-16 14:07:31,363 INFO    SenderThread:85699 [dir_watcher.py:finish():397] scan save: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/conda-environment.yaml conda-environment.yaml
+2022-07-16 14:07:31,368 INFO    SenderThread:85699 [dir_watcher.py:finish():397] scan save: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/wandb-metadata.json wandb-metadata.json
+2022-07-16 14:07:31,368 INFO    SenderThread:85699 [sender.py:transition_state():393] send defer: 7
+2022-07-16 14:07:31,368 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: poll_exit
+2022-07-16 14:07:31,372 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: defer
+2022-07-16 14:07:31,373 INFO    HandlerThread:85699 [handler.py:handle_request_defer():163] handle defer: 7
+2022-07-16 14:07:31,374 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: defer
+2022-07-16 14:07:31,374 INFO    SenderThread:85699 [sender.py:send_request_defer():389] handle sender defer: 7
+2022-07-16 14:07:31,374 INFO    SenderThread:85699 [file_pusher.py:finish():171] shutting down file pusher
+2022-07-16 14:07:31,478 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: poll_exit
+2022-07-16 14:07:31,478 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: poll_exit
+2022-07-16 14:07:31,582 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: poll_exit
+2022-07-16 14:07:31,584 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: poll_exit
+2022-07-16 14:07:31,687 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: poll_exit
+2022-07-16 14:07:31,687 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: poll_exit
+2022-07-16 14:07:31,789 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: poll_exit
+2022-07-16 14:07:31,790 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: poll_exit
+2022-07-16 14:07:31,894 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: poll_exit
+2022-07-16 14:07:31,895 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: poll_exit
+2022-07-16 14:07:31,950 INFO    Thread-14 :85699 [upload_job.py:push():138] Uploaded file /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/config.yaml
+2022-07-16 14:07:31,961 INFO    Thread-16 :85699 [upload_job.py:push():138] Uploaded file /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/conda-environment.yaml
+2022-07-16 14:07:31,962 INFO    Thread-13 :85699 [upload_job.py:push():138] Uploaded file /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/output.log
+2022-07-16 14:07:31,965 INFO    Thread-15 :85699 [upload_job.py:push():138] Uploaded file /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/wandb-summary.json
+2022-07-16 14:07:31,988 INFO    Thread-12 :85699 [upload_job.py:push():138] Uploaded file /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/files/requirements.txt
+2022-07-16 14:07:32,002 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: poll_exit
+2022-07-16 14:07:32,002 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: poll_exit
+2022-07-16 14:07:32,109 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: poll_exit
+2022-07-16 14:07:32,109 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: poll_exit
+2022-07-16 14:07:32,193 INFO    Thread-6  :85699 [sender.py:transition_state():393] send defer: 8
+2022-07-16 14:07:32,195 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: defer
+2022-07-16 14:07:32,195 INFO    HandlerThread:85699 [handler.py:handle_request_defer():163] handle defer: 8
+2022-07-16 14:07:32,195 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: defer
+2022-07-16 14:07:32,195 INFO    SenderThread:85699 [sender.py:send_request_defer():389] handle sender defer: 8
+2022-07-16 14:07:32,214 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: poll_exit
+2022-07-16 14:07:32,415 INFO    SenderThread:85699 [sender.py:transition_state():393] send defer: 9
+2022-07-16 14:07:32,415 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: poll_exit
+2022-07-16 14:07:32,417 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: defer
+2022-07-16 14:07:32,417 INFO    HandlerThread:85699 [handler.py:handle_request_defer():163] handle defer: 9
+2022-07-16 14:07:32,417 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: defer
+2022-07-16 14:07:32,417 INFO    SenderThread:85699 [sender.py:send_request_defer():389] handle sender defer: 9
+2022-07-16 14:07:32,417 INFO    SenderThread:85699 [sender.py:transition_state():393] send defer: 10
+2022-07-16 14:07:32,418 DEBUG   SenderThread:85699 [sender.py:send():236] send: final
+2022-07-16 14:07:32,419 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: defer
+2022-07-16 14:07:32,419 DEBUG   SenderThread:85699 [sender.py:send():236] send: footer
+2022-07-16 14:07:32,419 INFO    HandlerThread:85699 [handler.py:handle_request_defer():163] handle defer: 10
+2022-07-16 14:07:32,419 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: defer
+2022-07-16 14:07:32,419 INFO    SenderThread:85699 [sender.py:send_request_defer():389] handle sender defer: 10
+2022-07-16 14:07:32,525 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: poll_exit
+2022-07-16 14:07:32,526 DEBUG   SenderThread:85699 [sender.py:send_request():250] send_request: poll_exit
+2022-07-16 14:07:32,526 INFO    SenderThread:85699 [file_pusher.py:join():176] waiting for file pusher
+2022-07-16 14:07:33,067 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: sampled_history
+2022-07-16 14:07:33,069 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: get_summary
+2022-07-16 14:07:33,071 DEBUG   HandlerThread:85699 [handler.py:handle_request():140] handle_request: shutdown
+2022-07-16 14:07:33,072 INFO    HandlerThread:85699 [handler.py:finish():806] shutting down handler
+2022-07-16 14:07:33,420 INFO    WriterThread:85699 [datastore.py:close():279] close: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220716_140724-ixx1yel5/run-ixx1yel5.wandb
+2022-07-16 14:07:33,964 INFO    SenderThread:85699 [sender.py:finish():1114] shutting down sender
+2022-07-16 14:07:33,964 INFO    SenderThread:85699 [file_pusher.py:finish():171] shutting down file pusher
+2022-07-16 14:07:33,964 INFO    SenderThread:85699 [file_pusher.py:join():176] waiting for file pusher
+2022-07-16 14:07:34,002 INFO    MainThread:85699 [internal.py:handle_exit():80] Internal process exited

@@ -1,0 +1,56 @@
+2022-07-18 14:53:05,558 INFO    MainThread:94278 [internal.py:wandb_internal():93] W&B internal server running at pid: 94278, started at: 2022-07-18 14:53:05.558533
+2022-07-18 14:53:05,559 INFO    WriterThread:94278 [datastore.py:open_for_write():75] open: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/run-1hhn735b.wandb
+2022-07-18 14:53:05,561 DEBUG   SenderThread:94278 [sender.py:send():236] send: header
+2022-07-18 14:53:05,561 DEBUG   SenderThread:94278 [sender.py:send():236] send: run
+2022-07-18 14:53:05,789 DEBUG   HandlerThread:94278 [handler.py:handle_request():140] handle_request: check_version
+2022-07-18 14:53:05,791 INFO    SenderThread:94278 [dir_watcher.py:__init__():216] watching files in: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files
+2022-07-18 14:53:05,791 INFO    SenderThread:94278 [sender.py:_start_run_threads():818] run started: 1hhn735b with start time 1658152385
+2022-07-18 14:53:05,791 DEBUG   SenderThread:94278 [sender.py:send():236] send: summary
+2022-07-18 14:53:05,792 INFO    SenderThread:94278 [sender.py:_save_file():952] saving file wandb-summary.json with policy end
+2022-07-18 14:53:05,792 DEBUG   SenderThread:94278 [sender.py:send_request():250] send_request: check_version
+2022-07-18 14:53:05,903 DEBUG   HandlerThread:94278 [handler.py:handle_request():140] handle_request: run_start
+2022-07-18 14:53:05,906 DEBUG   HandlerThread:94278 [meta.py:__init__():35] meta init
+2022-07-18 14:53:05,906 DEBUG   HandlerThread:94278 [meta.py:__init__():49] meta init done
+2022-07-18 14:53:05,907 DEBUG   HandlerThread:94278 [meta.py:probe():209] probe
+2022-07-18 14:53:05,908 DEBUG   HandlerThread:94278 [git.py:repo():29] git repository is invalid
+2022-07-18 14:53:05,908 DEBUG   HandlerThread:94278 [meta.py:_save_pip():53] save pip
+2022-07-18 14:53:05,909 DEBUG   HandlerThread:94278 [meta.py:_save_pip():67] save pip done
+2022-07-18 14:53:05,909 DEBUG   HandlerThread:94278 [meta.py:_save_conda():74] save conda
+2022-07-18 14:53:06,268 DEBUG   HandlerThread:94278 [meta.py:_save_conda():84] save conda done
+2022-07-18 14:53:06,268 DEBUG   HandlerThread:94278 [meta.py:probe():247] probe done
+2022-07-18 14:53:06,271 DEBUG   SenderThread:94278 [sender.py:send():236] send: files
+2022-07-18 14:53:06,271 INFO    SenderThread:94278 [sender.py:_save_file():952] saving file wandb-metadata.json with policy now
+2022-07-18 14:53:06,275 DEBUG   HandlerThread:94278 [handler.py:handle_request():140] handle_request: stop_status
+2022-07-18 14:53:06,275 DEBUG   SenderThread:94278 [sender.py:send_request():250] send_request: stop_status
+2022-07-18 14:53:06,485 DEBUG   SenderThread:94278 [sender.py:send():236] send: telemetry
+2022-07-18 14:53:06,797 INFO    Thread-7  :94278 [dir_watcher.py:_on_file_created():269] file/dir created: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files/output.log
+2022-07-18 14:53:06,797 INFO    Thread-7  :94278 [dir_watcher.py:_on_file_created():269] file/dir created: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files/conda-environment.yaml
+2022-07-18 14:53:06,797 INFO    Thread-7  :94278 [dir_watcher.py:_on_file_created():269] file/dir created: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files/wandb-summary.json
+2022-07-18 14:53:06,797 INFO    Thread-7  :94278 [dir_watcher.py:_on_file_created():269] file/dir created: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files/requirements.txt
+2022-07-18 14:53:06,798 INFO    Thread-7  :94278 [dir_watcher.py:_on_file_created():269] file/dir created: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files/wandb-metadata.json
+2022-07-18 14:53:06,899 INFO    Thread-11 :94278 [upload_job.py:push():138] Uploaded file /var/folders/n5/9j0y5y0j6cb51120cl7tgbnm0000gn/T/tmpcw1saulawandb/1m3v7khb-wandb-metadata.json
+2022-07-18 14:53:08,806 INFO    Thread-7  :94278 [dir_watcher.py:_on_file_modified():286] file/dir modified: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files/output.log
+2022-07-18 14:53:10,134 DEBUG   SenderThread:94278 [sender.py:send():236] send: telemetry
+2022-07-18 14:53:10,815 INFO    Thread-7  :94278 [dir_watcher.py:_on_file_modified():286] file/dir modified: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files/output.log
+2022-07-18 14:53:12,095 WARNING MainThread:94278 [internal.py:wandb_internal():153] Internal process interrupt: 1
+2022-07-18 14:53:15,107 WARNING MainThread:94278 [internal.py:is_dead():388] Internal process exiting, parent pid 94270 disappeared
+2022-07-18 14:53:15,108 ERROR   MainThread:94278 [internal.py:wandb_internal():149] Internal process shutdown.
+2022-07-18 14:53:15,320 INFO    HandlerThread:94278 [handler.py:finish():806] shutting down handler
+2022-07-18 14:53:15,326 INFO    WriterThread:94278 [datastore.py:close():279] close: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/run-1hhn735b.wandb
+2022-07-18 14:53:15,326 INFO    SenderThread:94278 [sender.py:finish():1114] shutting down sender
+2022-07-18 14:53:15,326 INFO    SenderThread:94278 [dir_watcher.py:finish():353] shutting down directory watcher
+2022-07-18 14:53:15,839 INFO    SenderThread:94278 [dir_watcher.py:finish():383] scan: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files
+2022-07-18 14:53:15,839 INFO    SenderThread:94278 [dir_watcher.py:finish():397] scan save: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files/requirements.txt requirements.txt
+2022-07-18 14:53:15,839 INFO    SenderThread:94278 [dir_watcher.py:finish():397] scan save: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files/output.log output.log
+2022-07-18 14:53:15,839 INFO    SenderThread:94278 [dir_watcher.py:finish():397] scan save: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files/config.yaml config.yaml
+2022-07-18 14:53:15,842 INFO    SenderThread:94278 [dir_watcher.py:finish():397] scan save: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files/wandb-summary.json wandb-summary.json
+2022-07-18 14:53:15,846 INFO    SenderThread:94278 [dir_watcher.py:finish():397] scan save: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files/conda-environment.yaml conda-environment.yaml
+2022-07-18 14:53:15,846 INFO    SenderThread:94278 [dir_watcher.py:finish():397] scan save: /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files/wandb-metadata.json wandb-metadata.json
+2022-07-18 14:53:15,849 INFO    SenderThread:94278 [file_pusher.py:finish():171] shutting down file pusher
+2022-07-18 14:53:15,849 INFO    SenderThread:94278 [file_pusher.py:join():176] waiting for file pusher
+2022-07-18 14:53:16,424 INFO    Thread-14 :94278 [upload_job.py:push():138] Uploaded file /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files/config.yaml
+2022-07-18 14:53:16,444 INFO    Thread-16 :94278 [upload_job.py:push():138] Uploaded file /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files/conda-environment.yaml
+2022-07-18 14:53:16,452 INFO    Thread-13 :94278 [upload_job.py:push():138] Uploaded file /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files/output.log
+2022-07-18 14:53:16,466 INFO    Thread-15 :94278 [upload_job.py:push():138] Uploaded file /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files/wandb-summary.json
+2022-07-18 14:53:16,498 INFO    Thread-12 :94278 [upload_job.py:push():138] Uploaded file /Users/jonnycook/Desktop/MARLGen/epymarl/src/wandb/run-20220718_145304-1hhn735b/files/requirements.txt
+2022-07-18 14:53:17,044 INFO    MainThread:94278 [internal.py:handle_exit():80] Internal process exited

@@ -1,0 +1,102 @@
+{
+  "artifacts": [],
+  "command": "my_main",
+  "experiment": {
+    "base_dir": "/Users/jonnycook/Desktop/MARLGen/epymarl/src",
+    "dependencies": [
+      "munch==2.5.0",
+      "numpy==1.21.5",
+      "PyYAML==6.0",
+      "sacred==0.8.2",
+      "torch==1.10.2"
+    ],
+    "mainfile": "main.py",
+    "name": "pymarl",
+    "repositories": [],
+    "sources": [
+      [
+        "main.py",
+        "_sources/main_6f0d470295c80382a193688017432b5b.py"
+      ],
+      [
+        "run.py",
+        "_sources/run_ca1982628fbd6f56dea25d3d2b533d62.py"
+      ],
+      [
+        "utils/logging.py",
+        "_sources/logging_8309e899ab76a4e610428ba7ee8d8acb.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"src/main.py\", line 50, in my_main\n    run(_run, config, _log)\n",
+    "  File \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/run.py\", line 56, in run\n    run_sequential(args=args, logger=logger)\n",
+    "  File \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/run.py\", line 86, in run_sequential\n    runner = r_REGISTRY[args.runner](args=args, logger=logger)\n",
+    "  File \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/runners/episode_runner.py\", line 17, in __init__\n    self.env = env_REGISTRY[self.args.env](**self.args.env_args)\n",
+    "  File \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/envs/__init__.py\", line 19, in env_fn\n    return env(**kwargs)\n",
+    "  File \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/envs/game_2.py\", line 46, in __init__\n    yaml_dict = yaml.safe_load(stream)\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/yaml/__init__.py\", line 125, in safe_load\n    return load(stream, SafeLoader)\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/yaml/__init__.py\", line 81, in load\n    return loader.get_single_data()\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/yaml/constructor.py\", line 49, in get_single_data\n    node = self.get_single_node()\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/yaml/composer.py\", line 36, in get_single_node\n    document = self.compose_document()\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/yaml/composer.py\", line 55, in compose_document\n    node = self.compose_node(None, None)\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/yaml/composer.py\", line 84, in compose_node\n    node = self.compose_mapping_node(anchor)\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/yaml/composer.py\", line 133, in compose_mapping_node\n    item_value = self.compose_node(node, item_key)\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/yaml/composer.py\", line 82, in compose_node\n    node = self.compose_sequence_node(anchor)\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/yaml/composer.py\", line 111, in compose_sequence_node\n    node.value.append(self.compose_node(node, index))\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/yaml/composer.py\", line 84, in compose_node\n    node = self.compose_mapping_node(anchor)\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/yaml/composer.py\", line 127, in compose_mapping_node\n    while not self.check_event(MappingEndEvent):\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/yaml/parser.py\", line 98, in check_event\n    self.current_event = self.state()\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/yaml/parser.py\", line 428, in parse_block_mapping_key\n    if self.check_token(KeyToken):\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/yaml/scanner.py\", line 116, in check_token\n    self.fetch_more_tokens()\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/yaml/scanner.py\", line 223, in fetch_more_tokens\n    return self.fetch_value()\n",
+    "  File \"/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/yaml/scanner.py\", line 579, in fetch_value\n    self.get_mark())\n",
+    "yaml.scanner.ScannerError: mapping values are not allowed here\n  in \"/Users/jonnycook/Desktop/MARLGen/epymarl/src/envs/gdy/general_game.yaml\", line 126, column 19\n"
+  ],
+  "heartbeat": "2022-06-24T15:19:14.929740",
+  "host": {
+    "ENV": {},
+    "cpu": "Apple M1",
+    "hostname": "Jonnys-MacBook-Pro.local",
+    "os": [
+      "Darwin",
+      "Darwin-20.5.0-x86_64-i386-64bit"
+    ],
+    "python_version": "3.7.11"
+  },
+  "meta": {
+    "command": "my_main",
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [],
+      "help": false,
+      "with": false
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2022-06-24T15:19:14.912275",
+  "status": "FAILED",
+  "stop_time": "2022-06-24T15:19:14.930663"
+}

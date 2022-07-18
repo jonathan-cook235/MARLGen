@@ -1,0 +1,16 @@
+{
+    "os": "Darwin-20.5.0-x86_64-i386-64bit",
+    "python": "3.7.11",
+    "heartbeatAt": "2022-07-18T14:21:45.428098",
+    "startedAt": "2022-07-18T14:21:44.042549",
+    "docker": null,
+    "cpu_count": 8,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/Users/jonnycook/Desktop/MARLGen/epymarl/src/main.py",
+    "codePath": "main.py",
+    "host": "Jonnys-MacBook-Pro.local",
+    "username": "jonnycook",
+    "executable": "/Users/jonnycook/opt/anaconda3/envs/MARLGen/bin/python"
+}

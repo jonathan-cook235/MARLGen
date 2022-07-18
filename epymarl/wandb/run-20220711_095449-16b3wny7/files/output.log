@@ -1,0 +1,319 @@
+src/main.py:73: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3,and in 3.9 it will stop working
+  if isinstance(v, collections.Mapping):
+[INFO 09:54:52] root Saving to FileStorageObserver in results/sacred.
+[DEBUG 09:54:52] pymarl Using capture mode "fd"
+[INFO 09:54:52] pymarl Running command 'my_main'
+[INFO 09:54:52] pymarl Started run with ID "3"
+[DEBUG 09:54:52] pymarl Starting Heartbeat
+[DEBUG 09:54:52] my_main Started
+[WARNING 09:54:52] my_main CUDA flag use_cuda was switched OFF automatically because no CUDA devices are available!
+[INFO 09:54:52] my_main Experiment Parameters:
+[INFO 09:54:52] my_main
+{   'action_selector': 'soft_policies',
+    'add_value_last_step': True,
+    'agent': 'rnn',
+    'agent_output_type': 'pi_logits',
+    'batch_size': 10,
+    'batch_size_run': 10,
+    'buffer_cpu_only': True,
+    'buffer_size': 10,
+    'checkpoint_path': '',
+    'critic_type': 'ac_critic',
+    'entropy_coef': 0.01,
+    'env': 'griddlygen',
+    'env_args': {   },
+    'epochs': 4,
+    'eps_clip': 0.2,
+    'epsilon_anneal_time': 5000,
+    'epsilon_finish': 0.05,
+    'epsilon_start': 1.0,
+    'evaluate': False,
+    'evaluation_epsilon': 0.0,
+    'gamma': 0.99,
+    'grad_norm_clip': 10,
+    'hidden_dim': 64,
+    'hypergroup': None,
+    'hypernet_embed': 64,
+    'hypernet_layers': 2,
+    'label': 'default_label',
+    'learner': 'actor_critic_learner',
+    'learner_log_interval': 10000,
+    'load_step': 0,
+    'local_results_path': 'results',
+    'log_interval': 50000,
+    'lr': 0.0005,
+    'mac': 'basic_mac',
+    'mask_before_softmax': True,
+    'max_before_softmax': True,
+    'mixing_embed_dim': 32,
+    'name': 'ia2c',
+    'obs_agent_id': True,
+    'obs_individual_obs': False,
+    'obs_last_action': False,
+    'optim_alpha': 0.99,
+    'optim_eps': 1e-05,
+    'q_nstep': 5,
+    'repeat_id': 1,
+    'runner': 'parallel',
+    'runner_log_interval': 10000,
+    'save_model': False,
+    'save_model_interval': 50000,
+    'save_replay': False,
+    'seed': 717628456,
+    'standardise_returns': False,
+    'standardise_rewards': True,
+    't_max': 20050000,
+    'target_update_interval_or_tau': 0.01,
+    'test_greedy': True,
+    'test_interval': 50000,
+    'test_nepisode': 100,
+    'use_cuda': False,
+    'use_rnn': True,
+    'use_tensorboard': False}
+[INFO 09:54:52] my_main Beginning training for 20050000 timesteps
+/Users/jonnycook/Desktop/MARLGen/epymarl/src/components/episode_buffer.py:108: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at  ../torch/csrc/utils/tensor_new.cpp:201.)
+  v = th.tensor(v, dtype=dtype, device=self.device)
+/Users/jonnycook/Desktop/MARLGen/epymarl/src/components/episode_buffer.py:108: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  v = th.tensor(v, dtype=dtype, device=self.device)
+[INFO 09:54:52] my_main t_env: 50 / 20050000
+[INFO 09:54:52] my_main Estimated time left: 51 seconds. Time passed: 0 seconds
+[2022-07-11 09:54:52.117] [[32minfo[39m] No level specified, will use the first level described in the GDY.
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+3
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+2
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+1
+EPISODE RETURN:
+1
+EPISODE RETURN:
+2
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+1
+EPISODE RETURN:
+1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+1
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+-2
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+-2
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+1
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+1
+EPISODE RETURN:
+1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+-2
+EPISODE RETURN:
+-2
+EPISODE RETURN:
+1
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+-2
+EPISODE RETURN:
+1
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+0
+[DEBUG 09:54:57] pymarl Stopping Heartbeat
+[ERROR 09:54:57] pymarl Failed after 0:00:05!
+Traceback (most recent calls WITHOUT Sacred internals):
+  File "src/main.py", line 51, in my_main
+    run(_run, config, _log)
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/run.py", line 56, in run
+    run_sequential(args=args, logger=logger)
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/run.py", line 195, in run_sequential
+    learner.train(episode_sample, runner.t_env, episode)
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/learners/actor_critic_learner.py", line 81, in train
+    pi[mask == 0] = 1.0
+IndexError: The shape of the mask [10, 50, 1] at index 2 does not match the shape of the indexed tensor [10, 50, 2, 5] at index 2
+Exception ignored in: <function GymWrapper.__del__ at 0x7fe2a3073d40>
+Traceback (most recent call last):
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/griddly/GymWrapper.py", line 414, in __del__
+    self.close()
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/envs/game_2.py", line 199, in close
+    raise NotImplementedError
+NotImplementedError:
+EPISODE RETURN:
+2
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+1
+EPISODE RETURN:
+2
+EPISODE RETURN:
+0
+EPISODE RETURN:
+-2
+EPISODE RETURN:
+1
+EPISODE RETURN:
+1
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+0
+EPISODE RETURN:
+1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+-1
+EPISODE RETURN:
+0
+EPISODE RETURN:
+-1

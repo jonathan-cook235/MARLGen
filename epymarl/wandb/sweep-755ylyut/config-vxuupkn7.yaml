@@ -1,0 +1,8 @@
+wandb_version: 1
+
+entropy_coef:
+  value: 0.07719933612734427
+eps_clip:
+  value: 0.5501453163961004
+lr:
+  value: 0.00014496354581027947

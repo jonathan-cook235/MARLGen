@@ -1,0 +1,138 @@
+[INFO 14:43:28] pymarl Running command 'my_main'
+[INFO 14:43:28] pymarl Started run with ID "178"
+[DEBUG 14:43:28] pymarl Starting Heartbeat
+[DEBUG 14:43:28] my_main Started
+Seed: 5507
+about to run
+[WARNING 14:43:28] my_main CUDA flag use_cuda was switched OFF automatically because no CUDA devices are available!
+[INFO 14:43:28] my_main Experiment Parameters:
+[INFO 14:43:28] my_main 
+
+{   'action_selector': 'epsilon_greedy',
+    'add_value_last_step': True,
+    'agent': 'rnn',
+    'agent_output_type': 'q',
+    'batch_size': 10,
+    'batch_size_run': 3,
+    'buffer_cpu_only': True,
+    'buffer_size': 5000,
+    'checkpoint_path': '',
+    'critic_type': 'ac_critic',
+    'double_q': True,
+    'entropy_coef': 0.01,
+    'env': 'griddlygen',
+    'env_args': {   'level_seeds': array([2588, 6013, 7975, ..., 6006, 3614, 1232]),
+                    'seed': 5507},
+    'epochs': 4,
+    'eps_clip': 0.2,
+    'epsilon_anneal_time': 5000,
+    'epsilon_finish': 0.05,
+    'epsilon_start': 1.0,
+    'evaluate': False,
+    'evaluation_epsilon': 0.0,
+    'gamma': 0.99,
+    'grad_norm_clip': 10,
+    'hidden_dim': 64,
+    'hypergroup': None,
+    'hypernet_embed': 64,
+    'hypernet_layers': 2,
+    'label': 'default_label',
+    'learner': 'q_learner',
+    'learner_log_interval': 10000,
+    'load_step': 0,
+    'local_results_path': 'results',
+    'log_interval': 10000,
+    'lr': 0.0005,
+    'mac': 'basic_mac',
+    'mask_before_softmax': True,
+    'max_before_softmax': True,
+    'mixer': 'qmix',
+    'mixing_embed_dim': 32,
+    'name': 'qmix',
+    'obs_agent_id': True,
+    'obs_individual_obs': False,
+    'obs_last_action': False,
+    'optim_alpha': 0.99,
+    'optim_eps': 1e-05,
+    'q_nstep': 5,
+    'repeat_id': 1,
+    'runner': 'parallel',
+    'runner_log_interval': 1000,
+    'save_model': False,
+    'save_model_interval': 50000,
+    'save_replay': False,
+    'seed': 5507,
+    'standardise_returns': False,
+    'standardise_rewards': True,
+    't_max': 20050000,
+    'target_update_interval_or_tau': 200,
+    'test_greedy': True,
+    'test_interval': 50000,
+    'test_nepisode': 99,
+    'use_cuda': False,
+    'use_rnn': False,
+    'use_tensorboard': False}
+
+KWARGS
+{'seed': 5507, 'level_seeds': array([2588, 6013, 7975, ..., 6006, 3614, 1232])}
+KWARGS
+{'seed': 5508, 'level_seeds': array([2588, 6013, 7975, ..., 6006, 3614, 1232])}
+KWARGS
+{'seed': 5509, 'level_seeds': array([2588, 6013, 7975, ..., 6006, 3614, 1232])}
+[2022-07-18 14:43:28.132] [info] No level specified, will use the first level described in the GDY.
+in env worker
+[2022-07-18 14:43:28.139] [info] No level specified, will use the first level described in the GDY.
+[2022-07-18 14:43:28.146] [info] No level specified, will use the first level described in the GDY.
+[INFO 14:43:28] my_main Beginning training for 20000 episodes
+/Users/jonnycook/Desktop/MARLGen/epymarl/src/components/episode_buffer.py:108: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at  ../torch/csrc/utils/tensor_new.cpp:201.)
+  v = th.tensor(v, dtype=dtype, device=self.device)
+/Users/jonnycook/Desktop/MARLGen/epymarl/src/components/episode_buffer.py:108: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  v = th.tensor(v, dtype=dtype, device=self.device)
+Process Process-2:
+Process Process-3:
+Process Process-4:
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/multiprocessing/process.py", line 297, in _bootstrap
+    self.run()
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/multiprocessing/process.py", line 297, in _bootstrap
+    self.run()
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/multiprocessing/process.py", line 99, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/multiprocessing/process.py", line 297, in _bootstrap
+    self.run()
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/multiprocessing/process.py", line 99, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/runners/parallel_runner.py", line 264, in env_worker
+    remote.send(env.get_stats())
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/multiprocessing/process.py", line 99, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/runners/parallel_runner.py", line 264, in env_worker
+    remote.send(env.get_stats())
+  File "/Users/jonnycook/Desktop/MARLGen/epymarl/src/runners/parallel_runner.py", line 264, in env_worker
+    remote.send(env.get_stats())
+AttributeError: 'Game2' object has no attribute 'get_stats'
+AttributeError: 'Game2' object has no attribute 'get_stats'
+AttributeError: 'Game2' object has no attribute 'get_stats'
+Exception ignored in: <function VideoRecorder.__del__ at 0x7f855b1ec050>
+Exception ignored in: <function VideoRecorder.__del__ at 0x7f855b1ec050>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/griddly/RenderTools.py", line 99, in __del__
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/griddly/RenderTools.py", line 99, in __del__
+Exception ignored in: <function VideoRecorder.__del__ at 0x7f855b1ec050>
+Traceback (most recent call last):
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/griddly/RenderTools.py", line 99, in __del__
+        self.close()self.close()
+
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/griddly/RenderTools.py", line 95, in close
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/griddly/RenderTools.py", line 95, in close
+    self.close()
+  File "/Users/jonnycook/opt/anaconda3/envs/MARLGen/lib/python3.7/site-packages/griddly/RenderTools.py", line 95, in close
+    self._image_encoder.close()
+    AttributeErrorself._image_encoder.close(): 
+'VideoRecorder' object has no attribute '_image_encoder'
+AttributeError: 'VideoRecorder' object has no attribute '_image_encoder'
+    self._image_encoder.close()
+AttributeError: 'VideoRecorder' object has no attribute '_image_encoder'

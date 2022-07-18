@@ -1,0 +1,184 @@
+2022-07-15 13:35:30,842 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Configure stats pid to 61160
+2022-07-15 13:35:30,842 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Loading settings from /Users/jonnycook/.config/wandb/settings
+2022-07-15 13:35:30,842 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Loading settings from wandb/settings
+2022-07-15 13:35:30,842 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'entity': 'ucl_nlp', 'project': 'uncategorized', 'sweep_id': '81nu6w2m', 'root_dir': '/Users/jonnycook/Desktop/MARLGen/epymarl', 'run_id': '4dnkxpw7', 'sweep_param_path': '/Users/jonnycook/Desktop/MARLGen/epymarl/wandb/sweep-81nu6w2m/config-4dnkxpw7.yaml'}
+2022-07-15 13:35:30,843 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'src/main.py', 'program': 'src/main.py'}
+2022-07-15 13:35:30,843 INFO    MainThread:61160 [wandb_init.py:_log_setup():461] Logging user logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_133530-4dnkxpw7/logs/debug.log
+2022-07-15 13:35:30,843 INFO    MainThread:61160 [wandb_init.py:_log_setup():462] Logging internal logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_133530-4dnkxpw7/logs/debug-internal.log
+2022-07-15 13:35:30,843 INFO    MainThread:61160 [wandb_init.py:init():495] calling init triggers
+2022-07-15 13:35:30,843 INFO    MainThread:61160 [wandb_init.py:init():499] wandb.init called with sweep_config: {'epsilon_finish': 0.05082098789083976, 'hypernet_embed': 19, 'hypernet_layers': 1, 'lr': 0.0009748476205219044, 'mixing_embed_dim': 44}
+config: {'mixing_embed_dim': 32, 'hypernet_layers': 2, 'hypernet_embed': 64}
+2022-07-15 13:35:30,844 INFO    MainThread:61160 [wandb_init.py:init():548] starting backend
+2022-07-15 13:35:30,844 INFO    MainThread:61160 [backend.py:_multiprocessing_setup():99] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2022-07-15 13:35:30,870 INFO    MainThread:61160 [backend.py:ensure_launched():217] starting backend process...
+2022-07-15 13:35:30,896 INFO    MainThread:61160 [backend.py:ensure_launched():222] started backend process with pid: 61168
+2022-07-15 13:35:30,898 INFO    MainThread:61160 [wandb_init.py:init():558] backend started and connected
+2022-07-15 13:35:30,905 INFO    MainThread:61160 [wandb_run.py:_config_callback():1131] config_cb None None {'epsilon_finish': 0.05082098789083976, 'hypernet_embed': 19, 'hypernet_layers': 1, 'lr': 0.0009748476205219044, 'mixing_embed_dim': 44}
+2022-07-15 13:35:30,907 INFO    MainThread:61160 [wandb_init.py:init():634] updated telemetry
+2022-07-15 13:35:30,908 INFO    MainThread:61160 [wandb_init.py:init():666] communicating run to backend with 30 second timeout
+2022-07-15 13:35:31,750 INFO    MainThread:61160 [wandb_run.py:_on_init():1919] communicating current version
+2022-07-15 13:35:31,861 INFO    MainThread:61160 [wandb_run.py:_on_init():1923] got version response 
+2022-07-15 13:35:31,864 INFO    MainThread:61160 [wandb_init.py:init():700] starting run threads in backend
+2022-07-15 13:35:32,274 INFO    MainThread:61160 [wandb_run.py:_console_start():1893] atexit reg
+2022-07-15 13:35:32,275 INFO    MainThread:61160 [wandb_run.py:_redirect():1766] redirect: SettingsConsole.REDIRECT
+2022-07-15 13:35:32,275 INFO    MainThread:61160 [wandb_run.py:_redirect():1771] Redirecting console.
+2022-07-15 13:35:32,276 INFO    MainThread:61160 [wandb_run.py:_redirect():1827] Redirects installed.
+2022-07-15 13:35:32,276 INFO    MainThread:61160 [wandb_init.py:init():732] run started, returning control to user process
+2022-07-15 13:35:32,282 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Configure stats pid to 61160
+2022-07-15 13:35:32,282 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Loading settings from /Users/jonnycook/.config/wandb/settings
+2022-07-15 13:35:32,282 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Loading settings from wandb/settings
+2022-07-15 13:35:32,282 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'entity': 'ucl_nlp', 'project': 'uncategorized', 'sweep_id': '81nu6w2m', 'root_dir': '/Users/jonnycook/Desktop/MARLGen/epymarl', 'run_id': '4dnkxpw7', 'sweep_param_path': '/Users/jonnycook/Desktop/MARLGen/epymarl/wandb/sweep-81nu6w2m/config-4dnkxpw7.yaml'}
+2022-07-15 13:35:32,282 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'src/main.py', 'program': 'src/main.py'}
+2022-07-15 13:35:32,282 INFO    MainThread:61160 [wandb_init.py:_log_setup():461] Logging user logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_133532-4dnkxpw7/logs/debug.log
+2022-07-15 13:35:32,282 INFO    MainThread:61160 [wandb_init.py:_log_setup():462] Logging internal logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_133532-4dnkxpw7/logs/debug-internal.log
+2022-07-15 13:35:32,282 INFO    MainThread:61160 [wandb_init.py:init():495] calling init triggers
+2022-07-15 13:35:32,282 INFO    MainThread:61160 [wandb_init.py:init():499] wandb.init called with sweep_config: {'epsilon_finish': 0.05082098789083976, 'hypernet_embed': 19, 'hypernet_layers': 1, 'lr': 0.0009748476205219044, 'mixing_embed_dim': 44}
+config: {'lr': 0.0005}
+2022-07-15 13:35:32,282 INFO    MainThread:61160 [wandb_init.py:init():543] wandb.init() called when a run is still active
+2022-07-15 13:35:32,327 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Configure stats pid to 61160
+2022-07-15 13:35:32,327 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Loading settings from /Users/jonnycook/.config/wandb/settings
+2022-07-15 13:35:32,327 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Loading settings from wandb/settings
+2022-07-15 13:35:32,327 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'entity': 'ucl_nlp', 'project': 'uncategorized', 'sweep_id': '81nu6w2m', 'root_dir': '/Users/jonnycook/Desktop/MARLGen/epymarl', 'run_id': '4dnkxpw7', 'sweep_param_path': '/Users/jonnycook/Desktop/MARLGen/epymarl/wandb/sweep-81nu6w2m/config-4dnkxpw7.yaml'}
+2022-07-15 13:35:32,327 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'src/main.py', 'program': 'src/main.py'}
+2022-07-15 13:35:32,327 INFO    MainThread:61160 [wandb_init.py:_log_setup():461] Logging user logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_133532-4dnkxpw7/logs/debug.log
+2022-07-15 13:35:32,327 INFO    MainThread:61160 [wandb_init.py:_log_setup():462] Logging internal logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_133532-4dnkxpw7/logs/debug-internal.log
+2022-07-15 13:35:32,329 INFO    MainThread:61160 [wandb_init.py:init():495] calling init triggers
+2022-07-15 13:35:32,329 INFO    MainThread:61160 [wandb_init.py:init():499] wandb.init called with sweep_config: {'epsilon_finish': 0.05082098789083976, 'hypernet_embed': 19, 'hypernet_layers': 1, 'lr': 0.0009748476205219044, 'mixing_embed_dim': 44}
+config: {'epsilon_finish': 0.05}
+2022-07-15 13:35:32,330 INFO    MainThread:61160 [wandb_init.py:init():543] wandb.init() called when a run is still active
+2022-07-15 13:35:32,334 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Configure stats pid to 61160
+2022-07-15 13:35:32,335 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Loading settings from /Users/jonnycook/.config/wandb/settings
+2022-07-15 13:35:32,335 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Loading settings from wandb/settings
+2022-07-15 13:35:32,335 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'entity': 'ucl_nlp', 'project': 'uncategorized', 'sweep_id': '81nu6w2m', 'root_dir': '/Users/jonnycook/Desktop/MARLGen/epymarl', 'run_id': '4dnkxpw7', 'sweep_param_path': '/Users/jonnycook/Desktop/MARLGen/epymarl/wandb/sweep-81nu6w2m/config-4dnkxpw7.yaml'}
+2022-07-15 13:35:32,335 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'src/main.py', 'program': 'src/main.py'}
+2022-07-15 13:35:32,336 INFO    MainThread:61160 [wandb_init.py:_log_setup():461] Logging user logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_133532-4dnkxpw7/logs/debug.log
+2022-07-15 13:35:32,336 INFO    MainThread:61160 [wandb_init.py:_log_setup():462] Logging internal logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_133532-4dnkxpw7/logs/debug-internal.log
+2022-07-15 13:35:32,337 INFO    MainThread:61160 [wandb_init.py:init():495] calling init triggers
+2022-07-15 13:35:32,337 INFO    MainThread:61160 [wandb_init.py:init():499] wandb.init called with sweep_config: {'epsilon_finish': 0.05082098789083976, 'hypernet_embed': 19, 'hypernet_layers': 1, 'lr': 0.0009748476205219044, 'mixing_embed_dim': 44}
+config: {'lr': 0.0003, 'entropy_coef': 0.01, 'eps_clip': 0.2}
+2022-07-15 13:35:32,337 INFO    MainThread:61160 [wandb_init.py:init():543] wandb.init() called when a run is still active
+2022-07-15 13:35:33,555 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Configure stats pid to 61160
+2022-07-15 13:35:33,555 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Loading settings from /Users/jonnycook/.config/wandb/settings
+2022-07-15 13:35:33,555 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Loading settings from wandb/settings
+2022-07-15 13:35:33,555 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'entity': 'ucl_nlp', 'project': 'uncategorized', 'sweep_id': '81nu6w2m', 'root_dir': '/Users/jonnycook/Desktop/MARLGen/epymarl', 'run_id': '4dnkxpw7', 'sweep_param_path': '/Users/jonnycook/Desktop/MARLGen/epymarl/wandb/sweep-81nu6w2m/config-4dnkxpw7.yaml'}
+2022-07-15 13:35:33,555 INFO    MainThread:61160 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'src/main.py', 'program': 'src/main.py'}
+2022-07-15 13:35:33,555 INFO    MainThread:61160 [wandb_init.py:_log_setup():461] Logging user logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_133533-4dnkxpw7/logs/debug.log
+2022-07-15 13:35:33,555 INFO    MainThread:61160 [wandb_init.py:_log_setup():462] Logging internal logs to /Users/jonnycook/Desktop/MARLGen/epymarl/wandb/run-20220715_133533-4dnkxpw7/logs/debug-internal.log
+2022-07-15 13:35:33,556 INFO    MainThread:61160 [wandb_init.py:init():495] calling init triggers
+2022-07-15 13:35:33,556 INFO    MainThread:61160 [wandb_init.py:init():499] wandb.init called with sweep_config: {'epsilon_finish': 0.05082098789083976, 'hypernet_embed': 19, 'hypernet_layers': 1, 'lr': 0.0009748476205219044, 'mixing_embed_dim': 44}
+config: {}
+2022-07-15 13:35:33,556 INFO    MainThread:61160 [wandb_init.py:init():543] wandb.init() called when a run is still active
+2022-07-15 13:35:34,116 INFO    MainThread:61160 [wandb_run.py:_atexit_cleanup():1862] got exitcode: 1
+2022-07-15 13:35:34,121 INFO    MainThread:61160 [wandb_run.py:_restore():1834] restore
+2022-07-15 13:35:36,385 INFO    MainThread:61160 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 1
+}
+pusher_stats {
+  uploaded_bytes: 643
+  total_bytes: 643
+}
+
+2022-07-15 13:35:36,723 INFO    MainThread:61160 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 1
+}
+pusher_stats {
+  uploaded_bytes: 643
+  total_bytes: 643
+}
+
+2022-07-15 13:35:36,830 INFO    MainThread:61160 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 643
+  total_bytes: 8930
+}
+
+2022-07-15 13:35:36,936 INFO    MainThread:61160 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 643
+  total_bytes: 8930
+}
+
+2022-07-15 13:35:37,043 INFO    MainThread:61160 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 643
+  total_bytes: 8930
+}
+
+2022-07-15 13:35:37,149 INFO    MainThread:61160 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 8930
+  total_bytes: 8930
+}
+
+2022-07-15 13:35:37,257 INFO    MainThread:61160 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 8930
+  total_bytes: 8930
+}
+
+2022-07-15 13:35:37,365 INFO    MainThread:61160 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 8930
+  total_bytes: 8930
+}
+
+2022-07-15 13:35:37,475 INFO    MainThread:61160 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 8930
+  total_bytes: 8930
+}
+
+2022-07-15 13:35:37,584 INFO    MainThread:61160 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 8930
+  total_bytes: 8930
+}
+
+2022-07-15 13:35:37,693 INFO    MainThread:61160 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 8930
+  total_bytes: 8930
+}
+
+2022-07-15 13:35:38,281 INFO    MainThread:61160 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 8930
+  total_bytes: 8930
+}
+
+2022-07-15 13:35:38,780 INFO    MainThread:61160 [wandb_run.py:_on_finish():1991] got exit ret: done: true
+exit_result {
+}
+file_counts {
+  wandb_count: 6
+}
+pusher_stats {
+  uploaded_bytes: 8930
+  total_bytes: 8930
+}
+local_info {
+}
+
+2022-07-15 13:35:39,895 INFO    MainThread:61160 [wandb_run.py:_footer_history_summary_info():3099] rendering history
+2022-07-15 13:35:39,895 INFO    MainThread:61160 [wandb_run.py:_footer_history_summary_info():3131] rendering summary
+2022-07-15 13:35:39,898 INFO    MainThread:61160 [wandb_run.py:_footer_sync_info():3055] logging synced files
