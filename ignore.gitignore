@@ -12,3 +12,4 @@ epymarl/src/utils/__pycache__/
 epymarl/src/wandb/
 epymarl/wandb/
 epymarl/results/
+.DS_Store

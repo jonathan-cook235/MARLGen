@@ -13,7 +13,7 @@ from utils.logging import get_logger
 import yaml
 from yaml import Loader
 from run import run
-# import wandb
+import wandb
 
 SETTINGS['CAPTURE_MODE'] = "fd" # set to "no" if you want to see stdout/stderr in console
 logger = get_logger()
@@ -29,24 +29,28 @@ results_path = os.path.join(dirname(dirname(abspath(__file__))), "results")
 def my_main(_run, _config, _log):
     for i in range(5):
         random_seed = np.random.randint(1111, 9999)
-        level_seeds = np.random.randint(1111, 9999, 25000)
+        np.random.seed(random_seed)
+        level_seeds = np.random.randint(0, 100, 101000)
+        test_seeds = np.random.randint(101, 9999, 1500)
         print('Seed:', random_seed)
         logging_name = 'qmix-'+str(random_seed)
-        # wandb.init(project='marlgen', entity='jonnycook', name=logging_name, reinit=True)
+        wandb.init(project='marlgen', entity='jonnycook', name=logging_name, reinit=True)
         # Setting the random seed throughout the modules
         config = config_copy(_config)
         config["seed"] = random_seed
         config["level_seeds"] = level_seeds
-        np.random.seed(config["seed"])
+        config["test_seeds"] = test_seeds
+        # np.random.seed(config["seed"])
         th.manual_seed(config["seed"])
         # config['env_args']['seed'] = config["seed"]
         config['env_args']['state_last_action'] = False
         config['env_args']['seed'] = config["seed"]
         config['env_args']['level_seeds'] = config["level_seeds"]
+        config['env_args']['test_seeds'] = config["test_seeds"]
 
         # run the framework
         config = {'runner': 'parallel', 'mac': 'basic_mac', 'env': 'griddlygen',
-                  'env_args': {'seed': random_seed, 'level_seeds': level_seeds}, 'batch_size_run': 3,
+                  'env_args': {'seed': random_seed, 'level_seeds': level_seeds, 'test_seeds': test_seeds}, 'batch_size_run': 3,
                   'test_nepisode': 100, 'test_interval': 50000, 'test_greedy': True, 'log_interval': 10000,
                   'runner_log_interval': 1000, 'learner_log_interval': 10000, 't_max': 20050000, 'use_cuda': True,
                   'buffer_cpu_only': True, 'use_tensorboard': False, 'save_model': False, 'save_model_interval': 50000,

@@ -39,7 +39,7 @@ class GeneralLevelGenerator(LevelGenerator):
             else:
                 map[location[0], location[1]] = char
 
-        return map, possible_locations
+        return map, possible_locations, num_items
 
     def generate(self, level_seed):
         # np.random.seed(self._seed)
@@ -54,7 +54,7 @@ class GeneralLevelGenerator(LevelGenerator):
             for h in range(1, self._height - 1):
                 possible_locations.append([w, h])
 
-        map, possible_locations = self._place_items(
+        map, possible_locations, reward_max = self._place_items(
             map,
             possible_locations,
             GeneralLevelGenerator.POTION,
@@ -62,7 +62,7 @@ class GeneralLevelGenerator(LevelGenerator):
             self._max_potions
         )
 
-        map, possible_locations = self._place_items(
+        map, possible_locations, num_holes = self._place_items(
             map,
             possible_locations,
             GeneralLevelGenerator.HOLE,
@@ -70,7 +70,7 @@ class GeneralLevelGenerator(LevelGenerator):
             self._max_holes
         )
 
-        map, possible_locations = self._place_items(
+        map, possible_locations, num_agents = self._place_items(
             map,
             possible_locations,
             GeneralLevelGenerator.FORAGER,
@@ -84,4 +84,4 @@ class GeneralLevelGenerator(LevelGenerator):
                 level_string += map[w, h].decode().ljust(4)
             level_string += '\n'
 
-        return level_string
+        return level_string, reward_max

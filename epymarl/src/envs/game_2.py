@@ -19,6 +19,7 @@ class Game2(GriddlyGymWrapper):
         self.n_agents = 2
         self._seed = kwargs['seed']
         self._level_seeds = kwargs['level_seeds']
+        self._test_seeds = kwargs['test_seeds']
         self.n_actions = 5
         # self.grid_width = 9
         # self.grid_height = 10
@@ -27,6 +28,7 @@ class Game2(GriddlyGymWrapper):
         self.recording_started = False
         self.video_filename = ""
         self._episode_count = 0
+        self._test_episode_count = 0
         self._episode_steps = 0
         self._total_steps = 0
         self.state = None
@@ -229,13 +231,19 @@ class Game2(GriddlyGymWrapper):
         """Returns the total number of actions an agent could ever take."""
         return self.n_actions
 
-    def reset(self, record_video=False, **kwargs):
+    def get_reward_max(self):
+        return self.reward_max
+
+    def reset(self, record_video=False, test_mode=False, **kwargs):
         """Returns initial observations and states.
         :param **kwargs:
         """
         self.record_video = record_video
-        level_seed = self._level_seeds[self._episode_count]
-        self.level = self.generator.generate(level_seed)
+        if not test_mode:
+            level_seed = self._level_seeds[self._episode_count]
+        else:
+            level_seed = self._test_seeds[self._episode_count-99999]
+        self.level, self.reward_max = self.generator.generate(level_seed)
         self._episode_steps = 0
         self.last_action = np.zeros((self.n_agents, self.n_actions))
         state_obs = super().reset(global_observations=True, level_string=self.level)

@@ -17,6 +17,8 @@ class ParallelRunner:
         self.logger = logger
         self.batch_size = self.args.batch_size_run
 
+        self.testing = False
+
         # Make subprocesses for the envs
         self.parent_conns, self.worker_conns = zip(*[Pipe() for _ in range(self.batch_size)])
         env_fn = env_REGISTRY[self.args.env]
@@ -55,7 +57,7 @@ class ParallelRunner:
     def get_env_info(self):
         # self.env.reset()
         # self.reset()
-        self.parent_conns[0].send(("reset", None))
+        self.parent_conns[0].send(("reset", self.testing))
         self.parent_conns[0].recv()
         self.parent_conns[0].send(("get_env_info", None))
         self.env_info = self.parent_conns[0].recv()
@@ -73,7 +75,7 @@ class ParallelRunner:
         # Reset the envs
         # self.env.reset()
         for parent_conn in self.parent_conns:
-            parent_conn.send(("reset", None))
+            parent_conn.send(("reset", self.testing))
 
         pre_transition_data = {
             "state": [],
@@ -93,6 +95,8 @@ class ParallelRunner:
         self.env_steps_this_run = 0
 
     def run(self, test_mode=False):
+        if test_mode:
+            self.testing = True
         self.reset()
         all_terminated = False
         episode_returns = [0 for _ in range(self.batch_size)]
@@ -180,6 +184,12 @@ class ParallelRunner:
 
         if not test_mode:
             self.t_env += self.env_steps_this_run
+            for episode_return in episode_returns:
+                print(episode_return)
+                wandb.log({'episode return': episode_return})
+        else:
+            for episode_return in episode_returns:
+                wandb.log({'test episode return': episode_return})
 
         # # Get stats back for each env
         # for parent_conn in self.parent_conns:
@@ -246,7 +256,8 @@ def env_worker(remote, env_fn):
                 "info": env_info
             })
         elif cmd == "reset":
-            env.reset()
+            testing = data
+            env.reset(test_mode=testing)
             remote.send({
                 "state": env.get_state(),
                 "avail_actions": env.get_avail_actions(),
