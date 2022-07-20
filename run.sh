@@ -42,7 +42,7 @@ conda activate MARLGen
 cd $HOME/
 
 # setup wandb
-wandb login 517ce6dd852cba92bb600d3bd3d3a05fca3aff13
+wandb login jonnycook
 
 # run experiment with these arguments
 python Dissertation/epymarl/src/main.py 
