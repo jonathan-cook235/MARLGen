@@ -28,6 +28,7 @@ class Game2(GriddlyGymWrapper):
         self.recording_started = False
         self.video_filename = ""
         self._episode_count = 0
+        self.tested_before = False
         self._test_episode_count = 0
         self._episode_steps = 0
         self._total_steps = 0
@@ -242,7 +243,10 @@ class Game2(GriddlyGymWrapper):
         if not test_mode:
             level_seed = self._level_seeds[self._episode_count]
         else:
-            level_seed = self._test_seeds[self._episode_count-99999]
+            if not self.tested_before:
+                self._episode_count = 0
+                self.tested_before = True
+            level_seed = self._test_seeds[self._episode_count]
         self.level, self.reward_max = self.generator.generate(level_seed)
         self._episode_steps = 0
         self.last_action = np.zeros((self.n_agents, self.n_actions))
