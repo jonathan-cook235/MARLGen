@@ -45,7 +45,7 @@ cd $HOME/
 wandb login 517ce6dd852cba92bb600d3bd3d3a05fca3aff13
 
 # run experiment with these arguments
-python epymarl/src/main.py 
+python Dissertation/epymarl/src/main.py 
 
 date
 echo "We're Done!"
