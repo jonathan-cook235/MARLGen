@@ -233,6 +233,8 @@ class Game2(GriddlyGymWrapper):
         return self.n_actions
 
     def get_reward_max(self):
+        # print('REWARD MAX')
+        # print(self.reward_max)
         return self.reward_max
 
     def reset(self, record_video=False, test_mode=False, **kwargs):

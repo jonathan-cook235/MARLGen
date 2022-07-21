@@ -33,7 +33,7 @@ def my_main(_run, _config, _log):
         level_seeds = np.random.randint(0, 100, 101000)
         test_seeds = np.random.randint(101, 9999, 1500)
         print('Seed:', random_seed)
-        logging_name = 'qmix-'+str(random_seed)
+        logging_name = 'mappo-'+str(random_seed)
         wandb.init(project='marlgen', entity='jonnycook', name=logging_name, reinit=True)
         # Setting the random seed throughout the modules
         config = config_copy(_config)
@@ -58,14 +58,13 @@ def my_main(_run, _config, _log):
                   'local_results_path': 'results', 'gamma': 0.99, 'batch_size': 10, 'buffer_size': 5000, 'lr': 0.0005,
                   'optim_alpha': 0.99, 'optim_eps': 1e-05, 'grad_norm_clip': 10, 'add_value_last_step': True,
                   'agent': 'rnn', 'hidden_dim': 64, 'obs_agent_id': True, 'obs_last_action': False, 'repeat_id': 1,
-                  'label': 'default_label', 'hypergroup': None, 'action_selector': 'epsilon_greedy',
+                  'label': 'default_label', 'hypergroup': None, 'action_selector': 'soft_policies',
                   'epsilon_start': 1.0, 'epsilon_finish': 0.05, 'epsilon_anneal_time': 5000, 'evaluation_epsilon': 0.0,
                   'mask_before_softmax': True, 'target_update_interval_or_tau': 200, 'obs_individual_obs': False,
-                  'agent_output_type': 'q', 'learner': 'q_learner', 'entropy_coef': 0.01, 'standardise_returns': False,
-                  'standardise_rewards': True, 'use_rnn': False, 'q_nstep': 5, 'critic_type': 'ac_critic', 'epochs': 4,
-                  'eps_clip': 0.2, 'name': "qmix", 'seed': random_seed, 'mixing_embed_dim': 32, 'hypernet_layers': 2,
+                  'agent_output_type': 'pi_logits', 'learner': 'ppo_learner', 'entropy_coef': 0.01, 'standardise_returns': True,
+                  'standardise_rewards': True, 'use_rnn': False, 'q_nstep': 5, 'critic_type': 'cv_critic', 'epochs': 4,
+                  'eps_clip': 0.2, 'name': "mappo", 'seed': random_seed, 'mixing_embed_dim': 32, 'hypernet_layers': 2,
                   'hypernet_embed': 64, 'max_before_softmax': True, 'double_q': True, 'mixer': "qmix"}
-        print('about to run')
         run(_run, config, _log)
 
 

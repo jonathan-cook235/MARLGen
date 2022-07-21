@@ -16,8 +16,6 @@ import pretrained
 
 
 def env_fn(env, **kwargs) -> MultiAgentEnv:
-    print('KWARGS')
-    print(kwargs)
     return env(**kwargs)
 
 

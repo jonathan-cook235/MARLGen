@@ -10,13 +10,13 @@ from components.standarize_stream import RunningMeanStd
 import wandb
 
 # Set up your default hyperparameters
-hyperparameter_defaults = dict(
-    lr=0.0003,
-    entropy_coef=0.01,
-    eps_clip=0.2
-    )
+# hyperparameter_defaults = dict(
+#     lr=0.0003,
+#     entropy_coef=0.01,
+#     eps_clip=0.2
+#     )
 
-wandb.init(project='marlgen', entity='jonnycook', config=hyperparameter_defaults)
+# wandb.init(project='marlgen', entity='jonnycook', config=hyperparameter_defaults)
 
 
 class PPOLearner:
@@ -29,13 +29,13 @@ class PPOLearner:
         self.mac = mac
         self.old_mac = copy.deepcopy(mac)
         self.agent_params = list(mac.parameters())
-        self.agent_optimiser = Adam(params=self.agent_params, lr=self.config["lr"]) #lr=args.lr)
+        self.agent_optimiser = Adam(params=self.agent_params, lr=args.lr) #lr=args.lr)
 
         self.critic = critic_resigtry[args.critic_type](scheme, args)
         self.target_critic = copy.deepcopy(self.critic)
 
         self.critic_params = list(self.critic.parameters())
-        self.critic_optimiser = Adam(params=self.critic_params, lr=self.config["lr"])#lr=args.lr)
+        self.critic_optimiser = Adam(params=self.critic_params, lr=args.lr)#lr=args.lr)
 
         self.last_target_update_step = 0
         self.critic_training_steps = 0
@@ -48,7 +48,7 @@ class PPOLearner:
         if self.args.standardise_rewards:
             self.rew_ms = RunningMeanStd(shape=(1,), device=device)
 
-        self.config = wandb.config
+        # self.config = wandb.config
 
     def train(self, batch: EpisodeBatch, t_env: int, episode_num: int):
         # Get the relevant quantities
@@ -107,10 +107,10 @@ class PPOLearner:
 
             ratios = th.exp(log_pi_taken - old_log_pi_taken.detach())
             surr1 = ratios * advantages
-            surr2 = th.clamp(ratios, 1 - self.config["eps_clip"], 1 + self.config["eps_clip"]) * advantages
+            surr2 = th.clamp(ratios, 1 - self.args.eps_clip, 1 + self.args.eps_clip) * advantages
 
             entropy = -th.sum(pi * th.log(pi + 1e-10), dim=-1)
-            pg_loss = -((th.min(surr1, surr2) + self.config["entropy_coef"] * entropy) * mask).sum() / mask.sum()
+            pg_loss = -((th.min(surr1, surr2) + self.args.entropy_coef * entropy) * mask).sum() / mask.sum()
 
             # Optimise agents
             self.agent_optimiser.zero_grad()

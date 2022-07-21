@@ -184,12 +184,24 @@ class ParallelRunner:
 
         if not test_mode:
             self.t_env += self.env_steps_this_run
-            for episode_return in episode_returns:
-                print(episode_return)
-                wandb.log({'episode return': episode_return})
+            # for episode_return in episode_returns:
+            #     # print(episode_return)
+            #     wandb.log({'episode return': episode_return})
+            rewards_max = [0 for _ in range(self.batch_size)]
+            for idx, parent_conn in enumerate(self.parent_conns):
+                parent_conn.send(("get_max_reward", None))
+                rewards_max[idx] = parent_conn.recv()
+            [wandb.log({'train regret': np.abs(episode_return - reward_max)})
+             for episode_return, reward_max in zip(episode_returns, rewards_max)]
+            [wandb.log({'train return': episode_return}) for episode_return in episode_returns]
         else:
-            for episode_return in episode_returns:
-                wandb.log({'test episode return': episode_return})
+            rewards_max = [0 for _ in range(self.batch_size)]
+            for idx, parent_conn in enumerate(self.parent_conns):
+                parent_conn.send(("get_max_reward", None))
+                rewards_max[idx] = parent_conn.recv()
+            [wandb.log({'test regret': np.abs(episode_return - reward_max)})
+             for episode_return, reward_max in zip(episode_returns, rewards_max)]
+            [wandb.log({'test return': episode_return}) for episode_return in episode_returns]
 
         # # Get stats back for each env
         # for parent_conn in self.parent_conns:
@@ -268,11 +280,13 @@ def env_worker(remote, env_fn):
             remote.close()
             break
         elif cmd == "get_env_info":
-            print('in env worker')
             info = env.get_env_info()
             remote.send(info)
         elif cmd == "get_stats":
             remote.send(env.get_stats())
+        elif cmd == "get_max_reward":
+            reward_max = env.get_reward_max()
+            remote.send(reward_max)
         else:
             raise NotImplementedError
 
