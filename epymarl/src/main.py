@@ -30,8 +30,8 @@ def my_main(_run, _config, _log):
     for i in range(5):
         random_seed = np.random.randint(1111, 9999)
         np.random.seed(random_seed)
-        level_seeds = np.random.randint(0, 100, 101000)
-        test_seeds = np.random.randint(101, 9999, 1500)
+        level_seeds = np.random.randint(0, 100, 50000)
+        test_seeds = np.random.randint(101, 9999, 2000)
         print('Seed:', random_seed)
         logging_name = 'mappo-'+str(random_seed)
         wandb.init(project='marlgen', entity='jonnycook', name=logging_name, reinit=True)
@@ -49,7 +49,7 @@ def my_main(_run, _config, _log):
         config['env_args']['test_seeds'] = config["test_seeds"]
 
         # run the framework
-        config = {'runner': 'parallel', 'mac': 'basic_mac', 'env': 'griddlygen',
+        config = {'runner': 'parallel', 'mac': 'basic_mac', 'env': 'herding',
                   'env_args': {'seed': random_seed, 'level_seeds': level_seeds, 'test_seeds': test_seeds}, 'batch_size_run': 3,
                   'test_nepisode': 100, 'test_interval': 50000, 'test_greedy': True, 'log_interval': 10000,
                   'runner_log_interval': 1000, 'learner_log_interval': 10000, 't_max': 20050000, 'use_cuda': True,
