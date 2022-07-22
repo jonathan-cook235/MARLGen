@@ -3,11 +3,11 @@ Environment:
   Name: General Foraging Game
   Description: Two players have to gather n potions whilst avoiding holes
   Observers:
-    Sprite2D:
-      TileSize: 24
-      BackgroundTile: gvgai/oryx/grass_15.png
-    Block2D:
-      TileSize: 24
+#    Sprite2D:
+#      TileSize: 24
+#      BackgroundTile: gvgai/oryx/grass_15.png
+#    Block2D:
+#      TileSize: 24
     Vector:
       IncludePlayerID: false
       IncludeRotation: false
@@ -105,56 +105,56 @@ Actions:
 Objects:
   - Name: forager
     MapCharacter: f
-    Observers:
-      Sprite2D:
-        - Image: oryx/oryx_fantasy/avatars/man1.png
-      Block2D:
-        - Shape: triangle
-          Color: [ 0.2, 0.2, 0.9 ]
-          Scale: 1.0
+#    Observers:
+#      Sprite2D:
+#        - Image: oryx/oryx_fantasy/avatars/man1.png
+#      Block2D:
+#        - Shape: triangle
+#          Color: [ 0.2, 0.2, 0.9 ]
+#          Scale: 1.0
 
   - Name: potion
     MapCharacter: p
-    Observers:
-      Sprite2D:
-        - Image: oryx/oryx_fantasy/potion-0.png
-          Scale: 0.5
-      Block2D:
-        - Color: [ 0.0, 0.0, 0.8 ]
-          Shape: square
+#    Observers:
+#      Sprite2D:
+#        - Image: oryx/oryx_fantasy/potion-0.png
+#          Scale: 0.5
+#      Block2D:
+#        - Color: [ 0.0, 0.0, 0.8 ]
+#          Shape: square
 
   - Name: hole
     MapCharacter: h
-    Observers:
-      Sprite2D:
-        - Image: gvgai/newset/hole1.png
-          Scale: 0.5
-      Block2D:
-        - Color: [ 0.8, 0.0, 0.0 ]
-          Shape: square
+#    Observers:
+#      Sprite2D:
+#        - Image: gvgai/newset/hole1.png
+#          Scale: 0.5
+#      Block2D:
+#        - Color: [ 0.8, 0.0, 0.0 ]
+#          Shape: square
 
   - Name: fixed_wall
     MapCharacter: W
-    Observers:
-      Sprite2D:
-        - TilingMode: WALL_16
-          Image:
-            - oryx/oryx_fantasy/wall9-0.png
-            - oryx/oryx_fantasy/wall9-1.png
-            - oryx/oryx_fantasy/wall9-2.png
-            - oryx/oryx_fantasy/wall9-3.png
-            - oryx/oryx_fantasy/wall9-4.png
-            - oryx/oryx_fantasy/wall9-5.png
-            - oryx/oryx_fantasy/wall9-6.png
-            - oryx/oryx_fantasy/wall9-7.png
-            - oryx/oryx_fantasy/wall9-8.png
-            - oryx/oryx_fantasy/wall9-9.png
-            - oryx/oryx_fantasy/wall9-10.png
-            - oryx/oryx_fantasy/wall9-11.png
-            - oryx/oryx_fantasy/wall9-12.png
-            - oryx/oryx_fantasy/wall9-13.png
-            - oryx/oryx_fantasy/wall9-14.png
-            - oryx/oryx_fantasy/wall9-15.png
-      Block2D:
-        - Color: [ 0.5, 0.5, 0.5 ]
-          Shape: square
+#    Observers:
+#      Sprite2D:
+#        - TilingMode: WALL_16
+#          Image:
+#            - oryx/oryx_fantasy/wall9-0.png
+#            - oryx/oryx_fantasy/wall9-1.png
+#            - oryx/oryx_fantasy/wall9-2.png
+#            - oryx/oryx_fantasy/wall9-3.png
+#            - oryx/oryx_fantasy/wall9-4.png
+#            - oryx/oryx_fantasy/wall9-5.png
+#            - oryx/oryx_fantasy/wall9-6.png
+#            - oryx/oryx_fantasy/wall9-7.png
+#            - oryx/oryx_fantasy/wall9-8.png
+#            - oryx/oryx_fantasy/wall9-9.png
+#            - oryx/oryx_fantasy/wall9-10.png
+#            - oryx/oryx_fantasy/wall9-11.png
+#            - oryx/oryx_fantasy/wall9-12.png
+#            - oryx/oryx_fantasy/wall9-13.png
+#            - oryx/oryx_fantasy/wall9-14.png
+#            - oryx/oryx_fantasy/wall9-15.png
+#      Block2D:
+#        - Color: [ 0.5, 0.5, 0.5 ]
+#          Shape: square

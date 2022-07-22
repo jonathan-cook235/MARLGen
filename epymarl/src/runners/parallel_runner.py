@@ -54,7 +54,7 @@ class ParallelRunner:
         self.log_train_stats_t = -100000
 
     def setup(self, scheme, groups, preprocess, mac):
-        self.new_batch = partial(EpisodeBatch, scheme, groups, self.batch_size, self.episode_limit + 1,
+        self.new_batch = partial(EpisodeBatch, scheme, groups, self.batch_size, self.episode_limit+1,
                                  preprocess=preprocess, device=self.args.device)
         self.mac = mac
         self.scheme = scheme
@@ -191,23 +191,23 @@ class ParallelRunner:
 
         if not test_mode:
             self.t_env += self.env_steps_this_run
-            # for episode_return in episode_returns:
-            #     # print(episode_return)
-            #     wandb.log({'episode return': episode_return})
-            # rewards_max = [0 for _ in range(self.batch_size)]
-            # for idx, parent_conn in enumerate(self.parent_conns):
-            #     parent_conn.send(("get_max_reward", None))
-            #     rewards_max[idx] = parent_conn.recv()
-            # [wandb.log({'train regret': np.abs(episode_return - reward_max)})
-            #  for episode_return, reward_max in zip(episode_returns, rewards_max)]
+            for episode_return in episode_returns:
+                # print(episode_return)
+                wandb.log({'episode return': episode_return})
+            rewards_max = [0 for _ in range(self.batch_size)]
+            for idx, parent_conn in enumerate(self.parent_conns):
+                parent_conn.send(("get_max_reward", None))
+                rewards_max[idx] = parent_conn.recv()
+            [wandb.log({'train regret': np.abs(episode_return - reward_max)})
+             for episode_return, reward_max in zip(episode_returns, rewards_max)]
             [wandb.log({'train return': episode_return}) for episode_return in episode_returns]
         else:
-            # rewards_max = [0 for _ in range(self.batch_size)]
-            # for idx, parent_conn in enumerate(self.parent_conns):
-            #     parent_conn.send(("get_max_reward", None))
-            #     rewards_max[idx] = parent_conn.recv()
-            # [wandb.log({'test regret': np.abs(episode_return - reward_max)})
-            #  for episode_return, reward_max in zip(episode_returns, rewards_max)]
+            rewards_max = [0 for _ in range(self.batch_size)]
+            for idx, parent_conn in enumerate(self.parent_conns):
+                parent_conn.send(("get_max_reward", None))
+                rewards_max[idx] = parent_conn.recv()
+            [wandb.log({'test regret': np.abs(episode_return - reward_max)})
+             for episode_return, reward_max in zip(episode_returns, rewards_max)]
             [wandb.log({'test return': episode_return}) for episode_return in episode_returns]
 
         # # Get stats back for each env

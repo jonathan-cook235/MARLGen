@@ -6,7 +6,10 @@ class RNNAgent(nn.Module):
     def __init__(self, input_shape, args):
         super(RNNAgent, self).__init__()
         self.args = args
+        # Below is for gathering
         input_shape = int((input_shape+2)/2)
+        # Below is for herding
+        # input_shape = int((input_shape - 200))
         self.fc1 = nn.Linear(input_shape, args.hidden_dim)
         self.args.use_rnn = False
         if self.args.use_rnn:

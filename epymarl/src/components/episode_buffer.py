@@ -70,7 +70,7 @@ class EpisodeBatch:
                 shape = vshape
 
             if field_key == 'obs':
-                shape = (1, 200)
+                shape = (1, 200) # Change this to whatever obs shape is! Find out in print statements below.
 
             if episode_const:
                 self.data.episode_data[field_key] = th.zeros((batch_size, *shape), dtype=dtype, device=self.device)
@@ -100,6 +100,7 @@ class EpisodeBatch:
                 # print(_slices)
             elif k in self.data.episode_data:
                 target = self.data.episode_data
+                # print(target)
                 _slices = slices[0]
             else:
                 raise KeyError("{} not found in transition or episode data".format(k))
@@ -113,14 +114,16 @@ class EpisodeBatch:
                 v = v.squeeze()
                 # print(v.shape)
                 # print(target[k][_slices].shape)
+                # For herding:
                 # This (v reshape below) was for episode runner!
                 # Changed first index to whatever batch size is in all reshaping that follows
                 # v = th.reshape(v, (1, target[k][_slices].shape[-2], target[k][_slices].shape[-1]))
+                # Below is for gathering
+                # v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-2], target[k][_slices].shape[-1]))
+                # Below is for herding
                 v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-2], target[k][_slices].shape[-1]))
             elif k == 'obs':
                 v = v.squeeze()
-                # print(v.shape)
-                # print(target[k][_slices].shape)
                 v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-3], 1, target[k][_slices].shape[-1]))
             elif k == 'reward':
                 # print('v before summing')
