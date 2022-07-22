@@ -1,0 +1,202 @@
+Version: "0.1"
+Environment:
+  Name: General Herding Game
+  Description: Three players have to herd the sheep to the target location
+  Observers:
+    Sprite2D:
+      TileSize: 24
+      BackgroundTile: gvgai/oryx/grass_15.png
+    Block2D:
+      TileSize: 24
+    Vector:
+      IncludePlayerID: false
+      IncludeRotation: false
+      IncludeVariables: false
+  Player:
+    Count: 3
+    AvatarObject: dog
+    Observer:
+      RotateWithAvatar: true
+      TrackAvatar: true
+      Height: 5
+      Width: 5
+      OffsetX: 0
+      OffsetY: 2
+  Variables:
+    - Name: dummy
+      InitialValue: 1
+  Termination:
+    End:
+      - eq: [ dummy, 0 ]
+  Levels:
+    - |
+      W   W   W   W   W   W   W   W   W
+      W   d1  .   .   .   .   .   d2  W
+      W   .   .   .   .   .   .   .   W
+      W   .   .   t   .   .   W   .   W
+      W   .   .   .   .   W   W   .   W
+      W   W   W   .   .   .   .   .   W
+      W   .   .   .   .   s   .   .   W
+      W   .   .   .   .   .   .   .   W
+      W   .   .   .   W   W   .   .   W
+      W   d3  .   .   .   .   .   .   W
+      W   W   W   W   W   W   W   W   W
+
+Actions:
+  - Name: move
+    Behaviours:
+      - Src:
+          Object: dog
+          Commands:
+            - mov: _dest
+        Dst:
+          Object: _empty
+
+  - Name: invert_direction
+    InputMapping:
+      Internal: true
+    Behaviours:
+      - Src:
+          Object: sheep
+          Commands:
+            - mov: _dest
+        Dst:
+          Object: _empty
+
+  - Name: flee
+    InputMapping:
+      Internal: true
+      Inputs:
+        1:
+          OrientationVector: [ 0, -1 ]
+          VectorToDest: [ 0, -1 ]
+          MetaData:
+            action_id: 3
+        2:
+          OrientationVector: [ 1, 0 ]
+          VectorToDest: [ 1, 0 ]
+          MetaData:
+            action_id: 4
+        3:
+          OrientationVector: [ 0, 1 ]
+          VectorToDest: [ 0, 1 ]
+          MetaData:
+            action_id: 1
+        4:
+          OrientationVector: [ -1, 0 ]
+          VectorToDest: [ -1, 0 ]
+          MetaData:
+            action_id: 2
+    Behaviours:
+      - Src:
+          Object: sheep
+          Commands:
+            - exec:
+                Action: invert_direction
+                ActionId: meta.action_id
+            - exec:
+                Action: flee
+                Delay: 1
+                Search:
+                  ImpassableObjects: [ wall ]
+                  TargetObjectName: dog
+        Dst:
+          Object: _empty
+      - Src:
+          Object: sheep
+          Commands:
+            - exec:
+                Action: flee
+                Delay: 1
+                Search:
+                  ImpassableObjects: [ wall ]
+                  TargetObjectName: dog
+        Dst:
+          Object: sheep
+      - Src:
+          Object: sheep
+          Commands:
+            - exec:
+                Action: invert_direction
+                ActionId: meta.action_id
+            - exec:
+                Action: flee
+                Delay: 1
+                Search:
+                  ImpassableObjects: [ wall ]
+                  TargetObjectName: dog
+            - remove: true
+          Dst:
+            Object: target
+      - Src:
+          Object: sheep
+          Commands:
+            - exec:
+                Action: flee
+                Delay: 1
+                Search:
+                  ImpassableObjects: [ wall ]
+                  TargetObjectName: dog
+          Dst:
+            Object: wall
+
+Objects:
+  - Name: dog
+    MapCharacter: d
+    Observers:
+      Sprite2D:
+        - Image: oryx/oryx_fantasy/avatars/doggo1.png
+      Block2D:
+        - Shape: triangle
+          Color: [ 0.2, 0.2, 0.9 ]
+          Scale: 1.0
+
+  - Name: sheep
+    MapCharacter: s
+    InitialActions:
+      - Action: flee
+        Delay: 1
+        ActionId: 0
+    Observers:
+      Sprite2D:
+        - Image: oryx/oryx_fantasy/avatars/spider1.png
+          Scale: 0.5
+      Block2D:
+        - Color: [ 0.0, 0.0, 0.8 ]
+          Shape: square
+
+  - Name: target
+    MapCharacter: t
+    Observers:
+      Sprite2D:
+        - Image: gvgai/newset/hole1.png
+          Scale: 0.5
+      Block2D:
+        - Color: [ 0.8, 0.0, 0.0 ]
+          Shape: square
+
+  - Name: wall
+    MapCharacter: W
+    Observers:
+      Sprite2D:
+        - TilingMode: WALL_16
+          Image:
+            - oryx/oryx_fantasy/wall9-0.png
+            - oryx/oryx_fantasy/wall9-1.png
+            - oryx/oryx_fantasy/wall9-2.png
+            - oryx/oryx_fantasy/wall9-3.png
+            - oryx/oryx_fantasy/wall9-4.png
+            - oryx/oryx_fantasy/wall9-5.png
+            - oryx/oryx_fantasy/wall9-6.png
+            - oryx/oryx_fantasy/wall9-7.png
+            - oryx/oryx_fantasy/wall9-8.png
+            - oryx/oryx_fantasy/wall9-9.png
+            - oryx/oryx_fantasy/wall9-10.png
+            - oryx/oryx_fantasy/wall9-11.png
+            - oryx/oryx_fantasy/wall9-12.png
+            - oryx/oryx_fantasy/wall9-13.png
+            - oryx/oryx_fantasy/wall9-14.png
+            - oryx/oryx_fantasy/wall9-15.png
+      Block2D:
+        - Color: [ 0.5, 0.5, 0.5 ]
+          Shape: square
