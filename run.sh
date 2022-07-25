@@ -44,6 +44,9 @@ cd $HOME/
 # setup wandb
 wandb login 8f0ba26a350a67397b8e8abdc7865b1feb4a0b46
 
+# set vulkan environment variable
+VULKAN_SDK="/share/apps/vulkan-1.3.216.0/vulkansdk"
+
 # run experiment with these arguments
 python Dissertation/epymarl/src/main.py 
 
