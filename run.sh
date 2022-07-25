@@ -45,7 +45,10 @@ cd $HOME/
 wandb login 8f0ba26a350a67397b8e8abdc7865b1feb4a0b46
 
 # set vulkan environment variables
-VULKAN_SDK='vulkan-sdk.tar'
+export VULKAN_SDK=~/share/apps/vulkan-1.3.216.0/x86_64
+export PATH=$VULKAN_SDK/bin:$PATH
+export LD_LIBRARY_PATH=$VULKAN_SDK/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+export VK_LAYER_PATH=$VULKAN_SDK/etc/explicit_layer.d
 # export PATH=$PATH:$VULKAN_SDK/bin
 # export LD_LIBRARY_PATH=$VULKAN_SDK/lib
 
