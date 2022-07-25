@@ -49,6 +49,8 @@ export VULKAN_SDK=~/share/apps/vulkan-1.3.216.0/x86_64
 export PATH=$VULKAN_SDK/bin:$PATH
 export LD_LIBRARY_PATH=$VULKAN_SDK/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
 export VK_LAYER_PATH=$VULKAN_SDK/etc/explicit_layer.d
+
+source ~/share/apps/vulkan-1.3.216.0/setup-env.sh
 # export PATH=$PATH:$VULKAN_SDK/bin
 # export LD_LIBRARY_PATH=$VULKAN_SDK/lib
 
