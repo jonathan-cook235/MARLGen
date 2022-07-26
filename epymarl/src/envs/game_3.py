@@ -44,7 +44,11 @@ class Game3(GriddlyGymWrapper):
             3: [0, 3],  # right
         }
 
-        yaml_filename = "gdy/herding_game.yaml"
+        yaml_filename = "gdy/herding2.yaml"
+
+        yaml_path = os.path.join(
+            os.path.dirname(os.path.realpath(__file__)), yaml_filename
+        )
 
         with open(yaml_path, "r") as stream:
             yaml_dict = yaml.safe_load(stream)
@@ -74,7 +78,7 @@ class Game3(GriddlyGymWrapper):
         kwargs["global_observer_type"] = kwargs.pop(
             "global_observer_type", gd.ObserverType.VECTOR
         )
-        kwargs["max_steps"] = kwargs.pop("max_steps", 200)
+        kwargs["max_steps"] = kwargs.pop("max_steps", 50)
         kwargs["environment_name"] = "Game3"
         kwargs["level"] = None
         # kwargs["level_seeds"] = self._level_seeds
@@ -103,10 +107,14 @@ class Game3(GriddlyGymWrapper):
         # print(count)
         return count
 
+    def get_active_agents(self):
+        return self.active_agents
+
     def step(self, actions):
         """Returns reward, terminated, info."""
         # print('ACTIONS')
         # print(actions)
+        # print('in step')
         if torch.is_tensor(actions):
             actions = actions.numpy()
         assert len(actions) == self.n_agents
@@ -115,11 +123,13 @@ class Game3(GriddlyGymWrapper):
 
         self._total_steps += 1
         self._episode_steps += 1
+        # print(self._episode_steps)
 
         terminated = False
 
         actions = [self.action_map[a] for a in actions]
 
+        # print('doing super step')
         self.observations, self.reward, terminated, info = super().step(actions)
 
         if self.record_video:
@@ -131,12 +141,13 @@ class Game3(GriddlyGymWrapper):
                 )
             else:
                 self.video_recorder.add_frame(frame)
-
+        # print('checking sheep')
         # Terminate if no agents left
-        self.active_sheep = self.get_active_agents()
+        self.active_sheep = self.get_active_sheep()
         if self.active_sheep < 1:
             terminated = True
             info["solved"] = True
+            self.reward = [1, 0, 0]
         else:
             info["solved"] = False
 
@@ -144,14 +155,11 @@ class Game3(GriddlyGymWrapper):
             # Episode limit reached
             terminated = True
 
-        if terminated:
-            self._episode_count += 1
-
         if terminated and self.record_video and self.recording_started:
             if sys.platform == "linux":
                 gif_path = self.video_filename
                 if gif_path == "":
-                    gif_path = "game2.gif"
+                    gif_path = "herding.gif"
                 elif gif_path.endswith("mp4"):
                     gif_path = gif_path[:-4] + ".gif"
                 # Make the GIF and delete the temporary directory
@@ -176,6 +184,9 @@ class Game3(GriddlyGymWrapper):
                 print("Closing video recorder.")
                 self.video_recorder.close()
                 self.recording_started = False
+
+        if terminated:
+            self._episode_count += 1
 
         return self.observations, self.reward, terminated, info
 
@@ -246,6 +257,7 @@ class Game3(GriddlyGymWrapper):
         self.observations = state_obs['player']
         # print(state.dtype)
         # return self.get_obs(), self.get_state()
+        # print(self._episode_count)
         if self.record_video and not self.recording_started:
             frame = self.render(mode="rgb_array")
             if sys.platform == "linux":
@@ -258,7 +270,7 @@ class Game3(GriddlyGymWrapper):
             else:
                 video_filename = self.video_filename
                 if self.video_filename == "":
-                    video_filename = "video_lasertag.mp4"
+                    video_filename = "video_herding.mp4"
                 print(f"Started recording at {video_filename}.")
                 self.video_recorder.start(video_filename, frame.shape)
                 self.video_recorder.add_frame(frame)

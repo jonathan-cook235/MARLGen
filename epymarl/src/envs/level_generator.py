@@ -140,13 +140,13 @@ class HerdingLevelGenerator(LevelGenerator):
             for h in range(1, self._height - 1):
                 possible_locations.append([w, h])
 
-        map, possible_locations = self._place_items(
-            map,
-            possible_locations,
-            HerdingLevelGenerator.WALL,
-            False,
-            self._max_obstacles
-        )
+        # map, possible_locations = self._place_items(
+        #     map,
+        #     possible_locations,
+        #     HerdingLevelGenerator.WALL,
+        #     False,
+        #     self._max_obstacles
+        # )
 
         map, possible_locations = self._place_items(
             map,
@@ -167,7 +167,7 @@ class HerdingLevelGenerator(LevelGenerator):
         map, possible_locations = self._place_items(
             map,
             possible_locations,
-            GeneralLevelGenerator.DOG,
+            HerdingLevelGenerator.DOG,
             True,
             self._num_agents
         )
