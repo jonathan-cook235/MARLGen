@@ -25,13 +25,14 @@ class ParallelRunner:
         env_args = [self.args.env_args.copy() for _ in range(self.batch_size)]
         count_train = 0
         count_test = 0
+        # Change this to work for chosen batch size!
         for i in range(self.batch_size):
-            lim_train = 15000 + (i*15000)
-            lim_test = 500 + (i*500)
+            lim_train = 2000 + (i*2000)
+            lim_test = 100 + (i*100)
             env_args[i]["level_seeds"] = self.args.env_args["level_seeds"][count_train:lim_train]
             env_args[i]["test_seeds"] = self.args.env_args["test_seeds"][count_test:lim_test]
-            count_train += 15000
-            count_test += 500
+            count_train += 2000
+            count_test += 100
 
         self.ps = [Process(target=env_worker, args=(worker_conn, CloudpickleWrapper(partial(env_fn, **env_arg))))
                             for env_arg, worker_conn in zip(env_args, self.worker_conns)]
@@ -44,6 +45,7 @@ class ParallelRunner:
 
         self.t_env = 0
 
+        # remember to change this to whatever is in config as it is game-dependent!
         self.episode_limit = 50
 
         self.train_returns = []
@@ -125,6 +127,8 @@ class ParallelRunner:
                 "actions": actions.unsqueeze(1)
             }
             self.batch.update(actions_chosen, bs=envs_not_terminated, ts=self.t, mark_filled=False)
+            # print('ACTIONS CHOSEN:')
+            # print(actions_chosen)
 
             # Send actions to each env
             action_idx = 0
@@ -151,11 +155,13 @@ class ParallelRunner:
                 "avail_actions": [],
                 "obs": []
             }
-
+            # print('About to receive data back')
             # Receive data back for each unterminated env
             for idx, parent_conn in enumerate(self.parent_conns):
                 if not terminated[idx]:
+                    # print('Receiving...')
                     data = parent_conn.recv()
+                    # print('Got data')
                     # Remaining data for this current timestep
                     post_transition_data["reward"].append((data["reward"],))
                     episode_returns[idx] += np.sum(data["reward"])
@@ -178,6 +184,7 @@ class ParallelRunner:
 
             # Add post_transiton data into the batch
             self.batch.update(post_transition_data, bs=envs_not_terminated, ts=self.t, mark_filled=False)
+            # print('Batch updated')
 
             # Move onto the next timestep
             self.t += 1
@@ -191,9 +198,9 @@ class ParallelRunner:
 
         if not test_mode:
             self.t_env += self.env_steps_this_run
-            for episode_return in episode_returns:
-                # print(episode_return)
-                wandb.log({'episode return': episode_return})
+            # for episode_return in episode_returns:
+            #     # print(episode_return)
+            #     wandb.log({'episode return': episode_return})
             rewards_max = [0 for _ in range(self.batch_size)]
             for idx, parent_conn in enumerate(self.parent_conns):
                 parent_conn.send(("get_max_reward", None))
@@ -259,11 +266,14 @@ def env_worker(remote, env_fn):
         if cmd == "step":
             actions = data
             # Take a step in the environment
+            # print('doing env step')
             obs, reward, terminated, env_info = env.step(actions)
             # Return the observations, avail_actions and state to make the next action
+            # print('getting state, available actions and observations')
             state = env.get_state()
             avail_actions = env.get_avail_actions()
             obs = env.get_obs()
+            # print('sending back')
             remote.send({
                 # Data for the next timestep needed to pick an action
                 "state": state,
