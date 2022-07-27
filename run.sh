@@ -6,8 +6,8 @@ d#$ -S /bin/bash
 #$ -l h_rt=72:00:00
 #$ -l gpu=true
 #$ -R y
-#$ -l tmem=50G
-#$ -t 1-15
+#$ -l tmem=30G
+#$ -t 1-5
 
 
 echo "We're Starting!"
