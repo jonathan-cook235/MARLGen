@@ -57,6 +57,7 @@ export VK_LAYER_PATH=$VULKAN_SDK/etc/vulkan/explicit_layer.d
 
 pip install griddly
 
+echo "Running experiment..."
 # run experiment with these arguments
 python Dissertation/epymarl/src/main.py 
 
