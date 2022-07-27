@@ -6,7 +6,7 @@ d#$ -S /bin/bash
 #$ -l h_rt=72:00:00
 #$ -l gpu=true
 #$ -R y
-#$ -l tmem=30G
+#$ -l tmem=50G
 #$ -t 1-15
 
 
