@@ -8,6 +8,8 @@ from types import SimpleNamespace as SN
 from utils.logging import Logger
 from utils.timehelper import time_left, time_str
 from os.path import dirname, abspath
+import numpy as np
+import wandb
 
 from learners import REGISTRY as le_REGISTRY
 from runners import REGISTRY as r_REGISTRY
@@ -79,7 +81,6 @@ def evaluate_sequential(args, runner):
         runner.save_replay()
 
     runner.close_env()
-
 
 def run_sequential(args, logger):
     # Init runner so we can get env info
@@ -168,22 +169,36 @@ def run_sequential(args, logger):
             return
 
     # start training
-    max_episode = 60000
+    max_episode = 30000
     test_max_episode = 1000
     episode = 0
     last_test_T = -args.test_interval - 1
     last_log_T = 0
+    last_test = 0
     model_save_time = 0
 
     start_time = time.time()
     last_time = start_time
 
     logger.console_logger.info("Beginning training for {} episodes".format(max_episode))
-
+    return_tracker = []
+    regret_tracker = []
+    avg_regret_tracker = []
+    custom_step = 0
     while episode <= max_episode:
         # print(runner.t_env)
         # Run for a whole episode at a time
-        episode_batch = runner.run(test_mode=False)
+        episode_batch, returns, regrets = runner.run(test_mode=False)
+        return_tracker.extend(returns)
+        regret_tracker.extend(regrets)
+        if len(return_tracker) > 99:
+            avg_return = np.mean(return_tracker)
+            avg_regret = np.mean(regret_tracker)
+            avg_regret_tracker.append(avg_regret)
+            wandb.log({'Avg Training Return': avg_return})
+            wandb.log({'Avg Training Regret': avg_regret})
+            return_tracker = []
+            regret_tracker = []
         buffer.insert_episode_batch(episode_batch)
         if buffer.can_sample(args.batch_size):
             episode_sample = buffer.sample(args.batch_size)
@@ -198,19 +213,54 @@ def run_sequential(args, logger):
             learner.train(episode_sample, runner.t_env, episode)
 
         episode += args.batch_size_run
-        if episode % 1000 == 0:
-            print('Episode:', episode)
+
+        val_regret_tracker = []
+        if episode - last_test > 1000:
+            for i in range(7):
+                episode_batch, returns, regrets = runner.run(test_mode=True)
+                val_regret_tracker.extend(regrets)
+                if len(return_tracker) > 99:
+                    avg_return = np.mean(return_tracker)
+                    avg_val_regret = np.mean(regret_tracker)
+                    wandb.log({'Generalisation Gap': avg_val_regret - avg_regret_tracker[-1]}, step=custom_step)
+                    custom_step += 1
+                    val_regret_tracker = []
+
+                    if args.save_model and (
+                            runner.t_env - model_save_time >= args.save_model_interval
+                            or model_save_time == 0
+                    ):
+                        model_save_time = runner.t_env
+                        save_path = os.path.join(
+                            args.local_results_path, "models", args.unique_token, str(runner.t_env)
+                        )
+                        # "results/models/{}".format(unique_token)
+                        os.makedirs(save_path, exist_ok=True)
+                        logger.console_logger.info("Saving models to {}".format(save_path))
+
+                        # learner should handle saving/loading -- delegate actor save/load to mac,
+                        # use appropriate filenames to do critics, optimizer states
+                        learner.save_models(save_path)
+
+                episode += args.batch_size_run
+
+                last_test = episode
 
         if (runner.t_env - last_log_T) >= args.log_interval:
             logger.log_stat("episode", episode, runner.t_env)
             logger.print_recent_stats()
             last_log_T = runner.t_env
 
+
         # Execute test runs once in a while
         # n_test_runs = max(1, args.test_nepisode // runner.batch_size)
         # if (runner.t_env - last_test_T) / args.test_interval >= 1.0:
 
+    logger.console_logger.info("Finished Training")
+
     episode = 0
+    return_tracker = []
+    regret_tracker = []
     while episode <= test_max_episode:
 
             # logger.console_logger.info(
@@ -226,7 +276,17 @@ def run_sequential(args, logger):
             #
             # last_test_T = runner.t_env
             # for _ in range(n_test_runs):
-        runner.run(test_mode=True)
+        episode_batch, returns, regrets = runner.run(test_mode=True)
+        return_tracker.extend(returns)
+        regret_tracker.extend(regrets)
+
+        if len(return_tracker) > 99:
+            avg_return = np.mean(return_tracker)
+            avg_regret = np.mean(regret_tracker)
+            wandb.log({'Avg Testing Return': avg_return})
+            wandb.log({'Avg Testing Regret': avg_regret})
+            return_tracker = []
+            regret_tracker = []
 
         if args.save_model and (
                 runner.t_env - model_save_time >= args.save_model_interval
@@ -245,8 +305,6 @@ def run_sequential(args, logger):
             learner.save_models(save_path)
 
         episode += args.batch_size_run
-        if episode % 1000 == 0:
-            print('Episode:', episode)
 
         if (runner.t_env - last_log_T) >= args.log_interval:
             logger.log_stat("episode", episode, runner.t_env)
@@ -254,7 +312,7 @@ def run_sequential(args, logger):
             last_log_T = runner.t_env
 
     # runner.close_env()
-    logger.console_logger.info("Finished Training")
+    logger.console_logger.info("Finished Testing")
 
 
 def args_sanity_check(config, _log):

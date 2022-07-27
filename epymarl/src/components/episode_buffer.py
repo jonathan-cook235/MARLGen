@@ -70,7 +70,7 @@ class EpisodeBatch:
                 shape = vshape
 
             if field_key == 'obs':
-                shape = (1, 300) # Change this to whatever obs shape is! Find out in print statements below.
+                shape = (1, vshape[0]) # Change this to whatever obs shape is! Find out in print statements below.
                 # RHS is num agents x grid dimensions
 
             if episode_const:

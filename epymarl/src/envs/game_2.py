@@ -29,6 +29,7 @@ class Game2(GriddlyGymWrapper):
         self.video_filename = ""
         self._episode_count = 0
         self.tested_before = False
+        self.validation_count = 0
         self._test_episode_count = 0
         self._episode_steps = 0
         self._total_steps = 0
@@ -36,7 +37,7 @@ class Game2(GriddlyGymWrapper):
         self.observations = None
         self.last_action = np.zeros((self.n_agents, self.n_actions))
         self.reward = 0
-        self.episode_limit = 50
+        self.episode_limit = 100
 
         self.action_map = {
             0: [0, 0],  # no-op
@@ -80,12 +81,13 @@ class Game2(GriddlyGymWrapper):
         kwargs["global_observer_type"] = kwargs.pop(
             "global_observer_type", gd.ObserverType.VECTOR
         )
-        kwargs["max_steps"] = kwargs.pop("max_steps", 200)
+        kwargs["max_steps"] = kwargs.pop("max_steps", 100)
         kwargs["environment_name"] = "Game2"
         kwargs["level"] = None
         # kwargs["level_seeds"] = self._level_seeds
 
-        generator_config = {'width': 10, 'height': 10, 'max_potions': 5, 'max_holes': 5, 'num_agents': 2}
+        generator_config = {'min_width': 10, 'max_width': 20, 'min_height': 10, 'max_height': 20, 'max_potions': 5,
+                            'max_holes': 20, 'num_agents': 2}
 
         self.generator = GeneralLevelGenerator(generator_config, seed=self._seed)
         # kwargs["level"] = Generator.generate()
@@ -237,18 +239,21 @@ class Game2(GriddlyGymWrapper):
         # print(self.reward_max)
         return self.reward_max
 
-    def reset(self, record_video=False, test_mode=False, **kwargs):
+    def reset(self, record_video=False, test_mode=None, **kwargs):
         """Returns initial observations and states.
         :param **kwargs:
         """
         self.record_video = record_video
-        if not test_mode:
-            level_seed = self._level_seeds[self._episode_count]
-        else:
+        if test_mode == 'testing':
             if not self.tested_before:
-                self._episode_count = 0
+                self._episode_count = self.validation_count
                 self.tested_before = True
             level_seed = self._test_seeds[self._episode_count]
+        elif test_mode == 'validating':
+            level_seed = self._test_seeds[self.validation_count]
+            self.validation_count += 1
+        else:
+            level_seed = self._level_seeds[self._episode_count]
         self.level, self.reward_max = self.generator.generate(level_seed)
         self._episode_steps = 0
         self.last_action = np.zeros((self.n_agents, self.n_actions))
