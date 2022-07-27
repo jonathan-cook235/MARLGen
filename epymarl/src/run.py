@@ -184,7 +184,6 @@ def run_sequential(args, logger):
     return_tracker = []
     regret_tracker = []
     avg_regret_tracker = []
-    custom_step = 0
     while episode <= max_episode:
         # print(runner.t_env)
         # Run for a whole episode at a time
@@ -219,11 +218,9 @@ def run_sequential(args, logger):
             for i in range(7):
                 episode_batch, returns, regrets = runner.run(test_mode=True)
                 val_regret_tracker.extend(regrets)
-                if len(return_tracker) > 99:
-                    avg_return = np.mean(return_tracker)
-                    avg_val_regret = np.mean(regret_tracker)
-                    wandb.log({'Generalisation Gap': avg_val_regret - avg_regret_tracker[-1]}, step=custom_step)
-                    custom_step += 1
+                if len(val_regret_tracker) > 99:
+                    avg_val_regret = np.mean(val_regret_tracker)
+                    wandb.log({'Generalisation Gap': avg_regret_tracker[-1] - avg_val_regret})
                     val_regret_tracker = []
 
                     if args.save_model and (
