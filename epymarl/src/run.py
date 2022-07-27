@@ -215,6 +215,7 @@ def run_sequential(args, logger):
 
         val_regret_tracker = []
         if episode - last_test > 1000:
+            print('Episode:', episode)
             for i in range(7):
                 episode_batch, returns, regrets = runner.run(test_mode=True)
                 val_regret_tracker.extend(regrets)

@@ -1,12 +1,12 @@
-d#$ -S /bin/bash
+#$ -S /bin/bash
 #$ -N episodic-control-array
 #$ -cwd
-#$ -o $HOME/result-arr.out
+#$ -o $HOME/result-arr-jul27eve.out
 #$ -e $HOME/result-arr.err
-#$ -l h_rt=72:00:00
+#$ -l h_rt=12:00:00
 #$ -l gpu=true
 #$ -R y
-#$ -l tmem=30G
+#$ -l tmem=10G
 #$ -t 1-5
 
 
@@ -54,8 +54,6 @@ export VULKAN_SDK=~/vulkan/1.3.216.0/x86_64
 export PATH=$VULKAN_SDK/bin:$PATH
 export LD_LIBRARY_PATH=$VULKAN_SDK/lib:$LD_LIBRARY_PATH
 export VK_LAYER_PATH=$VULKAN_SDK/etc/vulkan/explicit_layer.d
-
-pip install griddly
 
 echo "Running experiment..."
 # run experiment with these arguments
