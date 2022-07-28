@@ -27,45 +27,45 @@ results_path = os.path.join(dirname(dirname(abspath(__file__))), "results")
 
 @ex.main
 def my_main(_run, _config, _log):
-    for i in range(5):
-        random_seed = np.random.randint(1111, 9999)
-        np.random.seed(random_seed)
-        level_seeds = np.random.randint(0, 100, 35000)
-        test_seeds = np.random.randint(0, 999999, 5000)
-        print('Seed:', random_seed)
-        logging_name = 'mappo-gathering-'+str(random_seed)
-        wandb.init(project='marlgen', entity='jonnycook', name=logging_name, reinit=True)
-        # Setting the random seed throughout the modules
-        config = config_copy(_config)
-        config["seed"] = random_seed
-        config["level_seeds"] = level_seeds
-        config["test_seeds"] = test_seeds
-        # np.random.seed(config["seed"])
-        th.manual_seed(config["seed"])
-        # config['env_args']['seed'] = config["seed"]
-        config['env_args']['state_last_action'] = False
-        config['env_args']['seed'] = config["seed"]
-        config['env_args']['level_seeds'] = config["level_seeds"]
-        config['env_args']['test_seeds'] = config["test_seeds"]
+    # for i in range(5):
+    random_seed = np.random.randint(1111, 9999)
+    np.random.seed(random_seed)
+    level_seeds = np.random.randint(0, 100, 35000)
+    test_seeds = np.random.randint(0, 999999, 5000)
+    print('Seed:', random_seed)
+    # logging_name = 'mappo-gathering-'+str(random_seed)
+    wandb.init(project='marlgen', entity='jonnycook')#, name=logging_name, reinit=True)
+    # Setting the random seed throughout the modules
+    config = config_copy(_config)
+    config["seed"] = random_seed
+    config["level_seeds"] = level_seeds
+    config["test_seeds"] = test_seeds
+    # np.random.seed(config["seed"])
+    th.manual_seed(config["seed"])
+    # config['env_args']['seed'] = config["seed"]
+    config['env_args']['state_last_action'] = False
+    config['env_args']['seed'] = config["seed"]
+    config['env_args']['level_seeds'] = config["level_seeds"]
+    config['env_args']['test_seeds'] = config["test_seeds"]
 
-        # run the framework
-        config = {'runner': 'parallel', 'mac': 'basic_mac', 'env': 'griddlygen',
-                  'env_args': {'seed': random_seed, 'level_seeds': level_seeds, 'test_seeds': test_seeds}, 'batch_size_run': 4,
-                  'test_nepisode': 100, 'test_interval': 50000, 'test_greedy': True, 'log_interval': 10000,
-                  'runner_log_interval': 1000, 'learner_log_interval': 10000, 't_max': 20050000, 'use_cuda': True,
-                  'buffer_cpu_only': True, 'use_tensorboard': False, 'save_model': False, 'save_model_interval': 50000,
-                  'checkpoint_path': '', 'evaluate': False, 'load_step': 0, 'save_replay': False,
-                  'local_results_path': 'results', 'gamma': 0.99, 'batch_size': 10, 'buffer_size': 10, 'lr': 0.0005,
-                  'optim_alpha': 0.99, 'optim_eps': 1e-05, 'grad_norm_clip': 10, 'add_value_last_step': True,
-                  'agent': 'rnn', 'hidden_dim': 64, 'obs_agent_id': True, 'obs_last_action': False, 'repeat_id': 1,
-                  'label': 'default_label', 'hypergroup': None, 'action_selector': 'soft_policies',
-                  'epsilon_start': 1.0, 'epsilon_finish': 0.05, 'epsilon_annefal_time': 50000, 'evaluation_epsilon': 0.0,
-                  'mask_before_softmax': True, 'target_update_interval_or_tau': 200, 'obs_individual_obs': False,
-                  'agent_output_type': 'pi_logits', 'learner': 'ppo_learner', 'entropy_coef': 0.01, 'standardise_returns': True,
-                  'standardise_rewards': True, 'use_rnn': False, 'q_nstep': 5, 'critic_type': 'cv_critic', 'epochs': 4,
-                  'eps_clip': 0.2, 'name': "mappo", 'seed': random_seed, 'mixing_embed_dim': 32, 'hypernet_layers': 2,
-                  'hypernet_embed': 64, 'max_before_softmax': True, 'double_q': True, 'mixer': "qmix"}
-        run(_run, config, _log)
+    # run the framework
+    config = {'runner': 'parallel', 'mac': 'basic_mac', 'env': 'griddlygen',
+              'env_args': {'seed': random_seed, 'level_seeds': level_seeds, 'test_seeds': test_seeds}, 'batch_size_run': 4,
+              'test_nepisode': 100, 'test_interval': 50000, 'test_greedy': True, 'log_interval': 10000,
+              'runner_log_interval': 1000, 'learner_log_interval': 10000, 't_max': 20050000, 'use_cuda': True,
+              'buffer_cpu_only': True, 'use_tensorboard': False, 'save_model': False, 'save_model_interval': 50000,
+              'checkpoint_path': '', 'evaluate': False, 'load_step': 0, 'save_replay': False,
+              'local_results_path': 'results', 'gamma': 0.99, 'batch_size': 10, 'buffer_size': 10, 'lr': 0.0005,
+              'optim_alpha': 0.99, 'optim_eps': 1e-05, 'grad_norm_clip': 10, 'add_value_last_step': True,
+              'agent': 'rnn', 'hidden_dim': 64, 'obs_agent_id': True, 'obs_last_action': False, 'repeat_id': 1,
+              'label': 'default_label', 'hypergroup': None, 'action_selector': 'soft_policies',
+              'epsilon_start': 1.0, 'epsilon_finish': 0.05, 'epsilon_annefal_time': 50000, 'evaluation_epsilon': 0.0,
+              'mask_before_softmax': True, 'target_update_interval_or_tau': 200, 'obs_individual_obs': False,
+              'agent_output_type': 'pi_logits', 'learner': 'ppo_learner', 'entropy_coef': 0.01, 'standardise_returns': True,
+              'standardise_rewards': True, 'use_rnn': False, 'q_nstep': 5, 'critic_type': 'cv_critic', 'epochs': 4,
+              'eps_clip': 0.2, 'name': "mappo", 'seed': random_seed, 'mixing_embed_dim': 32, 'hypernet_layers': 2,
+              'hypernet_embed': 64, 'max_before_softmax': True, 'double_q': True, 'mixer': "qmix"}
+    run(_run, config, _log)
 
 
 def _get_config(params, arg_name, subfolder):
