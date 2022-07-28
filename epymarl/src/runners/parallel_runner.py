@@ -27,12 +27,12 @@ class ParallelRunner:
         count_test = 0
         # Change this to work for chosen batch size!
         for i in range(self.batch_size):
-            lim_train = 1000 + (i*1000)
-            lim_test = 1100 + (i*1100)
+            lim_train = 2000 + (i*2000)
+            lim_test = 500 + (i*500)
             env_args[i]["level_seeds"] = self.args.env_args["level_seeds"][count_train:lim_train]
             env_args[i]["test_seeds"] = self.args.env_args["test_seeds"][count_test:lim_test]
-            count_train += 1000
-            count_test += 1100
+            count_train += 2000
+            count_test += 500
 
         self.ps = [Process(target=env_worker, args=(worker_conn, CloudpickleWrapper(partial(env_fn, **env_arg))))
                             for env_arg, worker_conn in zip(env_args, self.worker_conns)]
