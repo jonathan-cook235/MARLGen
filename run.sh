@@ -7,7 +7,7 @@
 #$ -l gpu=true
 #$ -R y
 #$ -l tmem=10G
-#$ -t 1-5
+#$ -t 1
 
 
 echo "We're Starting!"
