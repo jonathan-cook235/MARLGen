@@ -34,7 +34,7 @@ def my_main(_run, _config, _log):
     test_seeds = np.random.randint(0, 999999, 5000)
     print('Seed:', random_seed)
     # logging_name = 'mappo-gathering-'+str(random_seed)
-    wandb.init(project='marlgen', entity='jonnycook')#, name=logging_name, reinit=True)
+    wandb.init(project='marlgen', entity='jonnycook', settings=wandb.Settings(start_method="fork"))#, name=logging_name, reinit=True)
     # Setting the random seed throughout the modules
     config = config_copy(_config)
     config["seed"] = random_seed
