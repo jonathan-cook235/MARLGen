@@ -31,11 +31,10 @@ def my_main(_run, _config, _log):
     random_seed = np.random.randint(1111, 9999)
     np.random.seed(random_seed)
     level_seeds = np.random.randint(0, 100, 35000)
-    test_seeds = np.random.randint(0, 999999, 5000)
+    test_seeds = np.random.randint(0, sys.maxsize, 5000)
     print('Seed:', random_seed)
     logging_name = 'mappo-gathering-fullgen-100trainseeds-'+str(random_seed)
-    wandb.init(project='marlgen', entity='jonnycook', settings=wandb.Settings(start_method="fork"), name=logging_name,
-               reinit=True)
+    wandb.init(project='marlgen', entity='jonnycook', name=logging_name, reinit=True) #settings=wandb.Settings(start_method="fork")
     # Setting the random seed throughout the modules
     config = config_copy(_config)
     config["seed"] = random_seed
@@ -51,7 +50,7 @@ def my_main(_run, _config, _log):
 
     # run the framework
     config = {'runner': 'parallel', 'mac': 'basic_mac', 'env': 'griddlygen',
-              'env_args': {'seed': random_seed, 'level_seeds': level_seeds, 'test_seeds': test_seeds}, 'batch_size_run': 4,
+              'env_args': {'seed': random_seed, 'level_seeds': level_seeds, 'test_seeds': test_seeds}, 'batch_size_run': 10,
               'test_nepisode': 100, 'test_interval': 50000, 'test_greedy': True, 'log_interval': 10000,
               'runner_log_interval': 1000, 'learner_log_interval': 10000, 't_max': 20050000, 'use_cuda': True,
               'buffer_cpu_only': True, 'use_tensorboard': False, 'save_model': False, 'save_model_interval': 50000,
