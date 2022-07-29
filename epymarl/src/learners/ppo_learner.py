@@ -42,6 +42,7 @@ class PPOLearner:
         self.log_stats_t = -self.args.learner_log_interval - 1
 
         device = "cuda" if args.use_cuda else "cpu"
+        self.device = device
         if self.args.standardise_returns:
             self.ret_ms = RunningMeanStd(shape=(self.n_agents, ), device=device)
         self.args.standardise_rewards = True
@@ -193,10 +194,10 @@ class PPOLearner:
                 if t >= rewards.size(1):
                     break
                 elif step == nsteps:
-                    reward_mask = th.ones((mask[:, t].shape[0], 1))
+                    reward_mask = th.ones((mask[:, t].shape[0], 1)).to(self.device)
                     nstep_return_t += self.args.gamma ** (step) * values[:, t] * reward_mask#[:, t]
                 elif t == rewards.size(1) - 1 and self.args.add_value_last_step:
-                    reward_mask = th.ones((mask[:, t].shape[0], 1))
+                    reward_mask = th.ones((mask[:, t].shape[0], 1)).to(self.device)
                     nstep_return_t += self.args.gamma ** (step) * rewards[:, t] * reward_mask#[:, t]
                     nstep_return_t += self.args.gamma ** (step + 1) * values[:, t + 1]
                 else:
@@ -206,7 +207,7 @@ class PPOLearner:
                     # print('mask:')
                     # print(mask[:, t].shape)
                     # reward_mask = th.ones((mask[:, t].shape[0], 1))
-                    reward_mask = th.ones((mask[:, t].shape[0], 1))
+                    reward_mask = th.ones((mask[:, t].shape[0], 1)).to(self.device)
                     nstep_return_t += self.args.gamma ** (step) * rewards[:, t] * reward_mask#[:, t][0, :]
             nstep_values[:, t_start, :] = nstep_return_t
         return nstep_values
