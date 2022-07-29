@@ -210,15 +210,10 @@ def run_sequential(args, logger):
                 episode_sample.to(args.device)
             # print('training...')
             learner.train(episode_sample, runner.t_env, episode)
-
         episode += args.batch_size_run
-
-        print(episode)
-        print(episode-last_test)
 
         if episode - last_test > 1000:
             val_regret_tracker = []
-            print('Episode:', episode)
             for i in range(7):
                 episode_batch, returns, regrets = runner.run(test_mode=True)
                 val_regret_tracker.extend(regrets)
@@ -242,10 +237,8 @@ def run_sequential(args, logger):
                         # learner should handle saving/loading -- delegate actor save/load to mac,
                         # use appropriate filenames to do critics, optimizer states
                         learner.save_models(save_path)
-
                 episode += args.batch_size_run
-
-                last_test = episode
+            last_test = episode
 
         if (runner.t_env - last_log_T) >= args.log_interval:
             logger.log_stat("episode", episode, runner.t_env)
