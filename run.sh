@@ -1,8 +1,8 @@
 #$ -S /bin/bash
 #$ -N episodic-control-array
 #$ -cwd
-#$ -o $HOME/result-arr-jul30-1.out
-#$ -e $HOME/result-arr-jul30-1.err
+#$ -o $HOME/result-arr-jul31-1.out
+#$ -e $HOME/result-arr-jul31-1.err
 #$ -l h_rt=12:00:00
 #$ -l gpu=true
 #$ -R y
