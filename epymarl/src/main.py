@@ -51,7 +51,7 @@ def my_main(_run, _config, _log):
 
     # run the framework
     config = {'runner': 'episode', 'mac': 'basic_mac', 'env': 'griddlygen',
-              'env_args': {'seed': random_seed, 'level_seeds': level_seeds, 'test_seeds': test_seeds}, 'batch_size_run': 10,
+              'env_args': {'seed': random_seed, 'level_seeds': level_seeds, 'test_seeds': test_seeds}, 'batch_size_run': 1,
               'test_nepisode': 100, 'test_interval': 50000, 'test_greedy': True, 'log_interval': 10000,
               'runner_log_interval': 1000, 'learner_log_interval': 10000, 't_max': 20050000, 'use_cuda': True,
               'buffer_cpu_only': True, 'use_tensorboard': False, 'save_model': False, 'save_model_interval': 50000,
