@@ -17,6 +17,7 @@ class EpisodeRunner:
         self.seed = self.env.seed()
         self.episode_limit = self.env.episode_limit
         self.t = 0
+        self.testing = False
 
         self.t_env = 0
 
@@ -50,16 +51,19 @@ class EpisodeRunner:
         #     record_video = True
         # else:
         #     record_video = False
-        self.env.reset()
+        self.env.reset(self.testing)
         self.t = 0
 
     def run(self, test_mode=False):
+        if test_mode:
+            self.testing = True
         self.reset()
         terminated = False
         episode_return = 0
         self.mac.init_hidden(batch_size=self.batch_size)
 
         returns = []
+        regrets = []
 
         while not terminated:
 
@@ -74,9 +78,10 @@ class EpisodeRunner:
             # Pass the entire batch of experiences up till now to the agents
             # Receive the actions for each agent at this timestep in a batch of size 1
             actions = self.mac.select_actions(self.batch, t_ep=self.t, t_env=self.t_env, test_mode=test_mode)
+            cpu_actions = actions.to("cpu").numpy()
             # print('ACTIONS:')
             # print(actions)
-            obs, reward, terminated, env_info = self.env.step(actions[0])
+            obs, reward, terminated, env_info = self.env.step(cpu_actions[0])
             self.env.render(observer='global')
             # print('OBSERVATIONS')
             # print(obs)
@@ -95,6 +100,8 @@ class EpisodeRunner:
             self.t += 1
 
         returns.append(episode_return)
+        reward_max = self.env.get_reward_max()
+        regrets.append(np.abs(episode_return - reward_max))
 
         # print('EPISODE RETURN:')
         # print(episode_return)
@@ -134,7 +141,7 @@ class EpisodeRunner:
                 self.logger.log_stat("epsilon", self.mac.action_selector.epsilon, self.t_env)
             self.log_train_stats_t = self.t_env
 
-        return self.batch
+        return self.batch, returns, regrets
 
     def _log(self, returns, stats, prefix):
         self.logger.log_stat(prefix + "return_mean", np.mean(returns), self.t_env)
