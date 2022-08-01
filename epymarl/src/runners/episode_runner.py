@@ -51,7 +51,7 @@ class EpisodeRunner:
         #     record_video = True
         # else:
         #     record_video = False
-        self.env.reset(self.testing)
+        self.env.reset(test_mode=self.testing)
         self.t = 0
 
     def run(self, test_mode=False):
