@@ -245,10 +245,11 @@ class Game2(GriddlyGymWrapper):
         """
         self.record_video = record_video
         if test_mode:
-            if not self.tested_before:
-                self._episode_count = self.validation_count
-                self.tested_before = True
-            level_seed = self._test_seeds[self._episode_count]
+            # if not self.tested_before:
+            #     self._episode_count = self.validation_count
+            #     self.tested_before = True
+            level_seed = self._test_seeds[self.validation_count]
+            self.validation_count += 1
         else:
             level_seed = self._level_seeds[self._episode_count]
         self.level, self.reward_max = self.generator.generate(level_seed)
