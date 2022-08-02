@@ -213,6 +213,7 @@ def run_sequential(args, logger):
         episode += args.batch_size_run
 
         if episode - last_test > 100:
+            last_test = episode
             val_regret_tracker = []
             # Change this range depending on batch size!
             # for i in range(10):
@@ -222,8 +223,7 @@ def run_sequential(args, logger):
                 avg_val_regret = np.mean(val_regret_tracker)
                 wandb.log({'Generalisation Gap (MAPPO 1 train seed)': avg_regret_tracker[-1] - avg_val_regret})
                 val_regret_tracker = []
-            episode += args.batch_size_run
-            last_test = episode
+            # episode += args.batch_size_run
 
         if args.save_model and (
                 runner.t_env - model_save_time >= args.save_model_interval
