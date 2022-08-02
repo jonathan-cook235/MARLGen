@@ -216,13 +216,13 @@ def run_sequential(args, logger):
             last_test = episode
             val_regret_tracker = []
             # Change this range depending on batch size!
-            # for i in range(10):
-            episode_batch, returns, regrets = runner.run(test_mode=True)
-            val_regret_tracker.extend(regrets)
-            if len(val_regret_tracker) > 9:
-                avg_val_regret = np.mean(val_regret_tracker)
-                wandb.log({'Generalisation Gap (QMIX 1 train seed)': avg_regret_tracker[-1] - avg_val_regret})
-                val_regret_tracker = []
+            for i in range(10):
+                episode_batch, returns, regrets = runner.run(test_mode=True)
+                val_regret_tracker.extend(regrets)
+                if len(val_regret_tracker) > 9:
+                    avg_val_regret = np.mean(val_regret_tracker)
+                    wandb.log({'Generalisation Gap (QMIX 1 train seed)': avg_regret_tracker[-1] - avg_val_regret})
+                    val_regret_tracker = []
             # episode += args.batch_size_run
 
         if args.save_model and (

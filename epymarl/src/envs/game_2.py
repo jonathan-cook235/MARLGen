@@ -86,8 +86,8 @@ class Game2(GriddlyGymWrapper):
         kwargs["level"] = None
         # kwargs["level_seeds"] = self._level_seeds
 
-        generator_config = {'min_width': 10, 'max_width': 10, 'min_height': 10, 'max_height': 10, 'max_potions': 5,
-                            'max_holes': 10, 'num_agents': 2}
+        generator_config = {'min_width': 10, 'max_width': 20, 'min_height': 10, 'max_height': 20, 'max_potions': 5,
+                            'max_holes': 20, 'num_agents': 2}
 
         self.generator = GeneralLevelGenerator(generator_config, seed=self._seed)
         # kwargs["level"] = Generator.generate()
