@@ -32,7 +32,8 @@ def my_main(_run, _config, _log):
     np.random.seed(random_seed)
     # level_seeds = np.random.randint(0, 100, 35000)
     test_seeds = np.random.randint(0, 2**30, 10000)
-    level_seeds = [1]*35000
+    level_seeds = [np.random.randint(0, 100)]*35000
+    # level_seeds = [1]*35000
     print('Seed:', random_seed)
     logging_name = 'mappo-gathering-nogen-'+str(random_seed)
     wandb.init(project='marlgen', entity='jonnycook', name=logging_name, reinit=True)
