@@ -195,7 +195,7 @@ def run_sequential(args, logger):
             avg_regret = np.mean(regret_tracker)
             avg_regret_tracker.append(avg_regret)
             wandb.log({'Avg Training Return (MAPPO 1 train seed)': avg_return})
-            wandb.log({'Avg Training Regret (MAPPO 2 train seed)': avg_regret})
+            wandb.log({'Avg Training Regret (MAPPO 1 train seed)': avg_regret})
             return_tracker = []
             regret_tracker = []
         buffer.insert_episode_batch(episode_batch)
@@ -222,24 +222,24 @@ def run_sequential(args, logger):
                 avg_val_regret = np.mean(val_regret_tracker)
                 wandb.log({'Generalisation Gap (MAPPO 1 train seed)': avg_regret_tracker[-1] - avg_val_regret})
                 val_regret_tracker = []
-
-                if args.save_model and (
-                        runner.t_env - model_save_time >= args.save_model_interval
-                        or model_save_time == 0
-                ):
-                    model_save_time = runner.t_env
-                    save_path = os.path.join(
-                        args.local_results_path, "models", args.unique_token, str(runner.t_env)
-                    )
-                    # "results/models/{}".format(unique_token)
-                    os.makedirs(save_path, exist_ok=True)
-                    logger.console_logger.info("Saving models to {}".format(save_path))
-
-                    # learner should handle saving/loading -- delegate actor save/load to mac,
-                    # use appropriate filenames to do critics, optimizer states
-                    learner.save_models(save_path)
             episode += args.batch_size_run
             last_test = episode
+
+        if args.save_model and (
+                runner.t_env - model_save_time >= args.save_model_interval
+                or model_save_time == 0
+        ):
+            model_save_time = runner.t_env
+            save_path = os.path.join(
+                args.local_results_path, "models", args.unique_token, str(runner.t_env)
+            )
+            # "results/models/{}".format(unique_token)
+            os.makedirs(save_path, exist_ok=True)
+            logger.console_logger.info("Saving models to {}".format(save_path))
+
+            # learner should handle saving/loading -- delegate actor save/load to mac,
+            # use appropriate filenames to do critics, optimizer states
+            learner.save_models(save_path)
 
         if (runner.t_env - last_log_T) >= args.log_interval:
             logger.log_stat("episode", episode, runner.t_env)
@@ -253,10 +253,10 @@ def run_sequential(args, logger):
 
     logger.console_logger.info("Finished Training")
 
-    episode = 0
     return_tracker = []
     regret_tracker = []
-    while episode <= test_max_episode:
+    cur_episode = episode
+    while episode <= (cur_episode + test_max_episode):
 
             # logger.console_logger.info(
             #     "t_env: {} / {}".format(runner.t_env, args.t_max)

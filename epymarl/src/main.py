@@ -31,8 +31,8 @@ def my_main(_run, _config, _log):
     random_seed = np.random.randint(1111, 9999)
     np.random.seed(random_seed)
     # level_seeds = np.random.randint(0, 100, 35000)
-    test_seeds = np.random.randint(0, 2**30, 10000)
-    level_seeds = [np.random.randint(0, 100)]*35000
+    test_seeds = np.random.randint(0, 2**30, 100000)
+    level_seeds = [np.random.randint(0, 100)]*100000
     # level_seeds = [1]*35000
     print('Seed:', random_seed)
     logging_name = 'mappo-gathering-nogen-'+str(random_seed)
@@ -67,7 +67,8 @@ def my_main(_run, _config, _log):
               'agent_output_type': 'pi_logits', 'learner': 'ppo_learner', 'entropy_coef': 0.01, 'standardise_returns': True,
               'standardise_rewards': True, 'use_rnn': False, 'q_nstep': 5, 'critic_type': 'cv_critic', 'epochs': 4,
               'eps_clip': 0.2, 'name': "mappo", 'seed': random_seed, 'mixing_embed_dim': 32, 'hypernet_layers': 2,
-              'hypernet_embed': 64, 'max_before_softmax': True, 'double_q': True, 'mixer': "qmix"}
+              'hypernet_embed': 64, 'max_before_softmax': True, 'double_q': True, 'mixer': "qmix",
+              'num_train_seeds': 100000, 'num_test_seeds': 100000}
     run(_run, config, _log)
 
 

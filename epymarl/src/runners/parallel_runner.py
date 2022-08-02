@@ -26,13 +26,15 @@ class ParallelRunner:
         count_train = 0
         count_test = 0
         # Change this to work for chosen batch size!
+        train_interval = int(np.round(self.args.num_train_seeds/self.batch_size))
+        test_interval = int(np.round(self.args.num_test_seeds / self.batch_size))
         for i in range(self.batch_size):
-            lim_train = 2000 + (i*2000)
-            lim_test = 500 + (i*500)
+            lim_train = train_interval + (i*train_interval)
+            lim_test = test_interval + (i*test_interval)
             env_args[i]["level_seeds"] = self.args.env_args["level_seeds"][count_train:lim_train]
             env_args[i]["test_seeds"] = self.args.env_args["test_seeds"][count_test:lim_test]
-            count_train += 2000
-            count_test += 500
+            count_train += train_interval
+            count_test += test_interval
 
         self.ps = [Process(target=env_worker, args=(worker_conn, CloudpickleWrapper(partial(env_fn, **env_arg))))
                             for env_arg, worker_conn in zip(env_args, self.worker_conns)]
@@ -197,7 +199,7 @@ class ParallelRunner:
         # wandb.log({'episode return': episode_return})
 
         # if not test_mode:
-            self.t_env += self.env_steps_this_run
+        #     self.t_env += self.env_steps_this_run ....just commented this out....
             # for episode_return in episode_returns:
             #     # print(episode_return)
             #     wandb.log({'episode return': episode_return})
