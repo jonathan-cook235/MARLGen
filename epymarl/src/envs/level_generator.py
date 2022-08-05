@@ -9,9 +9,9 @@ class GeneralLevelGenerator(LevelGenerator):
 
     def __init__(self, config, seed=None):
         super().__init__(config)
-        self._min_width = config.get('min_width', 10)
+        self._min_width = config.get('min_width', 30)
         self._max_width = config.get('max_width', 30)
-        self._min_height = config.get('min_height', 10)
+        self._min_height = config.get('min_height', 30)
         self._max_height = config.get('max_height', 30)
         self._width = None
         self._height = None
@@ -70,7 +70,7 @@ class GeneralLevelGenerator(LevelGenerator):
             map,
             possible_locations,
             GeneralLevelGenerator.POTION,
-            False,
+            True,
             self._max_potions
         )
 
@@ -78,7 +78,7 @@ class GeneralLevelGenerator(LevelGenerator):
             map,
             possible_locations,
             GeneralLevelGenerator.HOLE,
-            False,
+            True,
             self._max_holes
         )
 
@@ -86,7 +86,7 @@ class GeneralLevelGenerator(LevelGenerator):
             map,
             possible_locations,
             GeneralLevelGenerator.WALL,
-            False,
+            True,
             self._max_holes
         )
 
