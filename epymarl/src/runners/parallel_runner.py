@@ -26,6 +26,7 @@ class ParallelRunner:
         count_train = 0
         count_test = 0
         # Change this to work for chosen batch size!
+        # for griddly:
         train_interval = int(np.round(self.args.num_train_seeds/self.batch_size))
         test_interval = int(np.round(self.args.num_test_seeds / self.batch_size))
         for i in range(self.batch_size):
@@ -48,7 +49,7 @@ class ParallelRunner:
         self.t_env = 0
 
         # remember to change this to whatever is in config as it is game-dependent!
-        self.episode_limit = 100
+        self.episode_limit = 200
 
         self.train_returns = []
         self.test_returns = []
@@ -89,7 +90,7 @@ class ParallelRunner:
             parent_conn.send(("reset", self.testing))
 
         pre_transition_data = {
-            "state": [],
+            # "state": [],
             "avail_actions": [],
             "obs": []
         }
@@ -97,7 +98,7 @@ class ParallelRunner:
         # Get the obs, state and avail_actions back
         for parent_conn in self.parent_conns:
             data = parent_conn.recv()
-            pre_transition_data["state"].append(data["state"])
+            # pre_transition_data["state"].append(data["state"])
             pre_transition_data["avail_actions"].append(data["avail_actions"])
             pre_transition_data["obs"].append(data["obs"])
         self.batch.update(pre_transition_data, ts=0)
@@ -153,7 +154,7 @@ class ParallelRunner:
             }
             # Data for the next step we will insert in order to select an action
             pre_transition_data = {
-                "state": [],
+                # "state": [],
                 "avail_actions": [],
                 "obs": []
             }
@@ -180,7 +181,7 @@ class ParallelRunner:
                     post_transition_data["terminated"].append((env_terminated,))
 
                     # Data for the next timestep needed to select an action
-                    pre_transition_data["state"].append(data["state"])
+                    # pre_transition_data["state"].append(data["state"])
                     pre_transition_data["avail_actions"].append(data["avail_actions"])
                     pre_transition_data["obs"].append(data["obs"])
 
@@ -198,37 +199,13 @@ class ParallelRunner:
         # print(episode_return)
         # wandb.log({'episode return': episode_return})
 
-        # if not test_mode:
-        #     self.t_env += self.env_steps_this_run ....just commented this out....
-            # for episode_return in episode_returns:
-            #     # print(episode_return)
-            #     wandb.log({'episode return': episode_return})
+        # comment out for vmas
         rewards_max = [0 for _ in range(self.batch_size)]
         for idx, parent_conn in enumerate(self.parent_conns):
             parent_conn.send(("get_max_reward", None))
             rewards_max[idx] = parent_conn.recv()
         regrets = [np.abs(episode_return - reward_max)
                    for episode_return, reward_max in zip(episode_returns, rewards_max)]
-            # [wandb.log({'train regret': np.abs(episode_return - reward_max)})
-            #  for episode_return, reward_max in zip(episode_returns, rewards_max)]
-            # [wandb.log({'train return': episode_return}) for episode_return in episode_returns]
-        # else:
-        #     rewards_max = [0 for _ in range(self.batch_size)]
-        #     for idx, parent_conn in enumerate(self.parent_conns):
-        #         parent_conn.send(("get_max_reward", None))
-        #         rewards_max[idx] = parent_conn.recv()
-        #     [wandb.log({'test regret': np.abs(episode_return - reward_max)})
-        #      for episode_return, reward_max in zip(episode_returns, rewards_max)]
-        #     [wandb.log({'test return': episode_return}) for episode_return in episode_returns]
-
-        # # Get stats back for each env
-        # for parent_conn in self.parent_conns:
-        #     parent_conn.send(("get_stats",None))
-        #
-        # env_stats = []
-        # for parent_conn in self.parent_conns:
-        #     env_stat = parent_conn.recv()
-        #     env_stats.append(env_stat)
 
         cur_stats = self.test_stats if test_mode else self.train_stats
         cur_returns = self.test_returns if test_mode else self.train_returns
@@ -249,7 +226,7 @@ class ParallelRunner:
                 self.logger.log_stat("epsilon", self.mac.action_selector.epsilon, self.t_env)
             self.log_train_stats_t = self.t_env
 
-        return self.batch, episode_returns, regrets
+        return self.batch, episode_returns, regrets # comment out regrets for vmas
 
     def _log(self, returns, stats, prefix):
         self.logger.log_stat(prefix + "return_mean", np.mean(returns), self.t_env)
@@ -280,7 +257,7 @@ def env_worker(remote, env_fn):
             # print('sending back')
             remote.send({
                 # Data for the next timestep needed to pick an action
-                "state": state,
+                # "state": state,
                 "avail_actions": avail_actions,
                 "obs": obs,
                 # Rest of the data for the current timestep
@@ -292,7 +269,7 @@ def env_worker(remote, env_fn):
             testing = data
             env.reset(test_mode=testing)
             remote.send({
-                "state": env.get_state(),
+                # "state": env.get_state(),
                 "avail_actions": env.get_avail_actions(),
                 "obs": env.get_obs()
             })

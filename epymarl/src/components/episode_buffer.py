@@ -70,8 +70,11 @@ class EpisodeBatch:
                 shape = vshape
 
             if field_key == 'obs':
+                # griddly:
                 shape = (1, vshape[0]) # Change this to whatever obs shape is! Find out in print statements below.
                 # RHS is num agents x grid dimensions
+                # vmas:
+                # shape = (4, 11)
 
             if episode_const:
                 self.data.episode_data[field_key] = th.zeros((batch_size, *shape), dtype=dtype, device=self.device)
@@ -107,6 +110,9 @@ class EpisodeBatch:
                 raise KeyError("{} not found in transition or episode data".format(k))
 
             dtype = self.scheme[k].get("dtype", th.float32)
+            # for vmas:
+            # if k == 'obs' and type(v) == list:
+            #     v = th.cat(v[0])
             v = th.tensor(v, dtype=dtype, device=self.device)
             # print(target[k][_slices])
             # print(k)
@@ -120,12 +126,15 @@ class EpisodeBatch:
                 # Changed first index to whatever batch size is in all reshaping that follows
                 # v = th.reshape(v, (1, target[k][_slices].shape[-2], target[k][_slices].shape[-1]))
                 # Below is for gathering
-                # v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-2], target[k][_slices].shape[-1]))
-                # Below is for herding
                 v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-2], target[k][_slices].shape[-1]))
+                # Below is for herding
+                # v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-2], target[k][_slices].shape[-1]))
             elif k == 'obs':
                 v = v.squeeze()
+                # griddly:
                 v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-3], 1, target[k][_slices].shape[-1]))
+                # vmas:
+                # v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-3], 4, 11))
             elif k == 'reward':
                 # print('v before summing')
                 # print(v)
@@ -141,6 +150,11 @@ class EpisodeBatch:
                 v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-2], 1))
                 # print('v reward')
                 # print(v)
+            # for VMAS:
+            # elif k == 'avail_actions':
+            #     # print(v)
+            #     # print(target[k][_slices].shape)
+            #     v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-3], target[k][_slices].shape[-2], target[k][_slices].shape[-1]))
 
             # if (k == 'reward') and (target[k][_slices].shape[-2] == 51):
             #     self._check_safe_view(v, target[k][_slices][:, 0, :])

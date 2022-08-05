@@ -94,7 +94,7 @@ def run_sequential(args, logger):
 
     # Default/Base scheme
     scheme = {
-        "state": {"vshape": env_info["state_shape"]},
+        "state": {"vshape": env_info["state_shape"]}, # comment out for vmas
         "obs": {"vshape": env_info["obs_shape"], "group": "agents"},
         "actions": {"vshape": (1,), "group": "agents", "dtype": th.long},
         "avail_actions": {
@@ -182,20 +182,21 @@ def run_sequential(args, logger):
 
     logger.console_logger.info("Beginning training for {} episodes".format(max_episode))
     return_tracker = []
+    avg_return_tracker = []
     regret_tracker = []
     avg_regret_tracker = []
     while episode <= max_episode:
         # print(runner.t_env)
         # Run for a whole episode at a time
-        episode_batch, returns, regrets = runner.run(test_mode=False)
+        episode_batch, returns, regrets = runner.run(test_mode=False) # add regret for gathering
         return_tracker.extend(returns)
         regret_tracker.extend(regrets)
         if len(return_tracker) > 99:
             avg_return = np.mean(return_tracker)
             avg_regret = np.mean(regret_tracker)
-            avg_regret_tracker.append(avg_regret)
-            wandb.log({'Avg Training Return (QMIX 1 train seed)': avg_return})
-            wandb.log({'Avg Training Regret (QMIX 1 train seed)': avg_regret})
+            avg_return_tracker.append(avg_return)
+            wandb.log({'Avg Training Return (MAPPO gathering 1 train seed)': avg_return})
+            wandb.log({'Avg Training Regret (MAPPO gathering 1 train seed)': avg_regret})
             return_tracker = []
             regret_tracker = []
         buffer.insert_episode_batch(episode_batch)
@@ -214,15 +215,15 @@ def run_sequential(args, logger):
 
         if episode - last_test > 100:
             last_test = episode
-            val_regret_tracker = []
+            val_return_tracker = []
             # Change this range depending on batch size!
-            for i in range(10):
-                episode_batch, returns, regrets = runner.run(test_mode=True)
-                val_regret_tracker.extend(regrets)
-                if len(val_regret_tracker) > 9:
-                    avg_val_regret = np.mean(val_regret_tracker)
-                    wandb.log({'Generalisation Gap (QMIX 1 train seed)': avg_regret_tracker[-1] - avg_val_regret})
-                    val_regret_tracker = []
+            # for i in range(10):
+            episode_batch, returns, regrets = runner.run(test_mode=True) # add regret for gathering
+            val_return_tracker.extend(returns)
+            if len(val_return_tracker) > 9:
+                avg_val_return = np.mean(val_return_tracker)
+                wandb.log({'Generalisation Gap (MAPPO gathering 1 train seed)': avg_return_tracker[-1] - avg_val_return})
+                val_return_tracker = []
             # episode += args.batch_size_run
 
         if args.save_model and (
@@ -258,28 +259,15 @@ def run_sequential(args, logger):
     cur_episode = episode
     while episode <= (cur_episode + test_max_episode):
 
-            # logger.console_logger.info(
-            #     "t_env: {} / {}".format(runner.t_env, args.t_max)
-            # )
-            # logger.console_logger.info(
-            #     "Estimated time left: {}. Time passed: {}".format(
-            #         time_left(last_time, last_test_T, runner.t_env, args.t_max),
-            #         time_str(time.time() - start_time),
-            #     )
-            # )
-            # last_time = time.time()
-            #
-            # last_test_T = runner.t_env
-            # for _ in range(n_test_runs):
-        episode_batch, returns, regrets = runner.run(test_mode=True)
+        episode_batch, returns, regrets = runner.run(test_mode=True) # add regrets for gathering
         return_tracker.extend(returns)
         regret_tracker.extend(regrets)
 
         if len(return_tracker) > 99:
             avg_return = np.mean(return_tracker)
             avg_regret = np.mean(regret_tracker)
-            wandb.log({'Avg Testing Return (QMIX 1 train seed)': avg_return})
-            wandb.log({'Avg Testing Regret (QMIX 1 train seed)': avg_regret})
+            wandb.log({'Avg Testing Return (MAPPO gathering 1 train seed)': avg_return})
+            wandb.log({'Avg Testing Regret (MAPPO gathering 1 train seed)': avg_regret})
             return_tracker = []
             regret_tracker = []
 

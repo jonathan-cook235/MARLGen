@@ -32,7 +32,10 @@ class CentralVCritic(nn.Module):
         ts = slice(None) if t is None else slice(t, t+1)
         inputs = []
         # state
+        # griddly:
         inputs.append(batch["state"][:, ts].unsqueeze(2).repeat(1, 1, self.n_agents, 1))
+        # vmas:
+        # inputs.append(batch["obs"][:, ts])
 
         # observations
         if self.args.obs_individual_obs:
@@ -56,7 +59,10 @@ class CentralVCritic(nn.Module):
 
     def _get_input_shape(self, scheme):
         # state
+        # griddly:
         input_shape = scheme["state"]["vshape"]
+        # vmas:
+        # input_shape = 11
         # observations
         if self.args.obs_individual_obs:
             input_shape += scheme["obs"]["vshape"] * self.n_agents

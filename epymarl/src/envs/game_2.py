@@ -15,8 +15,8 @@ import matplotlib.pyplot as plt
 
 class Game2(GriddlyGymWrapper):
     def __init__(self, **kwargs):
-        self.active_agents = [0, 1]
-        self.n_agents = 2
+        self.active_agents = [0, 1, 2, 3]
+        self.n_agents = 4
         self._seed = kwargs['seed']
         self._level_seeds = kwargs['level_seeds']
         self._test_seeds = kwargs['test_seeds']
@@ -37,7 +37,7 @@ class Game2(GriddlyGymWrapper):
         self.observations = None
         self.last_action = np.zeros((self.n_agents, self.n_actions))
         self.reward = 0
-        self.episode_limit = 100
+        self.episode_limit = 200
 
         self.action_map = {
             0: [0, 0],  # no-op
@@ -81,13 +81,13 @@ class Game2(GriddlyGymWrapper):
         kwargs["global_observer_type"] = kwargs.pop(
             "global_observer_type", gd.ObserverType.VECTOR
         )
-        kwargs["max_steps"] = kwargs.pop("max_steps", 100)
+        kwargs["max_steps"] = kwargs.pop("max_steps", 200)
         kwargs["environment_name"] = "Game2"
         kwargs["level"] = None
         # kwargs["level_seeds"] = self._level_seeds
 
-        generator_config = {'min_width': 10, 'max_width': 20, 'min_height': 10, 'max_height': 20, 'max_potions': 5,
-                            'max_holes': 20, 'num_agents': 2}
+        generator_config = {'min_width': 10, 'max_width': 30, 'min_height': 10, 'max_height': 30, 'max_potions': 10,
+                            'max_holes': 30, 'num_agents': 4}
 
         self.generator = GeneralLevelGenerator(generator_config, seed=self._seed)
         # kwargs["level"] = Generator.generate()

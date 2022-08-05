@@ -10,14 +10,14 @@ class GeneralLevelGenerator(LevelGenerator):
     def __init__(self, config, seed=None):
         super().__init__(config)
         self._min_width = config.get('min_width', 10)
-        self._max_width = config.get('max_width', 20)
+        self._max_width = config.get('max_width', 30)
         self._min_height = config.get('min_height', 10)
-        self._max_height = config.get('max_height', 20)
+        self._max_height = config.get('max_height', 30)
         self._width = None
         self._height = None
-        self._max_potions = config.get('max_potions', 5)
-        self._max_holes = config.get('max_holes', 20)
-        self._num_agents = config.get('num_agents', 2)
+        self._max_potions = config.get('max_potions', 10)
+        self._max_holes = config.get('max_holes', 30)
+        self._num_agents = config.get('num_agents', 4)
         self._seed = seed
 
     def _place_walls(self, map):
@@ -114,9 +114,13 @@ class HerdingLevelGenerator(LevelGenerator):
 
     def __init__(self, config, seed=None):
         super().__init__(config)
-        self._width = config.get('width', 10)
-        self._height = config.get('height', 10)
-        self._max_obstacles = config.get('max_obstacles', 5)
+        self._min_width = config.get('min_width', 10)
+        self._max_width = config.get('max_width', 20)
+        self._min_height = config.get('min_height', 10)
+        self._max_height = config.get('max_height', 20)
+        self._width = None
+        self._height = None
+        self._max_obstacles = config.get('max_obstacles', 10)
         self._num_sheep = config.get('num_sheep', 1)
         self._num_agents = config.get('num_agents', 3)
         self._num_targets = config.get('num_targets', 1)
@@ -140,7 +144,7 @@ class HerdingLevelGenerator(LevelGenerator):
             location_idx = np.random.choice(len(possible_locations))
             location = possible_locations[location_idx]
             del possible_locations[location_idx]
-            if char == 'f':
+            if char == 'd':
                 map[location[0], location[1]] = char + str(k+1)
             else:
                 map[location[0], location[1]] = char
@@ -150,7 +154,15 @@ class HerdingLevelGenerator(LevelGenerator):
     def generate(self, level_seed):
         # np.random.seed(self._seed)
         np.random.seed(level_seed)
-        map = np.chararray((self._width, self._height), itemsize=2)
+        if self._min_width != self._max_width:
+            self._width = np.random.randint(self._min_width, self._max_width)
+        else:
+            self._width = self._min_width
+        if self._min_height != self._max_height:
+            self._height = np.random.randint(self._min_height, self._max_height)
+        else:
+            self._height = self._min_height
+        map = np.chararray((self._max_width, self._max_height), itemsize=2)
         map[:] = '.'
 
         map = self._place_walls(map)
@@ -193,8 +205,8 @@ class HerdingLevelGenerator(LevelGenerator):
         )
 
         level_string = ''
-        for w in range(0, self._width):
-            for h in range(0, self._height):
+        for w in range(0, self._max_width):
+            for h in range(0, self._max_height):
                 level_string += map[w, h].decode().ljust(4)
             level_string += '\n'
 
