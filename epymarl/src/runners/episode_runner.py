@@ -68,7 +68,7 @@ class EpisodeRunner:
         while not terminated:
 
             pre_transition_data = {
-                "state": [self.env.get_state()],
+                "state": [self.env.get_state()], # comment out for vmas
                 "avail_actions": [self.env.get_avail_actions()],
                 "obs": [self.env.get_obs()]
             }
@@ -82,6 +82,7 @@ class EpisodeRunner:
             # print('ACTIONS:')
             # print(actions)
             obs, reward, terminated, env_info = self.env.step(cpu_actions[0])
+            # for griddly games:
             self.env.render(observer='global')
             # print('OBSERVATIONS')
             # print(obs)
@@ -98,7 +99,7 @@ class EpisodeRunner:
             self.batch.update(post_transition_data, ts=self.t)
 
             self.t += 1
-
+        # for griddly
         returns.append(episode_return)
         reward_max = self.env.get_reward_max()
         regrets.append(np.abs(episode_return - reward_max))
@@ -108,7 +109,7 @@ class EpisodeRunner:
         # wandb.log({'episode return': episode_return})
 
         last_data = {
-            "state": [self.env.get_state()],
+            "state": [self.env.get_state()], # comment out for vmas
             "avail_actions": [self.env.get_avail_actions()],
             "obs": [self.env.get_obs()]
         }
@@ -141,7 +142,7 @@ class EpisodeRunner:
                 self.logger.log_stat("epsilon", self.mac.action_selector.epsilon, self.t_env)
             self.log_train_stats_t = self.t_env
 
-        return self.batch, returns, regrets
+        return self.batch, returns, regrets # get rid of regrets for vmas
 
     def _log(self, returns, stats, prefix):
         self.logger.log_stat(prefix + "return_mean", np.mean(returns), self.t_env)
