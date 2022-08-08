@@ -217,13 +217,13 @@ def run_sequential(args, logger):
             last_test = episode
             val_return_tracker = []
             # Change this range depending on batch size!
-            # for i in range(10):
-            episode_batch, returns = runner.run(test_mode=True) # add regret for gathering
-            val_return_tracker.extend(returns)
-            if len(val_return_tracker) > 9:
-                avg_val_return = np.mean(val_return_tracker)
-                wandb.log({'Generalisation Gap (QMIX herding 1 train seed)': avg_return_tracker[-1] - avg_val_return})
-                val_return_tracker = []
+            for i in range(10):
+                episode_batch, returns = runner.run(test_mode=True) # add regret for gathering
+                val_return_tracker.extend(returns)
+                if len(val_return_tracker) > 9:
+                    avg_val_return = np.mean(val_return_tracker)
+                    wandb.log({'Generalisation Gap (QMIX herding 1 train seed)': avg_return_tracker[-1] - avg_val_return})
+                    val_return_tracker = []
 
         if args.save_model and (
                 runner.t_env - model_save_time >= args.save_model_interval
