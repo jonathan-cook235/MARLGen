@@ -256,45 +256,45 @@ def run_sequential(args, logger):
     return_tracker = []
     regret_tracker = []
     cur_episode = episode
-    while episode <= (cur_episode + test_max_episode):
-
-        episode_batch, returns = runner.run(test_mode=True) # add regrets for gathering
-        return_tracker.extend(returns)
-        # regret_tracker.extend(regrets)
-
-        if len(return_tracker) > 99:
-            avg_return = np.mean(return_tracker)
-            # avg_regret = np.mean(regret_tracker)
-            wandb.log({'Avg Testing Return (MAPPO herding 1 train seed)': avg_return})
-            # wandb.log({'Avg Testing Regret (MAPPO herding 1 train seed)': avg_regret})
-            return_tracker = []
-            regret_tracker = []
-
-        if args.save_model and (
-                runner.t_env - model_save_time >= args.save_model_interval
-                or model_save_time == 0
-        ):
-            model_save_time = runner.t_env
-            save_path = os.path.join(
-                args.local_results_path, "models", args.unique_token, str(runner.t_env)
-            )
-            # "results/models/{}".format(unique_token)
-            os.makedirs(save_path, exist_ok=True)
-            logger.console_logger.info("Saving models to {}".format(save_path))
-
-            # learner should handle saving/loading -- delegate actor save/load to mac,
-            # use appropriate filenames to do critics, optimizer states
-            learner.save_models(save_path)
-
-        episode += args.batch_size_run
-
-        if (runner.t_env - last_log_T) >= args.log_interval:
-            logger.log_stat("episode", episode, runner.t_env)
-            logger.print_recent_stats()
-            last_log_T = runner.t_env
-
-    # runner.close_env()
-    logger.console_logger.info("Finished Testing")
+    # while episode <= (cur_episode + test_max_episode):
+    #
+    #     episode_batch, returns = runner.run(test_mode=True) # add regrets for gathering
+    #     return_tracker.extend(returns)
+    #     # regret_tracker.extend(regrets)
+    #
+    #     if len(return_tracker) > 99:
+    #         avg_return = np.mean(return_tracker)
+    #         # avg_regret = np.mean(regret_tracker)
+    #         wandb.log({'Avg Testing Return (MAPPO herding 1 train seed)': avg_return})
+    #         # wandb.log({'Avg Testing Regret (MAPPO herding 1 train seed)': avg_regret})
+    #         return_tracker = []
+    #         regret_tracker = []
+    #
+    #     if args.save_model and (
+    #             runner.t_env - model_save_time >= args.save_model_interval
+    #             or model_save_time == 0
+    #     ):
+    #         model_save_time = runner.t_env
+    #         save_path = os.path.join(
+    #             args.local_results_path, "models", args.unique_token, str(runner.t_env)
+    #         )
+    #         # "results/models/{}".format(unique_token)
+    #         os.makedirs(save_path, exist_ok=True)
+    #         logger.console_logger.info("Saving models to {}".format(save_path))
+    #
+    #         # learner should handle saving/loading -- delegate actor save/load to mac,
+    #         # use appropriate filenames to do critics, optimizer states
+    #         learner.save_models(save_path)
+    #
+    #     episode += args.batch_size_run
+    #
+    #     if (runner.t_env - last_log_T) >= args.log_interval:
+    #         logger.log_stat("episode", episode, runner.t_env)
+    #         logger.print_recent_stats()
+    #         last_log_T = runner.t_env
+    #
+    # # runner.close_env()
+    # logger.console_logger.info("Finished Testing")
 
 
 def args_sanity_check(config, _log):

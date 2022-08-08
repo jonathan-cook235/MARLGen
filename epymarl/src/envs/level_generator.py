@@ -166,7 +166,8 @@ class HerdingLevelGenerator(LevelGenerator):
 
         return map, possible_locations
 
-    def generate(self, level_seed):
+    def generate(self, level_seed, test_count):
+        # if test_count != 0:
         # np.random.seed(self._seed)
         np.random.seed(level_seed)
         if self._min_width != self._max_width:

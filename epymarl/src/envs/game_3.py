@@ -27,7 +27,7 @@ class Game3(GriddlyGymWrapper):
         self.recording_started = False
         self.video_filename = ""
         self._episode_count = 0
-        self.tested_before = False
+        self.validation_count = 0
         self._test_episode_count = 0
         self._episode_steps = 0
         self._total_steps = 0
@@ -242,14 +242,12 @@ class Game3(GriddlyGymWrapper):
         :param **kwargs:
         """
         self.record_video = record_video
-        if not test_mode:
-            level_seed = self._level_seeds[self._episode_count]
+        if test_mode:
+            level_seed = self._test_seeds[self.validation_count]
+            self.validation_count += 1
         else:
-            if not self.tested_before:
-                self._episode_count = 0
-                self.tested_before = True
-            level_seed = self._test_seeds[self._episode_count]
-        self.level = self.generator.generate(level_seed)
+            level_seed = self._level_seeds[self._episode_count]
+        self.level = self.generator.generate(level_seed, self.validation_count)
         self._episode_steps = 0
         self.last_action = np.zeros((self.n_agents, self.n_actions))
         state_obs = super().reset(global_observations=True, level_string=self.level)
