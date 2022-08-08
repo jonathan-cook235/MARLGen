@@ -21,7 +21,7 @@ class Game3(GriddlyGymWrapper):
         self._seed = kwargs['seed']
         self._level_seeds = kwargs['level_seeds']
         self._test_seeds = kwargs['test_seeds']
-        self.n_actions = 5
+        self.n_actions = 4
         self.agent_view_size = 15
         self.record_video = False
         self.recording_started = False
@@ -29,6 +29,7 @@ class Game3(GriddlyGymWrapper):
         self._episode_count = 0
         self.validation_count = 0
         self._test_episode_count = 0
+        self.test_count = 100000000
         self._episode_steps = 0
         self._total_steps = 0
         self.state = None
@@ -231,23 +232,26 @@ class Game3(GriddlyGymWrapper):
         if agent_id not in self.active_agents:
             return [1] + [0] * (self.n_actions - 1)
         else:
-            return [0] + [1] * (self.n_actions - 1)
+            # return [0] + [1] * (self.n_actions - 1)
+            return [1] * self.n_actions
 
     def get_total_actions(self):
         """Returns the total number of actions an agent could ever take."""
         return self.n_actions
 
-    def reset(self, record_video=False, test_mode=False, **kwargs):
+    def reset(self, record_video=False, test_mode=False, first_test=False, **kwargs):
         """Returns initial observations and states.
         :param **kwargs:
         """
         self.record_video = record_video
         if test_mode:
             level_seed = self._test_seeds[self.validation_count]
+            if first_test:
+                self.test_count = self.validation_count
             self.validation_count += 1
         else:
             level_seed = self._level_seeds[self._episode_count]
-        self.level = self.generator.generate(level_seed, self.validation_count)
+        self.level = self.generator.generate(level_seed, self.validation_count-self.test_count)
         self._episode_steps = 0
         self.last_action = np.zeros((self.n_agents, self.n_actions))
         state_obs = super().reset(global_observations=True, level_string=self.level)

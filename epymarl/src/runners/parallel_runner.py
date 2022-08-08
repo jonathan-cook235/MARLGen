@@ -18,6 +18,7 @@ class ParallelRunner:
         self.batch_size = self.args.batch_size_run
 
         self.testing = False
+        self.first_test = True
 
         # Make subprocesses for the envs
         self.parent_conns, self.worker_conns = zip(*[Pipe() for _ in range(self.batch_size)])
@@ -69,7 +70,7 @@ class ParallelRunner:
     def get_env_info(self):
         # self.env.reset()
         # self.reset()
-        self.parent_conns[0].send(("reset", self.testing))
+        self.parent_conns[0].send(("reset", [self.testing, self.first_test]))
         self.parent_conns[0].recv()
         self.parent_conns[0].send(("get_env_info", None))
         self.env_info = self.parent_conns[0].recv()
@@ -87,10 +88,10 @@ class ParallelRunner:
         # Reset the envs
         # self.env.reset()
         for parent_conn in self.parent_conns:
-            parent_conn.send(("reset", self.testing))
+            parent_conn.send(("reset", [self.testing, self.first_test]))
 
         pre_transition_data = {
-            # "state": [],
+            "state": [], # comment out for vmas
             "avail_actions": [],
             "obs": []
         }
@@ -98,7 +99,7 @@ class ParallelRunner:
         # Get the obs, state and avail_actions back
         for parent_conn in self.parent_conns:
             data = parent_conn.recv()
-            # pre_transition_data["state"].append(data["state"])
+            pre_transition_data["state"].append(data["state"]) # comment out for vmas
             pre_transition_data["avail_actions"].append(data["avail_actions"])
             pre_transition_data["obs"].append(data["obs"])
         self.batch.update(pre_transition_data, ts=0)
@@ -106,9 +107,11 @@ class ParallelRunner:
         self.t = 0
         self.env_steps_this_run = 0
 
-    def run(self, test_mode=False):
+    def run(self, test_mode=False, first_test=False):
         if test_mode:
             self.testing = True
+        if first_test:
+            self.first_test = True
         self.reset()
         all_terminated = False
         episode_returns = [0 for _ in range(self.batch_size)]
@@ -154,7 +157,7 @@ class ParallelRunner:
             }
             # Data for the next step we will insert in order to select an action
             pre_transition_data = {
-                # "state": [],
+                "state": [], # comment out for vmas
                 "avail_actions": [],
                 "obs": []
             }
@@ -181,7 +184,7 @@ class ParallelRunner:
                     post_transition_data["terminated"].append((env_terminated,))
 
                     # Data for the next timestep needed to select an action
-                    # pre_transition_data["state"].append(data["state"])
+                    pre_transition_data["state"].append(data["state"]) # comment out for vmas
                     pre_transition_data["avail_actions"].append(data["avail_actions"])
                     pre_transition_data["obs"].append(data["obs"])
 
@@ -257,7 +260,7 @@ def env_worker(remote, env_fn):
             # print('sending back')
             remote.send({
                 # Data for the next timestep needed to pick an action
-                # "state": state,
+                "state": state, # comment out for vmas
                 "avail_actions": avail_actions,
                 "obs": obs,
                 # Rest of the data for the current timestep
@@ -266,10 +269,11 @@ def env_worker(remote, env_fn):
                 "info": env_info
             })
         elif cmd == "reset":
-            testing = data
-            env.reset(test_mode=testing)
+            testing = data[0]
+            first = data[1]
+            env.reset(test_mode=testing, first_test=first)
             remote.send({
-                # "state": env.get_state(),
+                "state": env.get_state(), # comment out for vmas
                 "avail_actions": env.get_avail_actions(),
                 "obs": env.get_obs()
             })

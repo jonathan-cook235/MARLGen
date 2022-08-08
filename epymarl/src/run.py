@@ -195,7 +195,7 @@ def run_sequential(args, logger):
             avg_return = np.mean(return_tracker)
             # avg_regret = np.mean(regret_tracker)
             avg_return_tracker.append(avg_return)
-            wandb.log({'Avg Training Return (MAPPO herding 1 train seed)': avg_return})
+            wandb.log({'Avg Training Return (QMIX herding 1 train seed)': avg_return})
             # wandb.log({'Avg Training Regret (MAPPO herding 1 train seed)': avg_regret})
             return_tracker = []
             regret_tracker = []
@@ -222,7 +222,7 @@ def run_sequential(args, logger):
             val_return_tracker.extend(returns)
             if len(val_return_tracker) > 9:
                 avg_val_return = np.mean(val_return_tracker)
-                wandb.log({'Generalisation Gap (MAPPO herding 1 train seed)': avg_return_tracker[-1] - avg_val_return})
+                wandb.log({'Generalisation Gap (QMIX herding 1 train seed)': avg_return_tracker[-1] - avg_val_return})
                 val_return_tracker = []
 
         if args.save_model and (
@@ -256,9 +256,11 @@ def run_sequential(args, logger):
     return_tracker = []
     regret_tracker = []
     cur_episode = episode
+    first_test = True
     # while episode <= (cur_episode + test_max_episode):
     #
-    #     episode_batch, returns = runner.run(test_mode=True) # add regrets for gathering
+    #     episode_batch, returns = runner.run(test_mode=True, first_test=True) # add regrets for gathering
+    #     first_test = False
     #     return_tracker.extend(returns)
     #     # regret_tracker.extend(regrets)
     #

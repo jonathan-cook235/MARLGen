@@ -166,8 +166,41 @@ class HerdingLevelGenerator(LevelGenerator):
 
         return map, possible_locations
 
+    def _scale_test(self, test_count):
+        if test_count < 200:
+            self._min_width = 20
+            self._min_height = 20
+            self._max_width = 20
+            self._max_height = 20
+            self._max_obstacles = 10
+        elif 200 < test_count < 400:
+            self._min_width = 25
+            self._min_height = 25
+            self._max_width = 25
+            self._max_height = 25
+            self._max_obstacles = 16
+        elif 400 < test_count < 600:
+            self._min_width = 30
+            self._min_height = 30
+            self._max_width = 30
+            self._max_height = 30
+            self._max_obstacles = 23
+        elif 600 < test_count < 800:
+            self._min_width = 35
+            self._min_height = 35
+            self._max_width = 35
+            self._max_height = 35
+            self._max_obstacles = 31
+        elif 800 < test_count <= 1000:
+            self._min_width = 40
+            self._min_height = 40
+            self._max_width = 40
+            self._max_height = 40
+            self._max_obstacles = 40
+
     def generate(self, level_seed, test_count):
-        # if test_count != 0:
+        if test_count > 0:
+            self._scale_test(test_count)
         # np.random.seed(self._seed)
         np.random.seed(level_seed)
         if self._min_width != self._max_width:
@@ -200,7 +233,7 @@ class HerdingLevelGenerator(LevelGenerator):
             map,
             possible_locations,
             HerdingLevelGenerator.WALL,
-            True,
+            True if test_count > 0 else False,
             self._max_obstacles
         )
 
