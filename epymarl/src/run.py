@@ -188,15 +188,15 @@ def run_sequential(args, logger):
     while episode <= max_episode:
         # print(runner.t_env)
         # Run for a whole episode at a time
-        episode_batch, returns, regrets = runner.run(test_mode=False) # add regret for gathering
+        episode_batch, returns = runner.run(test_mode=False) # add regret for gathering
         return_tracker.extend(returns)
-        regret_tracker.extend(regrets)
+        # regret_tracker.extend(regrets)
         if len(return_tracker) > 99:
             avg_return = np.mean(return_tracker)
-            avg_regret = np.mean(regret_tracker)
+            # avg_regret = np.mean(regret_tracker)
             avg_return_tracker.append(avg_return)
-            wandb.log({'Avg Training Return (QMIX gathering 1 train seed)': avg_return})
-            wandb.log({'Avg Training Regret (QMIX gathering 1 train seed)': avg_regret})
+            wandb.log({'Avg Training Return (MAPPO herding 1 train seed)': avg_return})
+            # wandb.log({'Avg Training Regret (MAPPO herding 1 train seed)': avg_regret})
             return_tracker = []
             regret_tracker = []
         buffer.insert_episode_batch(episode_batch)
@@ -218,11 +218,11 @@ def run_sequential(args, logger):
             val_return_tracker = []
             # Change this range depending on batch size!
             for i in range(10):
-                episode_batch, returns, regrets = runner.run(test_mode=True) # add regret for gathering
+                episode_batch, returns = runner.run(test_mode=True) # add regret for gathering
                 val_return_tracker.extend(returns)
                 if len(val_return_tracker) > 9:
                     avg_val_return = np.mean(val_return_tracker)
-                    wandb.log({'Generalisation Gap (QMIX gathering 1 train seed)': avg_return_tracker[-1] - avg_val_return})
+                    wandb.log({'Generalisation Gap (MAPPO herding 1 train seed)': avg_return_tracker[-1] - avg_val_return})
                     val_return_tracker = []
 
         if args.save_model and (
@@ -258,15 +258,15 @@ def run_sequential(args, logger):
     cur_episode = episode
     while episode <= (cur_episode + test_max_episode):
 
-        episode_batch, returns, regrets = runner.run(test_mode=True) # add regrets for gathering
+        episode_batch, returns = runner.run(test_mode=True) # add regrets for gathering
         return_tracker.extend(returns)
-        regret_tracker.extend(regrets)
+        # regret_tracker.extend(regrets)
 
         if len(return_tracker) > 99:
             avg_return = np.mean(return_tracker)
-            avg_regret = np.mean(regret_tracker)
-            wandb.log({'Avg Testing Return (QMIX gathering 1 train seed)': avg_return})
-            wandb.log({'Avg Testing Regret (QMIX gathering 1 train seed)': avg_regret})
+            # avg_regret = np.mean(regret_tracker)
+            wandb.log({'Avg Testing Return (MAPPO herding 1 train seed)': avg_return})
+            # wandb.log({'Avg Testing Regret (MAPPO herding 1 train seed)': avg_regret})
             return_tracker = []
             regret_tracker = []
 

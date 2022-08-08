@@ -17,12 +17,12 @@ class Game3(GriddlyGymWrapper):
     def __init__(self, **kwargs):
         self.active_agents = [0, 1, 2]
         self.active_sheep = 1
-        self.n_agents = 3
+        self.n_agents = 2
         self._seed = kwargs['seed']
         self._level_seeds = kwargs['level_seeds']
         self._test_seeds = kwargs['test_seeds']
-        self.n_actions = 4
-        self.agent_view_size = 5
+        self.n_actions = 5
+        self.agent_view_size = 15
         self.record_video = False
         self.recording_started = False
         self.video_filename = ""
@@ -37,14 +37,14 @@ class Game3(GriddlyGymWrapper):
         self.reward = 0
         self.episode_limit = 200
 
-        self.action_map = {
-            0: [0, 0],  # no-op
-            1: [0, 1],  # left
-            2: [0, 2],  # move
-            3: [0, 3],  # right
-        }
+        # self.action_map = {
+        #     0: [0, 0],  # no-op
+        #     1: [0, 1],  # left
+        #     2: [0, 2],  # move
+        #     3: [0, 3],  # right
+        # }
 
-        yaml_filename = "gdy/herding2.yaml"
+        yaml_filename = "gdy/herding_game.yaml"
 
         yaml_path = os.path.join(
             os.path.dirname(os.path.realpath(__file__)), yaml_filename
@@ -78,13 +78,13 @@ class Game3(GriddlyGymWrapper):
         kwargs["global_observer_type"] = kwargs.pop(
             "global_observer_type", gd.ObserverType.VECTOR
         )
-        kwargs["max_steps"] = kwargs.pop("max_steps", 50)
+        kwargs["max_steps"] = kwargs.pop("max_steps", 200)
         kwargs["environment_name"] = "Game3"
         kwargs["level"] = None
         # kwargs["level_seeds"] = self._level_seeds
 
-        generator_config = {'width': 10, 'height': 10, 'max_obstacles': 5, 'num_agents': 3, 'num_sheep': 1,
-                            'num_targets': 1}
+        generator_config = {'min_width': 20, 'max_width': 20, 'min_height': 20, 'max_height': 20, 'max_obstacles': 10,
+                            'num_agents': 2, 'num_sheep': 1, 'num_targets': 1}
 
         self.generator = HerdingLevelGenerator(generator_config, seed=self._seed)
         # kwargs["level"] = Generator.generate()
@@ -127,7 +127,7 @@ class Game3(GriddlyGymWrapper):
 
         terminated = False
 
-        actions = [self.action_map[a] for a in actions]
+        # actions = [self.action_map[a] for a in actions]
 
         # print('doing super step')
         self.observations, self.reward, terminated, info = super().step(actions)
@@ -147,7 +147,7 @@ class Game3(GriddlyGymWrapper):
         if self.active_sheep < 1:
             terminated = True
             info["solved"] = True
-            self.reward = [1, 0, 0]
+            self.reward = [5, 5]
         else:
             info["solved"] = False
 

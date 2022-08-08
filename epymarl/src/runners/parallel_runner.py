@@ -199,13 +199,13 @@ class ParallelRunner:
         # print(episode_return)
         # wandb.log({'episode return': episode_return})
 
-        # comment out for vmas
-        rewards_max = [0 for _ in range(self.batch_size)]
-        for idx, parent_conn in enumerate(self.parent_conns):
-            parent_conn.send(("get_max_reward", None))
-            rewards_max[idx] = parent_conn.recv()
-        regrets = [np.abs(episode_return - reward_max)
-                   for episode_return, reward_max in zip(episode_returns, rewards_max)]
+        # comment out for vmas and herding
+        # rewards_max = [0 for _ in range(self.batch_size)]
+        # for idx, parent_conn in enumerate(self.parent_conns):
+        #     parent_conn.send(("get_max_reward", None))
+        #     rewards_max[idx] = parent_conn.recv()
+        # regrets = [np.abs(episode_return - reward_max)
+        #            for episode_return, reward_max in zip(episode_returns, rewards_max)]
 
         cur_stats = self.test_stats if test_mode else self.train_stats
         cur_returns = self.test_returns if test_mode else self.train_returns
@@ -226,7 +226,7 @@ class ParallelRunner:
                 self.logger.log_stat("epsilon", self.mac.action_selector.epsilon, self.t_env)
             self.log_train_stats_t = self.t_env
 
-        return self.batch, episode_returns, regrets # comment out regrets for vmas
+        return self.batch, episode_returns#, regrets # comment out regrets for vmas and herding
 
     def _log(self, returns, stats, prefix):
         self.logger.log_stat(prefix + "return_mean", np.mean(returns), self.t_env)
