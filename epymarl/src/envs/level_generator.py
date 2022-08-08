@@ -114,15 +114,15 @@ class HerdingLevelGenerator(LevelGenerator):
 
     def __init__(self, config, seed=None):
         super().__init__(config)
-        self._min_width = config.get('min_width', 10)
+        self._min_width = config.get('min_width', 20)
         self._max_width = config.get('max_width', 20)
-        self._min_height = config.get('min_height', 10)
+        self._min_height = config.get('min_height', 20)
         self._max_height = config.get('max_height', 20)
         self._width = None
         self._height = None
         self._max_obstacles = config.get('max_obstacles', 10)
         self._num_sheep = config.get('num_sheep', 1)
-        self._num_agents = config.get('num_agents', 3)
+        self._num_agents = config.get('num_agents', 2)
         self._num_targets = config.get('num_targets', 1)
         self._seed = seed
 
@@ -146,6 +146,21 @@ class HerdingLevelGenerator(LevelGenerator):
             del possible_locations[location_idx]
             if char == 'd':
                 map[location[0], location[1]] = char + str(k+1)
+            elif char == 't':
+                map[location[0], location[1]] = char
+                if map[location[0]+1, location[1]] != 'W':
+                    map[location[0]+1, location[1]] = char
+                    x = 1
+                else:
+                    map[location[0]-1, location[1]] = char
+                    x = -1
+                if map[location[0], location[1]+1] != 'W':
+                    map[location[0], location[1]+1] = char
+                    y = 1
+                else:
+                    map[location[0], location[1]-1] = char
+                    y = -1
+                map[location[0]+x, location[1]+y] = char
             else:
                 map[location[0], location[1]] = char
 
@@ -172,20 +187,20 @@ class HerdingLevelGenerator(LevelGenerator):
             for h in range(1, self._height - 1):
                 possible_locations.append([w, h])
 
-        # map, possible_locations = self._place_items(
-        #     map,
-        #     possible_locations,
-        #     HerdingLevelGenerator.WALL,
-        #     False,
-        #     self._max_obstacles
-        # )
-
         map, possible_locations = self._place_items(
             map,
             possible_locations,
             HerdingLevelGenerator.TARGET,
             True,
             self._num_targets
+        )
+
+        map, possible_locations = self._place_items(
+            map,
+            possible_locations,
+            HerdingLevelGenerator.WALL,
+            True,
+            self._max_obstacles
         )
 
         map, possible_locations = self._place_items(
