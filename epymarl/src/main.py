@@ -30,14 +30,14 @@ def my_main(_run, _config, _log):
     # for i in range(5):
     random_seed = np.random.randint(1111, 9999)
     np.random.seed(random_seed)
-    # level_seeds = np.random.randint(0, 100, 100000)
+    level_seeds = np.random.randint(0, 100, 100000)
     test_seeds = np.random.randint(0, 2**30, 100000)
-    level_seeds = [np.random.randint(0, 100)]*100000
+    # level_seeds = [np.random.randint(0, 100)]*100000
     # level_seeds = [1]*35000
     print('Seed:', random_seed)
-    logging_name = 'qmix-herding-1train-'+str(random_seed)
-    wandb.init(project='marlgen', entity='jonnycook', name=logging_name, reinit=True,
-               settings=wandb.Settings(start_method="fork"))
+    logging_name = 'qmix-herding-100train-'+str(random_seed)
+    wandb.init(project='marlgen', entity='jonnycook', name=logging_name, reinit=True)
+               # settings=wandb.Settings(start_method="fork"))
     # Setting the random seed throughout the modules
     config = config_copy(_config)
     config["seed"] = random_seed

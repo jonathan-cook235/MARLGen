@@ -18,6 +18,7 @@ class EpisodeRunner:
         self.episode_limit = self.env.episode_limit
         self.t = 0
         self.testing = False
+        self.first_test = False
 
         self.t_env = 0
 
@@ -35,7 +36,7 @@ class EpisodeRunner:
         self.mac = mac
 
     def get_env_info(self):
-        self.env.reset()
+        self.env.reset(first_test=self.first_test)
         return self.env.get_env_info()
 
     def save_replay(self):
@@ -51,12 +52,14 @@ class EpisodeRunner:
         #     record_video = True
         # else:
         #     record_video = False
-        self.env.reset(test_mode=self.testing)
+        self.env.reset(test_mode=self.testing, first_test=self.first_test)
         self.t = 0
 
-    def run(self, test_mode=False):
+    def run(self, test_mode=False, first_test=False):
         if test_mode:
             self.testing = True
+        if first_test:
+            self.first_test = True
         self.reset()
         terminated = False
         episode_return = 0
