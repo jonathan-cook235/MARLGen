@@ -36,8 +36,8 @@ def my_main(_run, _config, _log):
     # level_seeds = [1]*35000
     print('Seed:', random_seed)
     logging_name = 'qmix-herding-1train-'+str(random_seed)
-    wandb.init(project='marlgen', entity='jonnycook', name=logging_name, reinit=True)
-               # settings=wandb.Settings(start_method="fork"))
+    wandb.init(project='marlgen', entity='jonnycook', name=logging_name, reinit=True,
+               settings=wandb.Settings(start_method="fork"))
     # Setting the random seed throughout the modules
     config = config_copy(_config)
     config["seed"] = random_seed

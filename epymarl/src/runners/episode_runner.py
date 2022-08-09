@@ -99,8 +99,9 @@ class EpisodeRunner:
             self.batch.update(post_transition_data, ts=self.t)
 
             self.t += 1
+
+        returns.append(episode_return)
         # for griddly gathering
-        # returns.append(episode_return)
         # reward_max = self.env.get_reward_max()
         # regrets.append(np.abs(episode_return - reward_max))
 
