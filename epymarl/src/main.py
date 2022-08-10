@@ -30,12 +30,12 @@ def my_main(_run, _config, _log):
     # for i in range(5):
     random_seed = np.random.randint(1111, 9999)
     np.random.seed(random_seed)
-    level_seeds = np.random.randint(0, 100, 100000)
+    # level_seeds = np.random.randint(0, 100, 100000)
     test_seeds = np.random.randint(0, 2**30, 100000)
-    # level_seeds = [np.random.randint(0, 100)]*100000
+    level_seeds = [np.random.randint(0, 100)]*100000
     # level_seeds = [1]*35000
     print('Seed:', random_seed)
-    logging_name = 'mappo-herding-100train-'+str(random_seed)
+    logging_name = 'mappo-foraging-1train-'+str(random_seed)
     wandb.init(project='marlgen', entity='jonnycook', name=logging_name, reinit=True,
                settings=wandb.Settings(start_method="fork"))
     # Setting the random seed throughout the modules
@@ -52,7 +52,7 @@ def my_main(_run, _config, _log):
     config['env_args']['test_seeds'] = config["test_seeds"]
 
     # run the framework
-    config = {'runner': 'parallel', 'mac': 'basic_mac', 'env': 'herding',
+    config = {'runner': 'parallel', 'mac': 'basic_mac', 'env': 'griddlygen',
               # griddly:
               'env_args': {'seed': random_seed, 'level_seeds': level_seeds, 'test_seeds': test_seeds},
               # vmas
@@ -113,7 +113,7 @@ def config_copy(config):
 
 if __name__ == '__main__':
     # params = deepcopy(sys.argv)
-    params = ['src/main.py', '--config=mappo', '--env-config=herding']
+    params = ['src/main.py', '--config=mappo', '--env-config=griddlygen']
     th.set_num_threads(1)
 
     # Get the defaults from default.yaml
