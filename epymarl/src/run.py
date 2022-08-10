@@ -169,7 +169,7 @@ def run_sequential(args, logger):
             return
 
     # start training
-    max_episode = 30#000
+    max_episode = 30000
     test_max_episode = 1000
     episode = 0
     last_test_T = -args.test_interval - 1
