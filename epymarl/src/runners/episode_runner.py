@@ -105,8 +105,8 @@ class EpisodeRunner:
 
         returns.append(episode_return)
         # for griddly gathering
-        # reward_max = self.env.get_reward_max()
-        # regrets.append(np.abs(episode_return - reward_max))
+        reward_max = self.env.get_reward_max()
+        regrets.append(np.abs(episode_return - reward_max))
 
         # print('EPISODE RETURN:')
         # print(episode_return)
@@ -146,7 +146,7 @@ class EpisodeRunner:
                 self.logger.log_stat("epsilon", self.mac.action_selector.epsilon, self.t_env)
             self.log_train_stats_t = self.t_env
 
-        return self.batch, returns#, regrets # add regrets for gathering
+        return self.batch, returns, regrets # add regrets for gathering
 
     def _log(self, returns, stats, prefix):
         self.logger.log_stat(prefix + "return_mean", np.mean(returns), self.t_env)

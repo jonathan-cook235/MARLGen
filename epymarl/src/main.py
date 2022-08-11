@@ -65,7 +65,7 @@ def my_main(_run, _config, _log):
               'local_results_path': 'results', 'gamma': 0.99, 'batch_size': 10, 'buffer_size': 5000, 'lr': 0.0005,
               'optim_alpha': 0.99, 'optim_eps': 1e-05, 'grad_norm_clip': 10, 'add_value_last_step': True,
               'agent': 'rnn', 'hidden_dim': 64, 'obs_agent_id': True, 'obs_last_action': False, 'repeat_id': 1,
-              'label': 'default_label', 'hypergroup': None, 'action_selector': 'soft_policies',
+              'label': 'default_label', 'hypergroup': None, 'action_selector': 'epsilon_greedy',
               'epsilon_start': 1.0, 'epsilon_finish': 0.05, 'epsilon_anneal_time': 50000, 'evaluation_epsilon': 0.0,
               'mask_before_softmax': True, 'target_update_interval_or_tau': 200, 'obs_individual_obs': False,
               'agent_output_type': 'q', 'learner': 'q_learner', 'entropy_coef': 0.01, 'standardise_returns': False,
