@@ -7,11 +7,11 @@ class RNNAgent(nn.Module):
         super(RNNAgent, self).__init__()
         self.args = args
         # Below is for gathering
-        # input_shape = int((input_shape+12)/4)
+        input_shape = int((input_shape+12)/4)
         # Below is for vmas
         # input_shape = int((input_shape-3)/3)
         # Below is for herding
-        input_shape = int(input_shape - 900)
+        # input_shape = int(input_shape - 900)
         self.fc1 = nn.Linear(input_shape, args.hidden_dim)
         self.args.use_rnn = False
         if self.args.use_rnn:
