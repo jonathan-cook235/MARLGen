@@ -194,7 +194,7 @@ def run_sequential(args, logger):
         if len(return_tracker) > 99:
             avg_return = np.mean(return_tracker)
             avg_regret = np.mean(regret_tracker)
-            avg_return_tracker.append(avg_return)
+            avg_regret_tracker.append(avg_regret)
             wandb.log({'Avg Training Return (MAPPO foraging 1 train seed)': avg_return})
             wandb.log({'Avg Training Regret (MAPPO foraging 1 train seed)': avg_regret})
             return_tracker = []
@@ -219,8 +219,8 @@ def run_sequential(args, logger):
             # Change this range depending on batch size! 1 for mappo
             # for i in range(10):
             episode_batch, returns, regrets = runner.run(test_mode=True) # add regret for gathering
-            val_return_tracker.extend(regrets)
-            if len(val_return_tracker) > 9:
+            val_regret_tracker.extend(regrets)
+            if len(val_regret_tracker) > 9:
                 avg_val_regret = np.mean(val_regret_tracker) # change to regret for gathering
                 wandb.log({'Generalisation Gap (MAPPO herding 100 train seeds)': avg_regret_tracker[-1] - avg_val_regret})
                 val_regret_tracker = []

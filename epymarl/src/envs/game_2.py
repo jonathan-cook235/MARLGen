@@ -31,6 +31,7 @@ class Game2(GriddlyGymWrapper):
         self.tested_before = False
         self.validation_count = 0
         self._test_episode_count = 0
+        self.test_count = 100000000
         self._episode_steps = 0
         self._total_steps = 0
         self.state = None
@@ -239,20 +240,19 @@ class Game2(GriddlyGymWrapper):
         # print(self.reward_max)
         return self.reward_max
 
-    def reset(self, record_video=False, test_mode=False, **kwargs):
+    def reset(self, record_video=False, test_mode=False, first_test=False, **kwargs):
         """Returns initial observations and states.
         :param **kwargs:
         """
         self.record_video = record_video
         if test_mode:
-            # if not self.tested_before:
-            #     self._episode_count = self.validation_count
-            #     self.tested_before = True
             level_seed = self._test_seeds[self.validation_count]
+            if first_test:
+                self.test_count = self.validation_count
             self.validation_count += 1
         else:
             level_seed = self._level_seeds[self._episode_count]
-        self.level, self.reward_max = self.generator.generate(level_seed)
+        self.level, self.reward_max = self.generator.generate(level_seed, self.validation_count-self.test_count)
         self._episode_steps = 0
         self.last_action = np.zeros((self.n_agents, self.n_actions))
         state_obs = super().reset(global_observations=True, level_string=self.level)
