@@ -222,7 +222,7 @@ def run_sequential(args, logger):
             val_regret_tracker.extend(regrets)
             if len(val_regret_tracker) > 9:
                 avg_val_regret = np.mean(val_regret_tracker) # change to regret for gathering
-                wandb.log({'Generalisation Gap (MAPPO herding 100 train seeds)': avg_regret_tracker[-1] - avg_val_regret})
+                wandb.log({'Generalisation Gap (MAPPO herding 1 train seed)': avg_regret_tracker[-1] - avg_val_regret})
                 val_regret_tracker = []
 
         if args.save_model and (
