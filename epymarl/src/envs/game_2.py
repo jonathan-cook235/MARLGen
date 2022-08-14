@@ -252,7 +252,19 @@ class Game2(GriddlyGymWrapper):
             self.validation_count += 1
         else:
             level_seed = self._level_seeds[self._episode_count]
-        self.level, self.reward_max = self.generator.generate(level_seed, self.validation_count-self.test_count)
+        test_count = self.validation_count - self.test_count
+        if test_count > 0:
+            if test_count < 200:
+                self.episode_limit = 139
+            elif 200 < test_count < 400:
+                self.episode_limit = 200
+            elif 400 < test_count < 600:
+                self.episode_limit = 272
+            elif 600 < test_count < 800:
+                self.episode_limit = 356
+            elif 800 < test_count <= 1000:
+                self.episode_limit = 450
+        self.level, self.reward_max = self.generator.generate(level_seed, test_count)
         self._episode_steps = 0
         self.last_action = np.zeros((self.n_agents, self.n_actions))
         state_obs = super().reset(global_observations=True, level_string=self.level)

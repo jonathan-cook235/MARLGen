@@ -210,7 +210,7 @@ def run_sequential(args, logger):
             val_regret_tracker = []
             val_return_tracker = []
             # Change this range depending on batch size! 1 for mappo
-            for i in range(args.batch_size_run):
+            for i in range(11-args.batch_size_run):
                 episode_batch, returns, regrets = runner.run(test_mode=True) # add regret for gathering
                 val_regret_tracker.extend(regrets)
                 val_return_tracker.extend(returns)
