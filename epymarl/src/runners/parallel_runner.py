@@ -102,7 +102,7 @@ class ParallelRunner:
             pre_transition_data["state"].append(data["state"]) # comment out for vmas
             pre_transition_data["avail_actions"].append(data["avail_actions"])
             pre_transition_data["obs"].append(data["obs"])
-        self.batch.update(pre_transition_data, ts=0)
+        self.batch.update(pre_transition_data, ts=0, env=self.args.env)
 
         self.t = 0
         self.env_steps_this_run = 0
@@ -132,7 +132,7 @@ class ParallelRunner:
             actions_chosen = {
                 "actions": actions.unsqueeze(1)
             }
-            self.batch.update(actions_chosen, bs=envs_not_terminated, ts=self.t, mark_filled=False)
+            self.batch.update(actions_chosen, bs=envs_not_terminated, ts=self.t, mark_filled=False, env=self.args.env)
             # print('ACTIONS CHOSEN:')
             # print(actions_chosen)
 
@@ -189,26 +189,31 @@ class ParallelRunner:
                     pre_transition_data["obs"].append(data["obs"])
 
             # Add post_transiton data into the batch
-            self.batch.update(post_transition_data, bs=envs_not_terminated, ts=self.t, mark_filled=False)
+            self.batch.update(post_transition_data, bs=envs_not_terminated, ts=self.t, mark_filled=False,
+                              env=self.args.env)
             # print('Batch updated')
 
             # Move onto the next timestep
             self.t += 1
 
             # Add the pre-transition data
-            self.batch.update(pre_transition_data, bs=envs_not_terminated, ts=self.t, mark_filled=True)
+            self.batch.update(pre_transition_data, bs=envs_not_terminated, ts=self.t, mark_filled=True,
+                              env=self.args.env)
 
         # print('EPISODE RETURN:')
         # print(episode_return)
         # wandb.log({'episode return': episode_return})
 
         # comment out for vmas and herding
-        rewards_max = [0 for _ in range(self.batch_size)]
-        for idx, parent_conn in enumerate(self.parent_conns):
-            parent_conn.send(("get_max_reward", None))
-            rewards_max[idx] = parent_conn.recv()
-        regrets = [np.abs(episode_return - reward_max)
-                   for episode_return, reward_max in zip(episode_returns, rewards_max)]
+        if self.args.env == 'griddlygen':
+            rewards_max = [0 for _ in range(self.batch_size)]
+            for idx, parent_conn in enumerate(self.parent_conns):
+                parent_conn.send(("get_max_reward", None))
+                rewards_max[idx] = parent_conn.recv()
+            regrets = [np.abs(episode_return - reward_max)
+                       for episode_return, reward_max in zip(episode_returns, rewards_max)]
+        else:
+            regrets = []
 
         cur_stats = self.test_stats if test_mode else self.train_stats
         cur_returns = self.test_returns if test_mode else self.train_returns

@@ -91,7 +91,8 @@ class EpisodeBatch:
             self.data.episode_data[k] = v.to(device)
         self.device = device
 
-    def update(self, data, bs=slice(None), ts=slice(None), mark_filled=True):
+    def update(self, data, bs=slice(None), ts=slice(None), mark_filled=True, env=None):
+        self.env = env
         slices = self._parse_slices((bs, ts))
         for k, v in data.items():
             # print(k)
@@ -126,13 +127,18 @@ class EpisodeBatch:
                 # Changed first index to whatever batch size is in all reshaping that follows
                 # v = th.reshape(v, (1, target[k][_slices].shape[-2], target[k][_slices].shape[-1]))
                 # Below is for gathering
-                v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-2], target[k][_slices].shape[-1]))
+                if self.env == 'griddlygen':
+                    # print(np.prod(list(v.size())))
+                    v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-2],
+                                       target[k][_slices].shape[-1]))
                 # Below is for herding
-                # v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-2], target[k][_slices].shape[-1]))
+                elif self.env == 'herding':
+                    v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-2], target[k][_slices].shape[-1]))
             elif k == 'obs':
                 v = v.squeeze()
                 # griddly:
-                v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-3], 1, target[k][_slices].shape[-1]))
+                if self.env == 'griddlygen' or 'herding':
+                    v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-3], 1, target[k][_slices].shape[-1]))
                 # vmas:
                 # v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-3], 4, 11))
             elif k == 'reward':
@@ -271,9 +277,10 @@ class EpisodeBatch:
 
 
 class ReplayBuffer(EpisodeBatch):
-    def __init__(self, scheme, groups, buffer_size, max_seq_length, preprocess=None, device="cpu"):
+    def __init__(self, scheme, groups, buffer_size, env, max_seq_length, preprocess=None, device="cpu"):
         super(ReplayBuffer, self).__init__(scheme, groups, buffer_size, max_seq_length, preprocess=preprocess, device=device)
         self.buffer_size = buffer_size  # same as self.batch_size but more explicit
+        self.env = env
         self.buffer_index = 0
         self.episodes_in_buffer = 0
 
@@ -282,9 +289,11 @@ class ReplayBuffer(EpisodeBatch):
             self.update(ep_batch.data.transition_data,
                         slice(self.buffer_index, self.buffer_index + ep_batch.batch_size),
                         slice(0, ep_batch.max_seq_length),
-                        mark_filled=False)
+                        mark_filled=False,
+                        env=self.env)
             self.update(ep_batch.data.episode_data,
-                        slice(self.buffer_index, self.buffer_index + ep_batch.batch_size))
+                        slice(self.buffer_index, self.buffer_index + ep_batch.batch_size),
+                        env=self.env)
             self.buffer_index = (self.buffer_index + ep_batch.batch_size)
             self.episodes_in_buffer = max(self.episodes_in_buffer, self.buffer_index)
             self.buffer_index = self.buffer_index % self.buffer_size

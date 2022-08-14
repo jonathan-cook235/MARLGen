@@ -76,7 +76,7 @@ class EpisodeRunner:
                 "obs": [self.env.get_obs()]
             }
 
-            self.batch.update(pre_transition_data, ts=self.t)
+            self.batch.update(pre_transition_data, ts=self.t, env=self.args.env)
 
             # Pass the entire batch of experiences up till now to the agents
             # Receive the actions for each agent at this timestep in a batch of size 1
@@ -99,14 +99,15 @@ class EpisodeRunner:
                 "terminated": [(terminated != env_info.get("episode_limit", False),)],
             }
 
-            self.batch.update(post_transition_data, ts=self.t)
+            self.batch.update(post_transition_data, ts=self.t, env=self.args.env)
 
             self.t += 1
 
         returns.append(episode_return)
         # for griddly gathering
-        reward_max = self.env.get_reward_max()
-        regrets.append(np.abs(episode_return - reward_max))
+        if self.args.env == 'griddlygen':
+            reward_max = self.env.get_reward_max()
+            regrets.append(np.abs(episode_return - reward_max))
 
         # print('EPISODE RETURN:')
         # print(episode_return)
@@ -119,11 +120,11 @@ class EpisodeRunner:
         }
         # print('LAST OBS:')
         # print(last_data["obs"])
-        self.batch.update(last_data, ts=self.t)
+        self.batch.update(last_data, ts=self.t, env=self.args.env)
 
         # Select actions in the last stored state
         actions = self.mac.select_actions(self.batch, t_ep=self.t, t_env=self.t_env, test_mode=test_mode)
-        self.batch.update({"actions": actions}, ts=self.t)
+        self.batch.update({"actions": actions}, ts=self.t, env=self.args.env)
 
         cur_stats = self.test_stats if test_mode else self.train_stats
         cur_returns = self.test_returns if test_mode else self.train_returns
