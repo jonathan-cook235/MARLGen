@@ -82,7 +82,7 @@ class GeneralLevelGenerator(LevelGenerator):
             self._max_obstacles = 68
             self._max_potions = 23
 
-    def generate(self, level_seed, test_count):
+    def generate(self, level_seed, test_count, variation):
         if test_count > 0:
             self._scale_test(test_count)
         # np.random.seed(self._seed)
@@ -112,7 +112,7 @@ class GeneralLevelGenerator(LevelGenerator):
             map,
             possible_locations,
             GeneralLevelGenerator.POTION,
-            True,
+            True if not variation else False,
             self._max_potions
         )
 
@@ -120,7 +120,7 @@ class GeneralLevelGenerator(LevelGenerator):
             map,
             possible_locations,
             GeneralLevelGenerator.HOLE,
-            True,
+            True if not variation else False,
             self._max_holes
         )
 
@@ -128,7 +128,7 @@ class GeneralLevelGenerator(LevelGenerator):
             map,
             possible_locations,
             GeneralLevelGenerator.WALL,
-            True,
+            True if not variation else False,
             self._max_holes
         )
 
@@ -240,7 +240,7 @@ class HerdingLevelGenerator(LevelGenerator):
             self._max_height = 40
             self._max_obstacles = 40
 
-    def generate(self, level_seed, test_count):
+    def generate(self, level_seed, test_count, variation):
         if test_count > 0:
             self._scale_test(test_count)
         # np.random.seed(self._seed)
@@ -276,7 +276,7 @@ class HerdingLevelGenerator(LevelGenerator):
             map,
             possible_locations,
             HerdingLevelGenerator.WALL,
-            True if test_count > 0 else False,
+            True if test_count > 0 or not variation else False,
             self._max_obstacles
         )
 

@@ -20,6 +20,7 @@ class Game2(GriddlyGymWrapper):
         self._seed = kwargs['seed']
         self._level_seeds = kwargs['level_seeds']
         self._test_seeds = kwargs['test_seeds']
+        self.variation = kwargs['variation']
         self.n_actions = 5
         # self.grid_width = 9
         # self.grid_height = 10
@@ -87,7 +88,11 @@ class Game2(GriddlyGymWrapper):
         kwargs["level"] = None
         # kwargs["level_seeds"] = self._level_seeds
 
-        generator_config = {'min_width': 30, 'max_width': 30, 'min_height': 30, 'max_height': 30, 'max_potions': 10,
+        if self.variation:
+            generator_config = {'min_width': 20, 'max_width': 30, 'min_height': 20, 'max_height': 30, 'max_potions': 10,
+                                'max_holes': 30, 'num_agents': 4}
+        else:
+            generator_config = {'min_width': 30, 'max_width': 30, 'min_height': 30, 'max_height': 30, 'max_potions': 10,
                             'max_holes': 30, 'num_agents': 4}
 
         self.generator = GeneralLevelGenerator(generator_config, seed=self._seed)
@@ -264,7 +269,7 @@ class Game2(GriddlyGymWrapper):
                 self.episode_limit = 356
             elif 800 < test_count <= 1000:
                 self.episode_limit = 450
-        self.level, self.reward_max = self.generator.generate(level_seed, test_count)
+        self.level, self.reward_max = self.generator.generate(level_seed, test_count, self.variation)
         self._episode_steps = 0
         self.last_action = np.zeros((self.n_agents, self.n_actions))
         state_obs = super().reset(global_observations=True, level_string=self.level)
