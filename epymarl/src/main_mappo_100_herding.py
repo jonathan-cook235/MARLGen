@@ -53,7 +53,7 @@ def my_main(_run, _config, _log):
     # run the framework
     config = {'runner': 'parallel', 'mac': 'basic_mac', 'env': 'herding',
               # griddly:
-              'env_args': {'seed': random_seed, 'level_seeds': level_seeds, 'test_seeds': test_seeds},
+              'env_args': {'seed': random_seed, 'level_seeds': level_seeds, 'test_seeds': test_seeds, 'variation': True},
               # vmas
               # 'env_args': {},
               'batch_size_run': 10,
