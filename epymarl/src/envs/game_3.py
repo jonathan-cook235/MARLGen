@@ -15,13 +15,14 @@ import matplotlib.pyplot as plt
 
 class Game3(GriddlyGymWrapper):
     def __init__(self, **kwargs):
-        self.active_agents = [0, 1, 2]
+        self.active_agents = [0, 1]
         self.active_sheep = 1
         self.n_agents = 2
         self._seed = kwargs['seed']
         self._level_seeds = kwargs['level_seeds']
         self._test_seeds = kwargs['test_seeds']
-        self.n_actions = 4
+        self.variation = kwargs['variation']
+        self.n_actions = 5
         self.agent_view_size = 15
         self.record_video = False
         self.recording_started = False
@@ -79,12 +80,15 @@ class Game3(GriddlyGymWrapper):
         kwargs["global_observer_type"] = kwargs.pop(
             "global_observer_type", gd.ObserverType.VECTOR
         )
-        kwargs["max_steps"] = kwargs.pop("max_steps", 200)
+        kwargs["max_steps"] = kwargs.pop("max_steps", self.episode_limit)
         kwargs["environment_name"] = "Game3"
         kwargs["level"] = None
         # kwargs["level_seeds"] = self._level_seeds
-
-        generator_config = {'min_width': 20, 'max_width': 20, 'min_height': 20, 'max_height': 20, 'max_obstacles': 10,
+        if self.variation:
+            generator_config = {'min_width': 20, 'max_width': 30, 'min_height': 20, 'max_height': 30,
+                                'max_obstacles': 20, 'num_agents': 2, 'num_sheep': 1, 'num_targets': 1}
+        else:
+            generator_config = {'min_width': 20, 'max_width': 20, 'min_height': 20, 'max_height': 20, 'max_obstacles': 10,
                             'num_agents': 2, 'num_sheep': 1, 'num_targets': 1}
 
         self.generator = HerdingLevelGenerator(generator_config, seed=self._seed)
@@ -232,8 +236,8 @@ class Game3(GriddlyGymWrapper):
         if agent_id not in self.active_agents:
             return [1] + [0] * (self.n_actions - 1)
         else:
-            # return [0] + [1] * (self.n_actions - 1)
-            return [1] * self.n_actions
+            return [0] + [1] * (self.n_actions - 1)
+            # return [1] * self.n_actions
 
     def get_total_actions(self):
         """Returns the total number of actions an agent could ever take."""
@@ -251,7 +255,8 @@ class Game3(GriddlyGymWrapper):
             self.validation_count += 1
         else:
             level_seed = self._level_seeds[self._episode_count]
-        self.level = self.generator.generate(level_seed, self.validation_count-self.test_count)
+        test_count = self.validation_count - self.test_count
+        self.level, self.reward_max = self.generator.generate(level_seed, test_count, self.variation)
         self._episode_steps = 0
         self.last_action = np.zeros((self.n_agents, self.n_actions))
         state_obs = super().reset(global_observations=True, level_string=self.level)
