@@ -48,6 +48,7 @@ def my_main(_run, _config, _log):
     config['env_args']['seed'] = config["seed"]
     config['env_args']['level_seeds'] = config["level_seeds"]
     config['env_args']['test_seeds'] = config["test_seeds"]
+    config['env_args']['variation'] = True
 
     # run the framework
     config = {'runner': 'parallel', 'mac': 'basic_mac', 'env': 'griddlygen',
