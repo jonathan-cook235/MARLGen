@@ -184,11 +184,11 @@ def run_sequential(args, logger):
             avg_regret = np.mean(regret_tracker)
             avg_regret_tracker.append(avg_regret)
             avg_return_tracker.append(avg_return)
-            wandb.log({'Avg Training Return (' + args.name + logging_env + str(
-                args.num_train_levels) + 'train)': avg_return}, step=episode)
+            wandb.log({'Avg Training Return (' + args.name.upper() + ' ' + logging_env + ' ' + str(
+                args.num_train_levels) + ' ' + 'train)': avg_return}, step=episode)
             if args.env == 'griddlygen':
-                wandb.log({'Avg Training Regret (' + args.name + logging_env + str(
-                    args.num_train_levels) + 'train)': avg_regret}, step=episode)
+                wandb.log({'Avg Training Regret (' + args.name.upper() + ' ' + logging_env + ' ' + str(
+                    args.num_train_levels) + ' ' + 'train)': avg_regret}, step=episode)
             return_tracker = []
             regret_tracker = []
         buffer.insert_episode_batch(episode_batch)
@@ -214,19 +214,19 @@ def run_sequential(args, logger):
                 episode_batch, returns, regrets = runner.run(test_mode=True) # add regret for gathering
                 val_regret_tracker.extend(regrets)
                 val_return_tracker.extend(returns)
-                if len(val_regret_tracker) > 9:
+                if len(val_return_tracker) > 9:
                     avg_val_regret = np.mean(val_regret_tracker) # change to regret for gathering
                     avg_val_return = np.mean(val_return_tracker)
                     if args.env == 'griddlygen':
-                        wandb.log({'Generalisation Gap (' + args.name + logging_env + str(
-                            args.num_train_levels) + 'train)': avg_regret_tracker[-1] - avg_val_regret}, step=episode)
-                        wandb.log({'Avg Test Regret (' + args.name + logging_env + str(
-                            args.num_train_levels) + 'train)': avg_val_regret}, step=episode)
+                        wandb.log({'Generalisation Gap (' + args.name.upper() + ' ' + logging_env + ' ' + str(
+                            args.num_train_levels) + ' ' + 'train)': avg_regret_tracker[-1] - avg_val_regret}, step=episode)
+                        wandb.log({'Avg Test Regret (' + args.name + ' ' + logging_env + ' ' + str(
+                            args.num_train_levels) + ' ' + 'train)': avg_val_regret}, step=episode)
                     else:
-                        wandb.log({'Generalisation Gap (' + args.name + logging_env + str(
-                            args.num_train_levels) + 'train)': avg_return_tracker[-1] - avg_val_return}, step=episode)
-                    wandb.log({'Avg Test Return (' + args.name + logging_env + str(
-                        args.num_train_levels) + 'train)': avg_val_return}, step=episode)
+                        wandb.log({'Generalisation Gap (' + args.name.upper() + ' ' + logging_env + ' ' + str(
+                            args.num_train_levels) + ' ' + 'train)': avg_return_tracker[-1] - avg_val_return}, step=episode)
+                    wandb.log({'Avg Test Return (' + args.name + ' ' + logging_env + str(
+                        args.num_train_levels) + ' ' + 'train)': avg_val_return}, step=episode)
                     val_regret_tracker = []
 
         if args.save_model and (
@@ -267,11 +267,11 @@ def run_sequential(args, logger):
             if len(return_tracker) > 99:
                 avg_return = np.mean(return_tracker)
                 avg_regret = np.mean(regret_tracker)
-                wandb.log({'Avg Evaluation Return (' + args.name + logging_env + str(
-                    args.num_train_levels) +'train)': avg_return}, step=episode-cur_episode)
+                wandb.log({'Avg Evaluation Return (' + args.name.upper() + ' ' + logging_env + ' ' + str(
+                    args.num_train_levels) + ' ' + 'train)': avg_return}, step=episode-cur_episode)
                 if args.env == 'griddlygen':
-                    wandb.log({'Avg Evaluation Regret (' + args.name + logging_env + str(
-                        args.num_train_levels) + 'train)': avg_regret}, step=episode-cur_episode)
+                    wandb.log({'Avg Evaluation Regret (' + args.name.upper() + ' ' + logging_env + ' ' + str(
+                        args.num_train_levels) + ' ' + 'train)': avg_regret}, step=episode-cur_episode)
                 return_tracker = []
                 regret_tracker = []
 

@@ -1,8 +1,8 @@
 #$ -S /bin/bash
-#$ -N QMIX-100-Herding
+#$ -N MAPPO-1-Herding
 #$ -cwd
-#$ -o $HOME/result-qmix-100-herding.out
-#$ -e $HOME/result-qmix-100-herding.err
+#$ -o $HOME/result-mappo-1-herding.out
+#$ -e $HOME/result-mappo-1-herding.err
 #$ -l h_rt=12:00:00
 #$ -l gpu=true
 #$ -R y
@@ -57,7 +57,7 @@ export VK_LAYER_PATH=$VULKAN_SDK/etc/vulkan/explicit_layer.d
 
 echo "Running experiment..."
 # run experiment with these arguments
-python Dissertation/epymarl/src/main_qmix_100_herding.py 
+python Dissertation/epymarl/src/main_mappo_1_herding.py 
 
 date
 echo "We're Done!"

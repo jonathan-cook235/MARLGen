@@ -1,8 +1,8 @@
 #$ -S /bin/bash
-#$ -N episodic-control-array
+#$ -N MAPPO-100-Herding
 #$ -cwd
-#$ -o $HOME/result-arr-aug15-1.out
-#$ -e $HOME/result-arr-aug15-1.err
+#$ -o $HOME/result-mappo-100-herding.out
+#$ -e $HOME/result-mappo-100-herding.err
 #$ -l h_rt=12:00:00
 #$ -l gpu=true
 #$ -R y

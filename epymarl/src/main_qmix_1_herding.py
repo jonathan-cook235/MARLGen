@@ -29,12 +29,12 @@ def my_main(_run, _config, _log):
     random_seed = np.random.randint(1111, 9999)
     np.random.seed(random_seed)
     # 100 train seeds:
-    level_seeds = np.random.randint(0, 100, 100000)
+    # level_seeds = np.random.randint(0, 100, 100000)
     test_seeds = np.random.randint(0, 2**30, 100000)
     # 1 train seed:
-    # level_seeds = [np.random.randint(0, 100)]*100000
+    level_seeds = [np.random.randint(0, 100)]*100000
     print('Seed:', random_seed)
-    logging_name = 'MAPPO-Herding-100Train-'+str(random_seed)
+    logging_name = 'QMIX-Herding-1Train-'+str(random_seed)
     wandb.init(project='marlgen', entity='jonnycook', name=logging_name, reinit=True,
                settings=wandb.Settings(start_method="fork"))
     # Setting the random seed throughout the modules
@@ -48,30 +48,30 @@ def my_main(_run, _config, _log):
     config['env_args']['seed'] = config["seed"]
     config['env_args']['level_seeds'] = config["level_seeds"]
     config['env_args']['test_seeds'] = config["test_seeds"]
-    config['env_args']['variation'] = True
+    config['env_args']['variation'] = False
 
     # run the framework
-    config = {'runner': 'parallel', 'mac': 'basic_mac', 'env': 'herding',
+    config = {'runner': 'episode', 'mac': 'basic_mac', 'env': 'herding',
               # griddly:
-              'env_args': {'seed': random_seed, 'level_seeds': level_seeds, 'test_seeds': test_seeds, 'variation': True},
+              'env_args': {'seed': random_seed, 'level_seeds': level_seeds, 'test_seeds': test_seeds, 'variation': False},
               # vmas
               # 'env_args': {},
-              'batch_size_run': 10,
+              'batch_size_run': 1,
               'test_nepisode': 100, 'test_interval': 50000, 'test_greedy': True, 'log_interval': 10000,
               'runner_log_interval': 1000, 'learner_log_interval': 10000, 't_max': 20050000, 'use_cuda': True,
               'buffer_cpu_only': True, 'use_tensorboard': False, 'save_model': False, 'save_model_interval': 50000,
               'checkpoint_path': '', 'evaluate': False, 'load_step': 0, 'save_replay': False,
-              'local_results_path': 'results', 'gamma': 0.99, 'batch_size': 10, 'buffer_size': 10, 'lr': 0.00005,
+              'local_results_path': 'results', 'gamma': 0.99, 'batch_size': 10, 'buffer_size': 5000, 'lr': 0.0005,
               'optim_alpha': 0.99, 'optim_eps': 1e-05, 'grad_norm_clip': 10, 'add_value_last_step': True,
               'agent': 'rnn', 'hidden_dim': 64, 'obs_agent_id': True, 'obs_last_action': False, 'repeat_id': 1,
-              'label': 'default_label', 'hypergroup': None, 'action_selector': 'soft_policies',
+              'label': 'default_label', 'hypergroup': None, 'action_selector': 'epsilon_greedy',
               'epsilon_start': 1.0, 'epsilon_finish': 0.05, 'epsilon_anneal_time': 50000, 'evaluation_epsilon': 0.0,
               'mask_before_softmax': True, 'target_update_interval_or_tau': 200, 'obs_individual_obs': False,
-              'agent_output_type': 'pi_logits', 'learner': 'ppo_learner', 'entropy_coef': 0.01, 'standardise_returns': True,
+              'agent_output_type': 'q', 'learner': 'q_learner', 'entropy_coef': 0.01, 'standardise_returns': False,
               'standardise_rewards': True, 'use_rnn': False, 'q_nstep': 5, 'critic_type': 'cv_critic', 'epochs': 4,
-              'eps_clip': 0.2, 'name': "mappo", 'seed': random_seed, 'mixing_embed_dim': 32, 'hypernet_layers': 2,
+              'eps_clip': 0.2, 'name': "qmix", 'seed': random_seed, 'mixing_embed_dim': 32, 'hypernet_layers': 2,
               'hypernet_embed': 64, 'max_before_softmax': True, 'double_q': True, 'mixer': "qmix",
-              'num_train_seeds': 100000, 'num_test_seeds': 100000, 'num_train_levels': 100}
+              'num_train_seeds': 100000, 'num_test_seeds': 100000, 'num_train_levels': 1}
     run(_run, config, _log)
 
 
@@ -112,7 +112,7 @@ def config_copy(config):
 
 if __name__ == '__main__':
     # params = deepcopy(sys.argv)
-    params = ['src/main.py', '--config=mappo', '--env-config=herding']
+    params = ['src/main.py', '--config=qmix', '--env-config=herding']
     th.set_num_threads(1)
 
     # Get the defaults from default.yaml

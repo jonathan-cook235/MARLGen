@@ -16,13 +16,13 @@ import matplotlib.pyplot as plt
 class Game3(GriddlyGymWrapper):
     def __init__(self, **kwargs):
         self.active_agents = [0, 1]
-        self.active_sheep = 1
+        self.active_sheep = 3
         self.n_agents = 2
         self._seed = kwargs['seed']
         self._level_seeds = kwargs['level_seeds']
         self._test_seeds = kwargs['test_seeds']
         self.variation = kwargs['variation']
-        self.n_actions = 5
+        self.n_actions = 4
         self.agent_view_size = 15
         self.record_video = False
         self.recording_started = False
@@ -39,12 +39,13 @@ class Game3(GriddlyGymWrapper):
         self.reward = 0
         self.episode_limit = 200
 
-        # self.action_map = {
-        #     0: [0, 0],  # no-op
-        #     1: [0, 1],  # left
-        #     2: [0, 2],  # move
-        #     3: [0, 3],  # right
-        # }
+        self.action_map = {
+            0: [0, 0],  # no-op
+            1: [0, 1],  # left
+            2: [0, 2],  # move
+            3: [0, 3],  # right
+            # 4: [1, 1],  # gather
+        }
 
         yaml_filename = "gdy/herding_game.yaml"
 
@@ -85,11 +86,11 @@ class Game3(GriddlyGymWrapper):
         kwargs["level"] = None
         # kwargs["level_seeds"] = self._level_seeds
         if self.variation:
-            generator_config = {'min_width': 20, 'max_width': 30, 'min_height': 20, 'max_height': 30,
-                                'max_obstacles': 20, 'num_agents': 2, 'num_sheep': 1, 'num_targets': 1}
+            generator_config = {'min_width': 10, 'max_width': 20, 'min_height': 10, 'max_height': 20,
+                                'max_obstacles': 10, 'num_agents': 2, 'num_sheep': 3, 'num_targets': 1}
         else:
             generator_config = {'min_width': 20, 'max_width': 20, 'min_height': 20, 'max_height': 20, 'max_obstacles': 10,
-                            'num_agents': 2, 'num_sheep': 1, 'num_targets': 1}
+                            'num_agents': 2, 'num_sheep': 3, 'num_targets': 1}
 
         self.generator = HerdingLevelGenerator(generator_config, seed=self._seed)
         # kwargs["level"] = Generator.generate()
@@ -115,10 +116,10 @@ class Game3(GriddlyGymWrapper):
     def get_active_agents(self):
         return self.active_agents
 
-    def step(self, actions):
+    def step(self, actions, random=False):
         """Returns reward, terminated, info."""
-        # print('ACTIONS')
-        # print(actions)
+        # if random:
+        #     actions = np.random.randint(1, 4, 2)
         # print('in step')
         if torch.is_tensor(actions):
             actions = actions.numpy()
@@ -148,11 +149,15 @@ class Game3(GriddlyGymWrapper):
                 self.video_recorder.add_frame(frame)
         # print('checking sheep')
         # Terminate if no agents left
+        last_active_sheep = self.active_sheep
         self.active_sheep = self.get_active_sheep()
+        if self.active_sheep < last_active_sheep:
+            self.reward = [5, 5]
+
         if self.active_sheep < 1:
             terminated = True
             info["solved"] = True
-            self.reward = [5, 5]
+            # self.reward = [5, 5]
         else:
             info["solved"] = False
 

@@ -164,7 +164,7 @@ class HerdingLevelGenerator(LevelGenerator):
         self._height = None
         self._max_obstacles = config.get('max_obstacles', 10)
         self._num_sheep = config.get('num_sheep', 1)
-        self._num_agents = config.get('num_agents', 2)
+        self._num_agents = config.get('num_agents', 3)
         self._num_targets = config.get('num_targets', 1)
         self._seed = seed
 
