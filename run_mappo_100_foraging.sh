@@ -1,8 +1,8 @@
 #$ -S /bin/bash
-#$ -N episodic-control-array
+#$ -N MAPPO-100-Foraging
 #$ -cwd
-#$ -o $HOME/result-arr-aug14-1.out
-#$ -e $HOME/result-arr-aug14-1.err
+#$ -o $HOME/result-mappo-100-foraging.out
+#$ -e $HOME/result-mappo-100-foraging.err
 #$ -l h_rt=12:00:00
 #$ -l gpu=true
 #$ -R y

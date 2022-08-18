@@ -1,8 +1,8 @@
 #$ -S /bin/bash
-#$ -N episodic-control-array
+#$ -N QMIX-1-Foraging
 #$ -cwd
-#$ -o $HOME/result-arr-aug14-3.out
-#$ -e $HOME/result-arr-aug14-3.err
+#$ -o $HOME/result-qmix-1-foraging.out
+#$ -e $HOME/result-qmix-1-foraging.err
 #$ -l h_rt=12:00:00
 #$ -l gpu=true
 #$ -R y
