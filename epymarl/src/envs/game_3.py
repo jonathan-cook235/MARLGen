@@ -23,7 +23,7 @@ class Game3(GriddlyGymWrapper):
         self._test_seeds = kwargs['test_seeds']
         self.variation = kwargs['variation']
         self.n_actions = 4
-        self.agent_view_size = 15
+        self.agent_view_size = 8
         self.record_video = False
         self.recording_started = False
         self.video_filename = ""
@@ -89,7 +89,7 @@ class Game3(GriddlyGymWrapper):
             generator_config = {'min_width': 10, 'max_width': 20, 'min_height': 10, 'max_height': 20,
                                 'max_obstacles': 10, 'num_agents': 2, 'num_sheep': 3, 'num_targets': 1}
         else:
-            generator_config = {'min_width': 20, 'max_width': 20, 'min_height': 20, 'max_height': 20, 'max_obstacles': 10,
+            generator_config = {'min_width': 15, 'max_width': 15, 'min_height': 15, 'max_height': 15, 'max_obstacles': 5,
                             'num_agents': 2, 'num_sheep': 3, 'num_targets': 1}
 
         self.generator = HerdingLevelGenerator(generator_config, seed=self._seed)
