@@ -13,7 +13,7 @@ class RNNAgent(nn.Module):
         # input_shape = int((input_shape-3)/3)
         # Below is for herding
         elif env == 'herding':
-            input_shape = int(input_shape - 900)
+            input_shape = int(input_shape - 256)
         self.fc1 = nn.Linear(input_shape, args.hidden_dim)
         self.args.use_rnn = False
         if self.args.use_rnn:
