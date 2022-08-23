@@ -86,6 +86,13 @@ class GeneralLevelGenerator(LevelGenerator):
         if test_count > 0:
             self._scale_test(test_count)
         # np.random.seed(self._seed)
+        max_height = self._max_height
+        max_width = self._max_width
+        random_draw = np.random.randint(0, 20)
+        if random_draw == 1:
+            ood = True
+        else:
+            ood = False
         np.random.seed(level_seed)
         if self._min_width != self._max_width:
             self._width = np.random.randint(self._min_width, self._max_width)
@@ -98,6 +105,15 @@ class GeneralLevelGenerator(LevelGenerator):
         if self._max_width < 30:
             self._max_width = 30
             self._max_height = 30
+
+        if ood:
+            self._width = np.random.randint(self._max_width, self._max_width+30)
+            self._height = np.random.randint(self._max_height, self._max_height+30)
+            self._max_holes = 50
+            self._max_potions = 20
+        self._max_width = 60
+        self._max_height = 60
+
         map = np.chararray((self._max_width, self._max_height), itemsize=2)
         map[:] = '.'
 
@@ -145,6 +161,9 @@ class GeneralLevelGenerator(LevelGenerator):
             for h in range(0, self._max_height):
                 level_string += map[w, h].decode().ljust(4)
             level_string += '\n'
+
+        self._max_width = max_width
+        self._max_height = max_height
 
         return level_string, reward_max
 
@@ -244,6 +263,13 @@ class HerdingLevelGenerator(LevelGenerator):
         if test_count > 0:
             self._scale_test(test_count)
         # np.random.seed(self._seed)
+        max_height = self._max_height
+        max_width = self._max_width
+        random_draw = np.random.randint(0, 20)
+        if random_draw == 1:
+            ood = True
+        else:
+            ood = False
         np.random.seed(level_seed)
         if self._min_width != self._max_width:
             self._width = np.random.randint(self._min_width, self._max_width)
@@ -253,6 +279,14 @@ class HerdingLevelGenerator(LevelGenerator):
             self._height = np.random.randint(self._min_height, self._max_height)
         else:
             self._height = self._min_height
+
+        if ood:
+            self._width = np.random.randint(self._max_width, self._max_width+20)
+            self._height = np.random.randint(self._max_height, self._max_height+20)
+            self._max_obstacles = 40
+            self._num_sheep = np.random.randint(self._num_sheep, self._num_sheep+3)
+        self._max_width = 40
+        self._max_height = 40
 
         map = np.chararray((self._max_width, self._max_height), itemsize=2)
         map[:] = '.'
@@ -302,6 +336,9 @@ class HerdingLevelGenerator(LevelGenerator):
                 level_string += map[w, h].decode().ljust(4)
             level_string += '\n'
 
-        reward_max = 1
+        reward_max = self._num_sheep
+        
+        self._max_width = max_width
+        self._max_height = max_height
 
         return level_string, reward_max
