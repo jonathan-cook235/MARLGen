@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 class Game3(GriddlyGymWrapper):
     def __init__(self, **kwargs):
         self.active_agents = [0, 1]
-        self.active_sheep = 3
+        self.active_sheep = None
         self.n_agents = 2
         self._seed = kwargs['seed']
         self._level_seeds = kwargs['level_seeds']
@@ -64,10 +64,6 @@ class Game3(GriddlyGymWrapper):
             yaml_dict["Environment"]["Player"]["Observer"][
                 "Width"
             ] = self.agent_view_size
-            # yaml_dict["Environment"]["Player"]["Observer"]["OffsetY"] = 0
-            # yaml_dict["Environment"]["Player"]["Observer"]["OffsetY"] = (
-            #     self.agent_view_size // 2
-            # )
             self.yaml_string = yaml.dump(
                 yaml_dict, default_flow_style=False, sort_keys=False
             )
@@ -261,12 +257,22 @@ class Game3(GriddlyGymWrapper):
         else:
             level_seed = self._level_seeds[self._episode_count]
         test_count = self.validation_count - self.test_count
+        if test_count > 0:
+            if test_count < 200:
+                self.episode_limit = 156
+            elif 200 < test_count < 400:
+                self.episode_limit = 225
+            elif 400 < test_count < 600:
+                self.episode_limit = 306
+            elif 600 < test_count < 800:
+                self.episode_limit = 400
         self.level, self.reward_max = self.generator.generate(level_seed, test_count, self.variation)
         self._episode_steps = 0
         self.last_action = np.zeros((self.n_agents, self.n_actions))
         state_obs = super().reset(global_observations=True, level_string=self.level)
         self.state = state_obs['global']
         self.observations = state_obs['player']
+        self.active_sheep = self.get_active_sheep()
         # print(state.dtype)
         # return self.get_obs(), self.get_state()
         # print(self._episode_count)
