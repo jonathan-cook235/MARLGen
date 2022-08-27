@@ -37,6 +37,7 @@ class EpisodeRunner:
 
     def get_env_info(self):
         self.env.reset(first_test=self.first_test)
+        self.episode_limit = self.env.get_env_info()["episode_limit"]
         return self.env.get_env_info()
 
     def save_replay(self):

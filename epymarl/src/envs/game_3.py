@@ -132,6 +132,7 @@ class Game3(GriddlyGymWrapper):
         # actions = [self.action_map[a] for a in actions]
 
         # print('doing super step')
+        last_active_sheep = self.active_sheep
         self.observations, self.reward, terminated, info = super().step(actions)
 
         if self.record_video:
@@ -145,9 +146,10 @@ class Game3(GriddlyGymWrapper):
                 self.video_recorder.add_frame(frame)
         # print('checking sheep')
         # Terminate if no agents left
-        last_active_sheep = self.active_sheep
         self.active_sheep = self.get_active_sheep()
         if self.active_sheep < last_active_sheep:
+            # print('Last Active Sheep:', last_active_sheep)
+            # print('Active Sheep:', self.active_sheep)
             self.reward = [5, 5]
 
         if self.active_sheep < 1:
@@ -272,7 +274,7 @@ class Game3(GriddlyGymWrapper):
         state_obs = super().reset(global_observations=True, level_string=self.level)
         self.state = state_obs['global']
         self.observations = state_obs['player']
-        self.active_sheep = self.get_active_sheep()
+        self.active_sheep = self.reward_max
         # print(state.dtype)
         # return self.get_obs(), self.get_state()
         # print(self._episode_count)

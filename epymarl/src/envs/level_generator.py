@@ -47,40 +47,33 @@ class GeneralLevelGenerator(LevelGenerator):
 
     def _scale_test(self, test_count):
         if test_count < 200:
-            self._min_width = 25
-            self._min_height = 25
-            self._max_width = 25
-            self._max_height = 25
-            self._max_obstacles = 21
-            self._max_potions = 7
-        elif 200 < test_count < 400:
-            self._min_width = 30
-            self._min_height = 30
-            self._max_width = 30
-            self._max_height = 30
-            self._max_obstacles = 30
-            self._max_potions = 10
-        elif 400 < test_count < 600:
             self._min_width = 35
             self._min_height = 35
             self._max_width = 35
             self._max_height = 35
-            self._max_obstacles = 41
+            self._max_holes = 41
             self._max_potions = 14
-        elif 600 < test_count < 800:
+        elif 200 < test_count < 400:
             self._min_width = 40
             self._min_height = 40
             self._max_width = 40
             self._max_height = 40
-            self._max_obstacles = 53
+            self._max_holes = 53
             self._max_potions = 18
-        elif 800 < test_count <= 1000:
+        elif 400 < test_count < 600:
             self._min_width = 45
             self._min_height = 45
             self._max_width = 45
             self._max_height = 45
-            self._max_obstacles = 68
+            self._max_holes = 68
             self._max_potions = 23
+        elif 600 < test_count < 800:
+            self._min_width = 50
+            self._min_height = 50
+            self._max_width = 50
+            self._max_height = 50
+            self._max_holes = 83
+            self._max_potions = 28
 
     def generate(self, level_seed, test_count, variation):
         if test_count > 0:
@@ -88,31 +81,35 @@ class GeneralLevelGenerator(LevelGenerator):
         # np.random.seed(self._seed)
         max_height = self._max_height
         max_width = self._max_width
-        random_draw = np.random.randint(0, 20)
+        # random_draw = np.random.randint(0, 20)
+        random_draw = 0
         if random_draw == 1:
             ood = True
         else:
             ood = False
-        np.random.seed(level_seed)
-        if self._min_width != self._max_width:
-            self._width = np.random.randint(self._min_width, self._max_width)
-        else:
-            self._width = self._min_width
-        if self._min_height != self._max_height:
-            self._height = np.random.randint(self._min_height, self._max_height)
-        else:
-            self._height = self._min_height
-        if self._max_width < 30:
-            self._max_width = 30
-            self._max_height = 30
-
         if ood:
             self._width = np.random.randint(self._max_width, self._max_width+30)
             self._height = np.random.randint(self._max_height, self._max_height+30)
             self._max_holes = 50
             self._max_potions = 20
-        self._max_width = 60
-        self._max_height = 60
+
+        np.random.seed(level_seed)
+
+        if not ood:
+            if self._min_width != self._max_width:
+                self._width = np.random.randint(self._min_width, self._max_width)
+            else:
+                self._width = self._min_width
+            if self._min_height != self._max_height:
+                self._height = np.random.randint(self._min_height, self._max_height)
+            else:
+                self._height = self._min_height
+            if self._max_width < 30:
+                self._max_width = 30
+                self._max_height = 30
+
+        # self._max_width = 60
+        # self._max_height = 60
 
         map = np.chararray((self._max_width, self._max_height), itemsize=2)
         map[:] = '.'
@@ -229,30 +226,24 @@ class HerdingLevelGenerator(LevelGenerator):
 
     def _scale_test(self, test_count):
         if test_count < 200:
-            self._min_width = 20
-            self._min_height = 20
-            self._max_width = 20
-            self._max_height = 20
-            self._max_obstacles = 10
-        elif 200 < test_count < 400:
             self._min_width = 25
             self._min_height = 25
             self._max_width = 25
             self._max_height = 25
             self._max_obstacles = 16
-        elif 400 < test_count < 600:
+        elif 200 < test_count < 400:
             self._min_width = 30
             self._min_height = 30
             self._max_width = 30
             self._max_height = 30
             self._max_obstacles = 23
-        elif 600 < test_count < 800:
+        elif 400 < test_count < 600:
             self._min_width = 35
             self._min_height = 35
             self._max_width = 35
             self._max_height = 35
             self._max_obstacles = 31
-        elif 800 < test_count <= 1000:
+        elif 600 < test_count < 800:
             self._min_width = 40
             self._min_height = 40
             self._max_width = 40
@@ -265,26 +256,29 @@ class HerdingLevelGenerator(LevelGenerator):
         # np.random.seed(self._seed)
         max_height = self._max_height
         max_width = self._max_width
-        random_draw = np.random.randint(0, 20)
+        # random_draw = np.random.randint(0, 20)
+        random_draw = 0
         if random_draw == 1:
             ood = True
         else:
             ood = False
-        np.random.seed(level_seed)
-        if self._min_width != self._max_width:
-            self._width = np.random.randint(self._min_width, self._max_width)
-        else:
-            self._width = self._min_width
-        if self._min_height != self._max_height:
-            self._height = np.random.randint(self._min_height, self._max_height)
-        else:
-            self._height = self._min_height
-
         if ood:
             self._width = np.random.randint(self._max_width, self._max_width+20)
             self._height = np.random.randint(self._max_height, self._max_height+20)
             self._max_obstacles = 40
             self._num_sheep = np.random.randint(self._num_sheep, self._num_sheep+3)
+            # print('Num Generated Sheep:', self._num_sheep)
+        np.random.seed(level_seed)
+        if not ood:
+            if self._min_width != self._max_width:
+                self._width = np.random.randint(self._min_width, self._max_width)
+            else:
+                self._width = self._min_width
+            if self._min_height != self._max_height:
+                self._height = np.random.randint(self._min_height, self._max_height)
+            else:
+                self._height = self._min_height
+
         self._max_width = 40
         self._max_height = 40
 

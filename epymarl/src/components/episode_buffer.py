@@ -112,8 +112,15 @@ class EpisodeBatch:
 
             dtype = self.scheme[k].get("dtype", th.float32)
             # for vmas:
-            # if k == 'obs' and type(v) == list:
-            #     v = th.cat(v[0])
+            if self.env == "vmas":
+                if (k == 'obs' or k == 'state') and type(v) == list:
+                    stack = []
+                    for i in v:
+                        stack.append(th.stack(i))
+                    # a = v[0]
+                    # b = v[1]
+                    # c = v[2]
+                    v = th.stack(stack)
             v = th.tensor(v, dtype=dtype, device=self.device)
             # print(target[k][_slices])
             # print(k)
@@ -127,20 +134,17 @@ class EpisodeBatch:
                 # Changed first index to whatever batch size is in all reshaping that follows
                 # v = th.reshape(v, (1, target[k][_slices].shape[-2], target[k][_slices].shape[-1]))
                 # Below is for gathering
-                if self.env == 'griddlygen':
-                    # print(np.prod(list(v.size())))
-                    v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-2],
-                                       target[k][_slices].shape[-1]))
-                # Below is for herding
-                elif self.env == 'herding':
-                    v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-2], target[k][_slices].shape[-1]))
+                # if self.env == 'griddlygen' or self.env == 'herding':
+                v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-2], target[k][_slices].shape[-1]))
+
             elif k == 'obs':
                 v = v.squeeze()
                 # griddly:
-                if self.env == 'griddlygen' or 'herding':
-                    v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-3], 1, target[k][_slices].shape[-1]))
+                # if self.env == 'griddlygen' or self.env == 'herding':
+                v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-3], 1, target[k][_slices].shape[-1]))
                 # vmas:
-                # v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-3], 4, 11))
+                # elif self.env == 'vmas':
+                #     v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-3], 4, 11))
             elif k == 'reward':
                 # print('v before summing')
                 # print(v)
@@ -157,16 +161,18 @@ class EpisodeBatch:
                 # print('v reward')
                 # print(v)
             # for VMAS:
-            # elif k == 'avail_actions':
-            #     # print(v)
-            #     # print(target[k][_slices].shape)
-            #     v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-3], target[k][_slices].shape[-2], target[k][_slices].shape[-1]))
+            if self.env == 'vmas':
+                if k == 'avail_actions':
+                    # print(v)
+                    # print(target[k][_slices].shape)
+                    v = th.reshape(v, (target[k][_slices].shape[0], target[k][_slices].shape[-3], target[k][_slices].shape[-2], target[k][_slices].shape[-1]))
 
             # if (k == 'reward') and (target[k][_slices].shape[-2] == 51):
             #     self._check_safe_view(v, target[k][_slices][:, 0, :])
             #     target[k][_slices] = v.view_as(target[k][_slices][:, 0, :])
             #
             # else:
+            # print(k)
             self._check_safe_view(v, target[k][_slices])
             target[k][_slices] = v.view_as(target[k][_slices])
 

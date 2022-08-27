@@ -10,7 +10,8 @@ class RNNAgent(nn.Module):
         if env == 'griddlygen':
             input_shape = int((input_shape+12)/4)
         # Below is for vmas
-        # input_shape = int((input_shape-3)/3)
+        elif env == 'vmas':
+            input_shape = int((input_shape-3)/3)
         # Below is for herding
         elif env == 'herding':
             input_shape = int(input_shape - 256)

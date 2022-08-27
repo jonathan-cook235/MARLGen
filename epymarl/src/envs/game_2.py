@@ -83,7 +83,7 @@ class Game2(GriddlyGymWrapper):
         kwargs["global_observer_type"] = kwargs.pop(
             "global_observer_type", gd.ObserverType.VECTOR
         )
-        kwargs["max_steps"] = kwargs.pop("max_steps", 200)
+        kwargs["max_steps"] = kwargs.pop("max_steps", self.episode_limit)
         kwargs["environment_name"] = "Game2"
         kwargs["level"] = None
         # kwargs["level_seeds"] = self._level_seeds
@@ -260,15 +260,13 @@ class Game2(GriddlyGymWrapper):
         test_count = self.validation_count - self.test_count
         if test_count > 0:
             if test_count < 200:
-                self.episode_limit = 139
+                self.episode_limit = 137
             elif 200 < test_count < 400:
-                self.episode_limit = 200
+                self.episode_limit = 178
             elif 400 < test_count < 600:
-                self.episode_limit = 272
+                self.episode_limit = 225
             elif 600 < test_count < 800:
-                self.episode_limit = 356
-            elif 800 < test_count <= 1000:
-                self.episode_limit = 450
+                self.episode_limit = 278
         self.level, self.reward_max = self.generator.generate(level_seed, test_count, self.variation)
         self._episode_steps = 0
         self.last_action = np.zeros((self.n_agents, self.n_actions))

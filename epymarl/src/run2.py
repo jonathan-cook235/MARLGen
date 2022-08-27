@@ -157,8 +157,8 @@ def run_sequential(args, logger):
             return
 
     # start training
-    max_episode = 10000
-    test_max_episode = 1000
+    max_episode = 100
+    test_max_episode = 800
     episode = 0
     last_test_T = -args.test_interval - 1
     last_log_T = 0
@@ -185,10 +185,10 @@ def run_sequential(args, logger):
             avg_regret_tracker.append(avg_regret)
             avg_return_tracker.append(avg_return)
             wandb.log({'Avg Training Return (' + args.name.upper() + ' ' + logging_env + ' ' + str(
-                args.num_train_levels) + ' ' + 'train Overgen)': avg_return}, step=episode)
+                args.num_train_levels) + ' ' + 'train Productivity)': avg_return}, step=episode)
             if args.env == 'griddlygen':
                 wandb.log({'Avg Training Regret (' + args.name.upper() + ' ' + logging_env + ' ' + str(
-                    args.num_train_levels) + ' ' + 'train Overgen)': avg_regret}, step=episode)
+                    args.num_train_levels) + ' ' + 'train Productivity)': avg_regret}, step=episode)
             return_tracker = []
             regret_tracker = []
         buffer.insert_episode_batch(episode_batch)
@@ -219,14 +219,14 @@ def run_sequential(args, logger):
                     avg_val_return = np.mean(val_return_tracker)
                     if args.env == 'griddlygen':
                         wandb.log({'Generalisation Gap (' + args.name.upper() + ' ' + logging_env + ' ' + str(
-                            args.num_train_levels) + ' ' + 'train Overgen)': avg_regret_tracker[-1] - avg_val_regret}, step=episode)
+                            args.num_train_levels) + ' ' + 'train Productivity)': avg_regret_tracker[-1] - avg_val_regret}, step=episode)
                         wandb.log({'Avg Test Regret (' + args.name + ' ' + logging_env + ' ' + str(
-                            args.num_train_levels) + ' ' + 'train Overgen)': avg_val_regret}, step=episode)
+                            args.num_train_levels) + ' ' + 'train Productivity)': avg_val_regret}, step=episode)
                     else:
                         wandb.log({'Generalisation Gap (' + args.name.upper() + ' ' + logging_env + ' ' + str(
-                            args.num_train_levels) + ' ' + 'train Overgen)': avg_return_tracker[-1] - avg_val_return}, step=episode)
+                            args.num_train_levels) + ' ' + 'train Productivity)': avg_return_tracker[-1] - avg_val_return}, step=episode)
                     wandb.log({'Avg Test Return (' + args.name + ' ' + logging_env + ' ' + str(
-                        args.num_train_levels) + ' ' + 'train Overgen)': avg_val_return}, step=episode)
+                        args.num_train_levels) + ' ' + 'train Productivity)': avg_val_return}, step=episode)
                     val_regret_tracker = []
 
         if args.save_model and (
@@ -255,12 +255,12 @@ def run_sequential(args, logger):
     return_tracker = []
     regret_tracker = []
     cur_episode = episode
-    first_test = True
+    first_test_tracker = True
     if args.num_train_levels == 100:
         while episode <= (cur_episode + test_max_episode):
 
-            episode_batch, returns, regrets = runner.run(test_mode=True, first_test=True) # add regrets for gathering
-            first_test = False
+            episode_batch, returns, regrets = runner.run(test_mode=True, first_test=first_test_tracker) # add regrets for gathering
+            first_test_tracker = False
             return_tracker.extend(returns)
             regret_tracker.extend(regrets)
 

@@ -33,8 +33,9 @@ class ParallelRunner:
         for i in range(self.batch_size):
             lim_train = train_interval + (i*train_interval)
             lim_test = test_interval + (i*test_interval)
-            env_args[i]["level_seeds"] = self.args.env_args["level_seeds"][count_train:lim_train]
-            env_args[i]["test_seeds"] = self.args.env_args["test_seeds"][count_test:lim_test]
+            if self.args.env != 'vmas':
+                env_args[i]["level_seeds"] = self.args.env_args["level_seeds"][count_train:lim_train]
+                env_args[i]["test_seeds"] = self.args.env_args["test_seeds"][count_test:lim_test]
             count_train += train_interval
             count_test += test_interval
 
@@ -74,6 +75,7 @@ class ParallelRunner:
         self.parent_conns[0].recv()
         self.parent_conns[0].send(("get_env_info", None))
         self.env_info = self.parent_conns[0].recv()
+        self.episode_limit = self.env_info["episode_limit"]
         return self.env_info
 
     def save_replay(self):
