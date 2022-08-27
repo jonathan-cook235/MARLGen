@@ -5,6 +5,7 @@
 #$ -e $HOME/result-mappo-100-foraging.err
 #$ -l h_rt=12:00:00
 #$ -l gpu=true
+#$ -l hostname='!bert'
 #$ -R y
 #$ -l tmem=32G
 #$ -t 1-5
