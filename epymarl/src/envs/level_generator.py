@@ -108,8 +108,8 @@ class GeneralLevelGenerator(LevelGenerator):
                 self._max_width = 30
                 self._max_height = 30
 
-        # self._max_width = 60
-        # self._max_height = 60
+        self._max_width = 50
+        self._max_height = 50
 
         map = np.chararray((self._max_width, self._max_height), itemsize=2)
         map[:] = '.'
