@@ -6,10 +6,16 @@ import sys
 import torch
 import yaml
 import gym
+from .game_4 import TransportScenario
 
 class Game4(GymWrapper):
-    def __init__(self):
+    def __init__(self, **kwargs):
+        self._seed = kwargs['seed']
+        self._level_seeds = kwargs['level_seeds']
+        self._test_seeds = kwargs['test_seeds']
         self.scenario = scenarios.load('transport.py').Scenario()
+        self._episode_count = 0
+        self.validation_count = 0
         self.num_envs = 1
         self.device = 'cpu'
         self.continuous_actions = False
@@ -84,7 +90,29 @@ class Game4(GymWrapper):
     def get_total_actions(self):
         return self.n_actions
 
-    def reset(self, **kwargs):
+    def reset(self, test_mode=False, **kwargs):
+        if test_mode:
+            level_seed = self._test_seeds[self.validation_count]
+        else:
+            level_seed = self._level_seeds[self._episode_count]
+        np.random.seed(level_seed)
+        kwargs = {}
+        kwargs['seed'] = level_seed
+        kwargs['n_agents'] = 4
+        # kwargs['n_packages'] = np.random.randint(1, 4)
+        kwargs['n_packages'] = 1
+        kwargs['package_width'] = 0.15
+        kwargs['package_length'] = 0.15
+        kwargs['package_masses'] = np.random.randint(1, 100, kwargs['n_packages'])
+        self.scenario = TransportScenario(**kwargs)
+        self.env = Environment(
+            self.scenario,
+            self.num_envs,
+            self.device,
+            self.episode_limit,
+            self.continuous_actions
+        )
+        super().__init__(self.env)
         self.episode_steps = 0
         self.obs = super().reset()
         return self.obs

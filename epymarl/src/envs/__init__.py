@@ -12,6 +12,7 @@ from smac.env import MultiAgentEnv, StarCraft2Env
 # from .game_1 import Game1
 from .game_2 import Game2
 from .game_3 import Game3
+from .vmas_game import Game4
 
 import pretrained
 
@@ -25,6 +26,7 @@ REGISTRY["sc2"] = partial(env_fn, env=StarCraft2Env)
 # REGISTRY["griddly"] = partial(env_fn, env=Game1)
 REGISTRY["griddlygen"] = partial(env_fn, env=Game2)
 REGISTRY["herding"] = partial(env_fn, env=Game3)
+REGISTRY["vmas"] = partial(env_fn, env=Game4)
 
 if sys.platform == "linux":
     os.environ.setdefault(

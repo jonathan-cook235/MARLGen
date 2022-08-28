@@ -11,7 +11,12 @@ class RNNAgent(nn.Module):
             input_shape = int((input_shape+12)/4)
         # Below is for vmas
         elif env == 'vmas':
+            # if input_shape == 48:
             input_shape = int((input_shape-3)/3)
+            # elif input_shape == 104:
+            #     input_shape = int((input_shape-75))
+            # elif input_shape == 76:
+            #     input_shape = int((input_shape-54))
         # Below is for herding
         elif env == 'herding':
             input_shape = int(input_shape - 256)
