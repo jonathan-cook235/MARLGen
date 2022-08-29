@@ -34,9 +34,9 @@ def my_main(_run, _config, _log):
     # 1 train seed:
     # level_seeds = [np.random.randint(0, 100)]*100000
     print('Seed:', random_seed)
-    logging_name = 'IPPO-Transport-100Train-'+str(random_seed)
-    wandb.init(project='marlgen', entity='jonnycook', name=logging_name, reinit=True,
-               settings=wandb.Settings(start_method="fork"))
+    logging_name = 'IPPO-Transport-100Train-Test-'+str(random_seed)
+    wandb.init(project='marlgen', entity='jonnycook', name=logging_name, reinit=True)
+               # settings=wandb.Settings(start_method="fork"))
     # Setting the random seed throughout the modules
     config = config_copy(_config)
     config["seed"] = random_seed
@@ -58,7 +58,7 @@ def my_main(_run, _config, _log):
               'runner_log_interval': 1000, 'learner_log_interval': 10000, 't_max': 20050000, 'use_cuda': True,
               'buffer_cpu_only': True, 'use_tensorboard': False, 'save_model': False, 'save_model_interval': 50000,
               'checkpoint_path': '', 'evaluate': False, 'load_step': 0, 'save_replay': False,
-              'local_results_path': 'results', 'gamma': 0.99, 'batch_size': 10, 'buffer_size': 10, 'lr': 0.00005,
+              'local_results_path': 'results', 'gamma': 0.99, 'batch_size': 4000, 'buffer_size': 10, 'lr': 0.00005,
               'optim_alpha': 0.99, 'optim_eps': 1e-05, 'grad_norm_clip': 10, 'add_value_last_step': True,
               'agent': 'rnn', 'hidden_dim': 64, 'obs_agent_id': True, 'obs_last_action': False, 'repeat_id': 1,
               'label': 'default_label', 'hypergroup': None, 'action_selector': 'soft_policies',
