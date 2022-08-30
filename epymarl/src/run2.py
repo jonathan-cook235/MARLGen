@@ -159,7 +159,7 @@ def run_sequential(args, logger):
             return
 
     # start training
-    max_episode = 1000
+    max_episode = 10000
     test_max_episode = 800
     if args.env == 'vmas':
         max_episode = 5000
