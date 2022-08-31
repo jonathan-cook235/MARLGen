@@ -150,7 +150,7 @@ class Game3(GriddlyGymWrapper):
         if self.active_sheep < last_active_sheep:
             # print('Last Active Sheep:', last_active_sheep)
             # print('Active Sheep:', self.active_sheep)
-            self.reward = [50, 50]
+            self.reward = [5, 5]
 
         if self.active_sheep < 1:
             terminated = True
