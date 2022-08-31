@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 class Game3(GriddlyGymWrapper):
     def __init__(self, **kwargs):
         self.active_agents = [0, 1]
-        self.active_sheep = None
+        self.active_sheep = 3
         self.n_agents = 2
         self._seed = kwargs['seed']
         self._level_seeds = kwargs['level_seeds']
