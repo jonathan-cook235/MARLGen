@@ -12,7 +12,7 @@ class RNNAgent(nn.Module):
         # Below is for vmas
         elif env == 'vmas':
             # if input_shape == 48:
-            input_shape = int((input_shape-3)/3)
+            input_shape = int((input_shape-96))
             # elif input_shape == 104:
             #     input_shape = int((input_shape-75))
             # elif input_shape == 76:
