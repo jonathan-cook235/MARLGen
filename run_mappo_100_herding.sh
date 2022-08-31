@@ -7,7 +7,7 @@
 #$ -l gpu=true
 #$ -l hostname='!bert'
 #$ -R y
-#$ -l tmem=64G
+#$ -l tmem=32G
 #$ -t 1-5
 
 
