@@ -99,8 +99,12 @@ class QLearner:
 
         # Mix
         if self.mixer is not None:
+            # for griddly:
             chosen_action_qvals = self.mixer(chosen_action_qvals, batch["state"][:, :-1])
             target_max_qvals = self.target_mixer(target_max_qvals, batch["state"][:, 1:])
+            # for vmas:
+            # chosen_action_qvals = self.mixer(chosen_action_qvals, batch["obs"][:, :-1])
+            # target_max_qvals = self.target_mixer(target_max_qvals, batch["obs"][:, 1:])
 
         if self.args.standardise_returns:
             target_max_qvals = target_max_qvals * th.sqrt(self.ret_ms.var) + self.ret_ms.mean
