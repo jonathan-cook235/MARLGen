@@ -33,9 +33,9 @@ class ParallelRunner:
         for i in range(self.batch_size):
             lim_train = train_interval + (i*train_interval)
             lim_test = test_interval + (i*test_interval)
-            if self.args.env != 'vmas':
-                env_args[i]["level_seeds"] = self.args.env_args["level_seeds"][count_train:lim_train]
-                env_args[i]["test_seeds"] = self.args.env_args["test_seeds"][count_test:lim_test]
+            # if self.args.env != 'vmas':
+            env_args[i]["level_seeds"] = self.args.env_args["level_seeds"][count_train:lim_train]
+            env_args[i]["test_seeds"] = self.args.env_args["test_seeds"][count_test:lim_test]
             count_train += train_interval
             count_test += test_interval
 

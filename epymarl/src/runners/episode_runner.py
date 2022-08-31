@@ -87,7 +87,8 @@ class EpisodeRunner:
             # print(actions)
             obs, reward, terminated, env_info = self.env.step(cpu_actions[0])
             # for griddly games:
-            self.env.render(observer='global')
+            if self.args.env != 'vmas':
+                self.env.render(observer='global')
             # print('OBSERVATIONS')
             # print(obs)
             episode_return += np.sum(reward)
