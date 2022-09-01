@@ -35,7 +35,7 @@ def my_main(_run, _config, _log):
     # level_seeds = [np.random.randint(0, 100)]*100000
     print('Seed:', random_seed)
     logging_name = 'IPPO-Herding-100Train-OG-'+str(random_seed)
-    wandb.init(project='marlgen', entity='jonnycook', name=logging_name, reinit=True)
+    wandb.init(project='marlgen', entity='jonnycook', name=logging_name, reinit=True,
                settings=wandb.Settings(start_method="fork"))
     # Setting the random seed throughout the modules
     config = config_copy(_config)
