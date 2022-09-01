@@ -265,7 +265,7 @@ class HerdingLevelGenerator(LevelGenerator):
             self._width = np.random.randint(self._max_width, self._max_width+20)
             self._height = np.random.randint(self._max_height, self._max_height+20)
             self._max_obstacles = 40
-            self._num_sheep = np.random.randint(self._num_sheep, self._num_sheep+3)
+            # self._num_sheep = np.random.randint(self._num_sheep, self._num_sheep+3)
             # print('Num Generated Sheep:', self._num_sheep)
         np.random.seed(level_seed)
         if not ood:
