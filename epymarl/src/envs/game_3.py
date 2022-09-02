@@ -115,7 +115,7 @@ class Game3(GriddlyGymWrapper):
     def step(self, actions, random=False):
         """Returns reward, terminated, info."""
         # if random:
-        actions = np.random.randint(1, 5, 2)
+        actions = np.random.randint(1, 4, 2)
         # print('in step')
         if torch.is_tensor(actions):
             actions = actions.numpy()
