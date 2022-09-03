@@ -82,8 +82,8 @@ class Game3(GriddlyGymWrapper):
         kwargs["level"] = None
         # kwargs["level_seeds"] = self._level_seeds
         if self.variation:
-            generator_config = {'min_width': 10, 'max_width': 20, 'min_height': 10, 'max_height': 20,
-                                'max_obstacles': 10, 'num_agents': 2, 'num_sheep': 3, 'num_targets': 1}
+            generator_config = {'min_width': 25, 'max_width': 40, 'min_height': 25, 'max_height': 40,
+                                'max_obstacles': 40, 'num_agents': 2, 'num_sheep': 3, 'num_targets': 1}
         else:
             generator_config = {'min_width': 15, 'max_width': 15, 'min_height': 15, 'max_height': 15, 'max_obstacles': 5,
                             'num_agents': 2, 'num_sheep': 3, 'num_targets': 1}

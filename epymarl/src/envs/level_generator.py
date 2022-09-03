@@ -256,7 +256,8 @@ class HerdingLevelGenerator(LevelGenerator):
         # np.random.seed(self._seed)
         max_height = self._max_height
         max_width = self._max_width
-        random_draw = np.random.randint(0, 20)
+        # random_draw = np.random.randint(0, 20)
+        random_draw = 0
         if random_draw == 1:
             ood = True
         else:
